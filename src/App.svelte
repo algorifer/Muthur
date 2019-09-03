@@ -1,26 +1,20 @@
 <script>
-  // Stores
-  import { projects, divisions, types, tasks, logs } from "./stores/db";
-
   // Components
   import ViewPort from "./components/ViewPort.svelte";
-
-  // $projects.count().then(res => console.log(res));
 </script>
 
 <style type="text/scss">
   :global(body) {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: stretch;
     width: 100vw;
     min-height: 100vh;
     margin: 0;
-    padding: 0;
-    font-family: "Hack", "Courier New", Courier, monospace;
-    background: var(--alt-bg-color);
-    color: var(--text-color);
+    padding: 20px;
+    font-family: "iosevka", "Courier New", Courier, monospace;
+    background: var(--background);
+    color: var(--f_high);
     -webkit-app-region: drag;
   }
 

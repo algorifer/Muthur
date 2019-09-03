@@ -1,27 +1,27 @@
 @font-face {
-  font-family: 'Hack';
-  src: url('./fonts/Hack-Bold.woff2') format('woff2');
+  font-family: 'iosevka';
+  src: url('./fonts/iosevka-bold.woff2') format('woff2');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Hack';
-  src: url('./fonts/Hack-Regular.woff2') format('woff2');
+  font-family: 'iosevka';
+  src: url('./fonts/iosevka-regular.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Hack';
-  src: url('./fonts/Hack-BoldItalic.woff2') format('woff2');
+  font-family: 'iosevka';
+  src: url('./fonts/iosevka-bolditalic.woff2') format('woff2');
   font-weight: bold;
   font-style: italic;
 }
 
 @font-face {
-  font-family: 'Hack';
-  src: url('./fonts/Hack-Italic.woff2') format('woff2');
+  font-family: 'iosevka';
+  src: url('./fonts/iosevka-italic.woff2') format('woff2');
   font-weight: normal;
   font-style: italic;
 }
@@ -32,15 +32,26 @@
   --text-color: #000000;
   --alt-text-color: #aaaaaa;
   --hover-bg-color: #f4f4f4;
-  /* --accent-color: #deaf6c; */
   --accent-color: #d59844;
+  --error-color: #fc533e;
+
+  --background: #eeefee;
+  --f_high: #222222;
+  --f_med: #999999;
+  --f_low: #bbbcbb;
+  --f_inv: #d59844;
+  --b_high: #545454;
+  --b_med: #ced0ce;
+  --b_low: #f5f5f5;
+  --b_inv: #ed2c3e;
 }
 
 html {
   margin: 0;
   padding: 0;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 18px;
+  pointer-events: none;
 }
 
 html,

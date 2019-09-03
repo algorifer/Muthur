@@ -3,23 +3,39 @@
   import { onMount } from "svelte";
 
   // Stores
-  import { projects, divisions, types, tasks, logs } from "../stores/db";
-  import { view } from "../stores/app";
+  import { viewMode, projectsCount, updateProjectCount } from "../stores/app";
 
   // Components
   import Header from "./Header.svelte";
   import Controls from "./Controls.svelte";
-  import NonProjectLayout from "../layouts/NonProjectLayout.svelte";
+  import InitApp from "../layouts/InitApp.svelte";
+  import NonProject from "../layouts/NonProject.svelte";
+  import AddProject from "../layouts/AddProject.svelte";
+  import Projects from "../layouts/Projects.svelte";
 
   // State
-  let projectCount;
+  let isInit = false;
 
   // Lifecycle
-  onMount(() => $projects.count().then(res => (projectCount = res)));
+  onMount(() => {
+    const initTimeout = setTimeout(() => {
+      isInit = true;
+      clearTimeout(initTimeout);
+    }, 6000);
+    updateProjectCount();
+  });
 </script>
 
-<Header />
-{#if projectCount === 0}
-  <NonProjectLayout />
+{#if isInit}
+  <Header />
+  {#if $viewMode === `AddProject`}
+    <AddProject />
+  {:else if $projectsCount === 0}
+    <NonProject />
+  {:else}
+    <Projects />
+  {/if}
+  <Controls />
+{:else}
+  <InitApp />
 {/if}
-<Controls />

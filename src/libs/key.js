@@ -25,3 +25,5 @@ export const controlBlock = [
   'F15',
   'F16'
 ];
+
+export const createBlock = [...controlBlock, 'Tab'];

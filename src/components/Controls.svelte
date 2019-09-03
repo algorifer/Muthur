@@ -1,70 +1,44 @@
 <script>
-  // Libs
-  import { controlBlock } from "../libs/key";
+  // Stores
+  import { controlMod } from "../stores/control";
 
   // Components
-  import ControlsHelper from "./ControlsHelper.svelte";
-
-  // State
-  let input = ``;
-  let selectedHelp = ``;
-  // Events
-  function handleKeydown(evt) {
-    if (controlBlock.indexOf(evt.key) >= 0 || evt.keyCode === 20) return;
-    if (evt.key === "Tab" && selectedHelp) {
-      input = selectedHelp.letters;
-    } else if (evt.key === "Tab") {
-      return;
-    } else if (evt.key === "Backspace" || evt.key === "Delete") {
-      input = input.substring(0, input.length - 1);
-    } else if (evt.key === "Escape") {
-      input = ``;
-    } else {
-      input = `${input}${evt.key}`;
-    }
-  }
+  import Input from "../elements/Input.svelte";
+  import Helper from "../elements/Helper.svelte";
+  import Error from "../elements/Error.svelte";
 </script>
 
 <style>
-  @keyframes splash {
-    0% {
-      opacity: 0;
-    }
-    50% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
-
   div {
     position: sticky;
     bottom: 0;
-    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    padding: 20px 0;
   }
 
-  .input {
-    display: inline-block;
+  p {
+    display: flex;
+    align-items: baseline;
+    width: 100%;
     margin: 0;
-    padding: 10px;
-    font-size: 14px;
-    background: var(--text-color);
-    color: var(--bg-color);
-    border-radius: 5px;
-    white-space: pre-wrap;
   }
 
-  .input::after {
-    content: "_";
-    animation-name: splash;
-    animation-duration: 1s;
-    animation-iteration-count: infinite;
+  span {
+    margin-right: 10px;
+    font-style: italic;
+    text-transform: uppercase;
+    color: var(--f_high);
+    white-space: nowrap;
   }
 </style>
 
-<svelte:window on:keydown={handleKeydown} />
 <div>
-  <ControlsHelper {input} bind:selectedHelp />
-  <p class="input">{input}</p>
+  <p>
+    <span>{$controlMod}</span>
+    <Input />
+  </p>
+  <Helper />
+  <Error />
 </div>
