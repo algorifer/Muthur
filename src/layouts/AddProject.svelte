@@ -8,7 +8,7 @@
   import typewriter from "../helpers/typewriter";
 
   // Stores
-  import { message, newProject } from "../stores/app";
+  import { message, newProject } from "../stores/muthur";
 
   // State
   let isInitName = false;

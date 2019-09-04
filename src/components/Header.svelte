@@ -3,7 +3,7 @@
   import typewriter from "../helpers/typewriter";
 
   // Stores
-  import { message } from "../stores/app";
+  import { message } from "../stores/muthur";
 
   let isMessage = false;
 

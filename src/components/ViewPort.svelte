@@ -3,7 +3,8 @@
   import { onMount } from "svelte";
 
   // Stores
-  import { viewMode, projectsCount, updateProjectCount } from "../stores/app";
+  import { viewMode, projectsCount } from "../stores/muthur";
+  import { projects } from "../stores/db";
 
   // Components
   import Header from "./Header.svelte";
@@ -22,20 +23,20 @@
       isInit = true;
       clearTimeout(initTimeout);
     }, 6000);
-    updateProjectCount();
+    $projects.count().then(res => projectsCount.set(res));
   });
 </script>
 
-{#if isInit}
-  <Header />
-  {#if $viewMode === `AddProject`}
-    <AddProject />
-  {:else if $projectsCount === 0}
-    <NonProject />
-  {:else}
-    <Projects />
-  {/if}
-  <Controls />
+<!-- {#if isInit} -->
+<Header />
+{#if $viewMode === `AddProject`}
+  <AddProject />
+{:else if $projectsCount === 0}
+  <NonProject />
 {:else}
-  <InitApp />
+  <Projects />
 {/if}
+<Controls />
+<!-- {:else}
+  <InitApp />
+{/if} -->

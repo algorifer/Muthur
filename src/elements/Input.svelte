@@ -2,14 +2,24 @@
   // Svelet
   import { onMount } from "svelte";
 
+  // Utils
+  import { DateTime } from "luxon";
+
   // Stores
   import {
     controlValue,
     controlError,
+    controlMod,
     controlHelpers,
-    onHelperUse,
-    onSubmit
+    ControlMods
   } from "../stores/control";
+  import {
+    viewMode,
+    message,
+    newProject,
+    projectsCount
+  } from "../stores/muthur";
+  import { projects } from "../stores/db";
 
   // State
   let input;
@@ -27,11 +37,91 @@
   $: if ($controlValue) inputResize();
 
   // Events
+  const onCmdSubmit = ([cmd, trg, ...args]) => {
+    switch (cmd) {
+      case `add`:
+        switch (trg) {
+          case `project`:
+            return viewMode.set(`AddProject`);
+        }
+        break;
+      default:
+        controlError.set(`wrong command`);
+    }
+  };
+
+  const onSubmit = () => {
+    const value = $controlValue;
+    controlValue.set(``);
+
+    switch ($controlMod) {
+      case ControlMods.NAME:
+        if (!value.length) return controlError.set(`required`);
+        switch ($viewMode) {
+          case `AddProject`:
+            return newProject.update(p => ({ ...p, name: value }));
+        }
+        break;
+      case ControlMods.DESC:
+        if (!value.length) return controlError.set(`required`);
+        switch ($viewMode) {
+          case `AddProject`:
+            return newProject.update(p => ({ ...p, desc: value }));
+        }
+        break;
+      case ControlMods.NOTE:
+        switch ($viewMode) {
+          case `AddProject`:
+            return newProject.update(p => ({
+              ...p,
+              note: value.length ? value : `empty`
+            }));
+        }
+        break;
+      case ControlMods.DATE:
+        switch ($viewMode) {
+          case `AddProject`:
+            return newProject.update(p => ({
+              ...p,
+              date: DateTime.fromISO(value).toString()
+            }));
+        }
+        break;
+      case ControlMods.SAVE:
+        switch ($viewMode) {
+          case `AddProject`:
+            if (value.toLowerCase() === `yes` || value.toLowerCase() === `y`) {
+              $projects
+                .insert($newProject)
+                .then(res =>
+                  $projects.count().then(res => {
+                    projectsCount.set(res);
+                    viewMode.set(`Tasks`);
+                  })
+                )
+                .catch(err => console.log(err));
+            } else if (
+              value.toLowerCase() === `no` ||
+              value.toLowerCase() === `n`
+            ) {
+              newProject.set({});
+              viewMode.set(`Tasks`);
+            } else {
+              controlError.set(`wrong command`);
+            }
+            break;
+        }
+        break;
+      default:
+        onCmdSubmit(value.split(` `));
+    }
+  };
+
   function onKeydown(evt) {
     controlError.set(null);
     if (evt.key === `Tab`) {
       evt.preventDefault();
-      onHelperUse();
+      controlValue.set($controlHelpers[0].letters);
       return;
     } else if (evt.key === `Escape`) {
       evt.preventDefault();

@@ -4,7 +4,7 @@
 
   // Stores
   import { projects } from "../stores/db";
-  import { tasksCount, message } from "../stores/app";
+  import { tasksCount, message } from "../stores/muthur";
 
   // Components
   import ProjectCard from "../components/ProjectCard.svelte";

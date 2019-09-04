@@ -1,18 +1,10 @@
 import { DateTime } from 'luxon';
 
 // Svelte
-import { writable, derived, get } from 'svelte/store';
+import { writable, derived } from 'svelte/store';
 
 // Stores
-import {
-  viewMode,
-  newProject,
-  toAddProject,
-  toTasks,
-  setProjectField,
-  updateProjectCount
-} from './app';
-import { addProjectDB } from './db';
+import { viewMode, newProject } from './muthur';
 
 // Data
 export const ControlMods = {
@@ -74,83 +66,3 @@ export const controlHelpers = derived(
         )
       : []
 );
-
-// Events
-export const onCmdMod = () => controlMod.set(ControlMods.CMD);
-export const onTxtMod = () => controlMod.set(ControlMods.TXT);
-export const onHelperUse = () => {
-  const helps = get(controlHelpers);
-  if (helps.length) controlValue.set(helps[0].letters);
-};
-
-const onCmdSubmit = (view, value) => {
-  const [cmd, trg, ...args] = value.split(` `);
-
-  if (cmd === `add` && trg === `project`) {
-    toAddProject(args.join(` `));
-  } else {
-    controlError.set(`wrong command`);
-  }
-};
-
-export const onSubmit = () => {
-  const mode = get(controlMod);
-  const view = get(viewMode);
-  const value = get(controlValue);
-
-  controlValue.set(``);
-
-  switch (mode) {
-    case ControlMods.CMD:
-      onCmdSubmit(view, value);
-      break;
-    case ControlMods.NAME:
-      if (!value.length) return controlError.set(`wrong command`);
-      switch (view) {
-        case `AddProject`:
-          setProjectField(view, `name`, value);
-          break;
-      }
-      break;
-    case ControlMods.DESC:
-      if (!value.length) return controlError.set(`wrong command`);
-      switch (view) {
-        case `AddProject`:
-          setProjectField(view, `desc`, value);
-          break;
-      }
-      break;
-    case ControlMods.NOTE:
-      switch (view) {
-        case `AddProject`:
-          setProjectField(view, `note`, value.length ? value : `empty`);
-          break;
-      }
-      break;
-    case ControlMods.DATE:
-      switch (view) {
-        case `AddProject`:
-          setProjectField(view, `date`, DateTime.fromISO(value).toString());
-          break;
-      }
-      break;
-    case ControlMods.SAVE:
-      switch (view) {
-        case `AddProject`:
-          if (value.toLowerCase() === `yes` || value.toLowerCase() === `y`) {
-            addProjectDB();
-            updateProjectCount();
-            toTasks();
-            break;
-          } else if (
-            value.toLowerCase() === `no` ||
-            value.toLowerCase() === `n`
-          ) {
-            break;
-          } else {
-            controlError.set(`wrong command`);
-            break;
-          }
-      }
-  }
-};
