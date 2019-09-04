@@ -3,7 +3,12 @@
   import { onMount } from "svelte";
 
   // Stores
-  import { viewMode, projectsCount } from "../stores/muthur";
+  import {
+    viewMode,
+    projectsCount,
+    newProject,
+    newTask
+  } from "../stores/muthur";
   import { projects } from "../stores/db";
 
   // Components
@@ -12,6 +17,7 @@
   import InitApp from "../layouts/InitApp.svelte";
   import NonProject from "../layouts/NonProject.svelte";
   import AddProject from "../layouts/AddProject.svelte";
+  import AddTask from "../layouts/AddTask.svelte";
   import Projects from "../layouts/Projects.svelte";
 
   // State
@@ -31,6 +37,8 @@
 <Header />
 {#if $viewMode === `AddProject`}
   <AddProject />
+{:else if $viewMode === `AddTask`}
+  <AddTask />
 {:else if $projectsCount === 0}
   <NonProject />
 {:else}

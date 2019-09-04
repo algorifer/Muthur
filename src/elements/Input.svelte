@@ -17,6 +17,7 @@
     viewMode,
     message,
     newProject,
+    newTask,
     projectsCount
   } from "../stores/muthur";
   import { projects } from "../stores/db";
@@ -38,11 +39,16 @@
 
   // Events
   const onCmdSubmit = ([cmd, trg, ...args]) => {
+    console.log(cmd, trg);
     switch (cmd) {
       case `add`:
         switch (trg) {
           case `project`:
+            if (args.length) newProject.set({ name: args.join(` `) });
             return viewMode.set(`AddProject`);
+          case `task`:
+            if (args.length) newTask.set({ name: args.join(` `) });
+            return viewMode.set(`AddTask`);
         }
         break;
       default:
@@ -57,36 +63,21 @@
     switch ($controlMod) {
       case ControlMods.NAME:
         if (!value.length) return controlError.set(`required`);
-        switch ($viewMode) {
-          case `AddProject`:
-            return newProject.update(p => ({ ...p, name: value }));
-        }
+        return newProject.set({ name: value });
+        // TODO: check name
         break;
       case ControlMods.DESC:
         if (!value.length) return controlError.set(`required`);
-        switch ($viewMode) {
-          case `AddProject`:
-            return newProject.update(p => ({ ...p, desc: value }));
-        }
+        return newProject.update(p => ({ ...p, desc: value }));
         break;
       case ControlMods.NOTE:
-        switch ($viewMode) {
-          case `AddProject`:
-            return newProject.update(p => ({
-              ...p,
-              note: value.length ? value : `empty`
-            }));
-        }
+        return newProject.update(p => ({
+          ...p,
+          note: value.length ? value : `empty`
+        }));
         break;
-      case ControlMods.DATE:
-        switch ($viewMode) {
-          case `AddProject`:
-            return newProject.update(p => ({
-              ...p,
-              date: DateTime.fromISO(value).toString()
-            }));
-        }
-        break;
+      case ControlMods.TASK:
+        return newTask.set({ name: value });
       case ControlMods.SAVE:
         switch ($viewMode) {
           case `AddProject`:
@@ -97,6 +88,7 @@
                   $projects.count().then(res => {
                     projectsCount.set(res);
                     viewMode.set(`Tasks`);
+                    newProject.set({});
                   })
                 )
                 .catch(err => console.log(err));
@@ -104,7 +96,7 @@
               value.toLowerCase() === `no` ||
               value.toLowerCase() === `n`
             ) {
-              newProject.set({});
+              newProject.set(null);
               viewMode.set(`Tasks`);
             } else {
               controlError.set(`wrong command`);

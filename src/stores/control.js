@@ -4,7 +4,8 @@ import { DateTime } from 'luxon';
 import { writable, derived } from 'svelte/store';
 
 // Stores
-import { viewMode, newProject } from './muthur';
+import { viewMode, newProject, newTask } from './muthur';
+import { projects } from './db';
 
 // Data
 export const ControlMods = {
@@ -13,13 +14,15 @@ export const ControlMods = {
   DESC: `desc`,
   NOTE: `note`,
   DATE: `date`,
-  SAVE: `save`
+  SAVE: `save`,
+  TASK: `task`,
+  PROJECT: `proj`
 };
 
 export const commands = [
   { letters: `add `, desc: `add project or task` },
   { letters: `add project `, desc: `add project <name>` },
-  { letters: `add tasks `, desc: `add task <name>` },
+  { letters: `add task `, desc: `add task <name>` },
   { letters: `remove `, desc: `remove project or task` },
   { letters: `remove project `, desc: `add project <name>` },
   { letters: `remove task `, desc: `add task <id>` }
@@ -31,8 +34,8 @@ export const controlError = writable(null);
 
 // SWITCH MODE
 export const controlMod = derived(
-  [viewMode, newProject],
-  ([$viewMode, $newProject]) => {
+  [viewMode, newProject, newTask],
+  ([$viewMode, $newProject, $newTask]) => {
     switch ($viewMode) {
       case `AddProject`:
         if (!$newProject.name) {
@@ -41,12 +44,15 @@ export const controlMod = derived(
           return ControlMods.DESC;
         } else if (!$newProject.note) {
           return ControlMods.NOTE;
-        } else if (!$newProject.date) {
-          controlValue.set(DateTime.local().toISODate());
-          return ControlMods.DATE;
         } else {
           controlValue.set(`Yes`);
           return ControlMods.SAVE;
+        }
+      case `AddTask`:
+        if (!$newTask.name) {
+          return ControlMods.TASK;
+        } else if (!$newTask.project) {
+          return ControlMods.PROJECT;
         }
       default:
         return ControlMods.CMD;
@@ -56,13 +62,27 @@ export const controlMod = derived(
 
 // CREATE HELPERS
 export const controlHelpers = derived(
-  [controlMod, controlValue],
-  ([$controlMod, $controlValue]) =>
-    $controlMod === ControlMods.CMD && $controlValue.length
-      ? commands.filter(
-          command =>
-            !command.letters.indexOf($controlValue) &&
-            command.letters !== $controlValue
-        )
-      : []
+  [controlMod, controlValue, projects],
+  ([$controlMod, $controlValue, $projects]) => {
+    if ($controlMod === ControlMods.CMD && $controlValue.length) {
+      return commands.filter(
+        command =>
+          !command.letters.indexOf($controlValue) &&
+          command.letters !== $controlValue
+      );
+    } else if ($controlMod === ControlMods.PROJECT) {
+      let projectsList;
+      $projects
+        .find()
+        .exec()
+        .then(res => {
+          projectsList = resfilter(
+            p => !p.name.indexOf($controlValue) && p.name !== $controlValue
+          );
+        });
+      return projectsList;
+    } else {
+      return [];
+    }
+  }
 );

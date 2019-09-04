@@ -8,15 +8,15 @@
   import typewriter from "../helpers/typewriter";
 
   // Stores
-  import { message, newProject } from "../stores/muthur";
+  import { message, newProject, newTask } from "../stores/muthur";
 
   // State
-  let isInitName = false;
+  let isInitTask = false;
 
   // LifeCycle
   onMount(() => {
-    isInitName = $newProject.name ? true : false;
-    message.set(`Create a new project`);
+    isInitTask = $newTask.name ? true : false;
+    message.set(`Create a new task`);
   });
 </script>
 
@@ -49,21 +49,21 @@
 </style>
 
 <main>
-  {#if isInitName}
-    <p class="qustion" in:typewriter>°: Project Name Set</p>
+  {#if isInitTask}
+    <p class="qustion" in:typewriter>°: Task set</p>
     <p transition:fly={{ y: 20, duration: 200 }}>
-      <span>name</span>
-      {$newProject.name}
+      <span>task</span>
+      {$newTask.name}
     </p>
-    <p class="qustion" in:typewriter>°: Enter project description</p>
+    <p class="qustion" in:typewriter>°: Enter project name</p>
   {:else}
-    <p class="qustion" in:typewriter>°: What is the name of the project?</p>
-    {#if $newProject.name}
+    <p class="qustion" in:typewriter>°: Describe task</p>
+    {#if $newTask.name}
       <p transition:fly={{ y: 20, duration: 200 }}>
-        <span>name</span>
-        {$newProject.name}
+        <span>task</span>
+        {$newTask.name}
       </p>
-      <p class="qustion" in:typewriter>°: Enter project description</p>
+      <p class="qustion" in:typewriter>°: Enter project name</p>
     {/if}
   {/if}
   {#if $newProject.desc}
@@ -77,6 +77,13 @@
     <p transition:fly={{ y: 20, duration: 200 }}>
       <span>note</span>
       {$newProject.note}
+    </p>
+    <p class="qustion" in:typewriter>°: Enter project start date</p>
+  {/if}
+  {#if $newProject.date}
+    <p transition:fly={{ y: 20, duration: 200 }}>
+      <span>start date</span>
+      {DateTime.fromISO($newProject.date).toLocaleString()}
     </p>
     <p class="qustion" in:typewriter>°: Save project? [Y]es or [N]o</p>
   {/if}
