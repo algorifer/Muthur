@@ -1,32 +1,15 @@
 <script>
-  // Svelet
-  import { onMount } from "svelte";
-
-  // Utils
-  import { DateTime } from "luxon";
-
-  // Stores
-  import {
-    controlValue,
-    controlError,
-    controlMod,
-    controlHelpers,
-    ControlMods
-  } from "../stores/control";
-  import {
-    viewMode,
-    message,
-    newProject,
-    newTask,
-    projectsCount
-  } from "../stores/muthur";
-  import { projects } from "../stores/db";
+  // Svelte
+  import { onMount, onDestroy, createEventDispatcher } from "svelte";
 
   // State
   let input;
+  export let value;
+  export let placeholder = ``;
 
   // Lifecycle
   onMount(() => input.focus());
+  onDestroy(() => document.body.focus());
 
   // Methods
   const inputResize = () => {
@@ -35,93 +18,14 @@
       (input.offsetHeight - input.clientHeight)}px`;
   };
 
-  $: if ($controlValue) inputResize();
-
   // Events
-  const onCmdSubmit = ([cmd, trg, ...args]) => {
-    console.log(cmd, trg);
-    switch (cmd) {
-      case `add`:
-        switch (trg) {
-          case `project`:
-            if (args.length) newProject.set({ name: args.join(` `) });
-            return viewMode.set(`AddProject`);
-          case `task`:
-            if (args.length) newTask.set({ name: args.join(` `) });
-            return viewMode.set(`AddTask`);
-        }
-        break;
-      default:
-        controlError.set(`wrong command`);
-    }
-  };
+  $: if (value) inputResize();
 
-  const onSubmit = () => {
-    const value = $controlValue;
-    controlValue.set(``);
-
-    switch ($controlMod) {
-      case ControlMods.NAME:
-        if (!value.length) return controlError.set(`required`);
-        return newProject.set({ name: value });
-        // TODO: check name
-        break;
-      case ControlMods.DESC:
-        if (!value.length) return controlError.set(`required`);
-        return newProject.update(p => ({ ...p, desc: value }));
-        break;
-      case ControlMods.NOTE:
-        return newProject.update(p => ({
-          ...p,
-          note: value.length ? value : `empty`
-        }));
-        break;
-      case ControlMods.TASK:
-        return newTask.set({ name: value });
-      case ControlMods.SAVE:
-        switch ($viewMode) {
-          case `AddProject`:
-            if (value.toLowerCase() === `yes` || value.toLowerCase() === `y`) {
-              $projects
-                .insert($newProject)
-                .then(res =>
-                  $projects.count().then(res => {
-                    projectsCount.set(res);
-                    viewMode.set(`Tasks`);
-                    newProject.set({});
-                  })
-                )
-                .catch(err => console.log(err));
-            } else if (
-              value.toLowerCase() === `no` ||
-              value.toLowerCase() === `n`
-            ) {
-              newProject.set(null);
-              viewMode.set(`Tasks`);
-            } else {
-              controlError.set(`wrong command`);
-            }
-            break;
-        }
-        break;
-      default:
-        onCmdSubmit(value.split(` `));
-    }
-  };
-
-  function onKeydown(evt) {
-    controlError.set(null);
-    if (evt.key === `Tab`) {
-      evt.preventDefault();
-      controlValue.set($controlHelpers[0].letters);
-      return;
-    } else if (evt.key === `Escape`) {
-      evt.preventDefault();
-      controlValue.set(``);
-    } else if (evt.key === `Enter`) {
-      evt.preventDefault();
-      // if (!$controlValue.length) return; /// Запрет пустого значения
-      onSubmit();
+  function onKyedown(e) {
+    if (e.key === `Enter` && !e.shiftKey) {
+      e.preventDefault();
+      const dispatch = createEventDispatcher();
+      dispatch(`submit`);
     }
   }
 </script>
@@ -130,21 +34,21 @@
   textarea {
     width: 100%;
     margin: 0;
-    padding: 8px;
+    padding: 5px 20px;
     font-family: inherit;
     font-size: 14px;
-    white-space: pre-wrap;
-    color: var(--background);
-    background: var(--f_inv);
+    line-height: 1.2;
+    color: inherit;
+    background: none;
     border: none;
+    border-left: 1px solid var(--f_low);
     resize: none;
-    border-radius: 5px;
   }
 </style>
 
 <textarea
   rows="1"
-  bind:this={input}
-  bind:value={$controlValue}
-  on:keydown={onKeydown}
-  on:blur={() => input.focus()} />
+  bind:value
+  {placeholder}
+  on:keydown={onKyedown}
+  bind:this={input} />

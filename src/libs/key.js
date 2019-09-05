@@ -23,7 +23,8 @@ export const controlBlock = [
   'F13',
   'F14',
   'F15',
-  'F16'
+  'F16',
+  '⊕	⊖	⊗	⊘	⊙	⊚	⊛	⊜	⊝'
 ];
 
 export const createBlock = [...controlBlock, 'Tab'];

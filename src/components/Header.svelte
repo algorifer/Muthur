@@ -1,45 +1,76 @@
 <script>
-  // Utils
-  import typewriter from "../helpers/typewriter";
-
-  // Stores
-  import { message } from "../stores/muthur";
-
-  let isMessage = false;
-
-  $: if ($message) {
-    isMessage = false;
-    const messageTimeout = window.setTimeout(() => {
-      isMessage = true;
-      clearTimeout(messageTimeout);
-    }, 100);
-  } else {
-    isMessage = false;
-  }
+  // Store
+  import { viewMode } from "../stores/muthur";
 </script>
 
 <style>
   header {
-    margin: 0;
-    padding: 0 0 20px;
-    color: var(--f_inv);
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 40px;
   }
 
   h1 {
     margin: 0;
-    font-size: 34px;
-    line-height: 1.2;
+    font-size: 14px;
+    line-height: 1;
+    color: var(--f_inv);
   }
 
-  p {
-    margin: 10px 0 0;
-    font-size: 16px;
+  nav {
+    width: 100%;
+    margin-left: 20px;
+  }
+
+  ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    margin-right: 10px;
+  }
+
+  button {
+    margin: 0;
+    padding: 0;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1;
+    color: var(--f_med);
+    border: none;
+    background: none;
+    transition: color 0.5s;
+  }
+
+  .active {
+    color: var(--f_high);
   }
 </style>
 
 <header>
   <h1>MU°TH°UR</h1>
-  {#if isMessage}
-    <p in:typewriter>{$message}</p>
-  {/if}
+  <nav>
+    <ul>
+      <li>
+        <button class={$viewMode === `tasks` ? `active` : ``}>Tasks</button>
+      </li>
+      <li>
+        <button class={$viewMode === `projects` ? `active` : ``}>
+          Projects
+        </button>
+      </li>
+      <li>
+        <button class={$viewMode === `stats` ? `active` : ``}>Stats</button>
+      </li>
+      <li>
+        <button class={$viewMode === `journal` ? `active` : ``}>Journal</button>
+      </li>
+      <li>
+        <button class={$viewMode === `log` ? `active` : ``}>Log</button>
+      </li>
+    </ul>
+  </nav>
 </header>

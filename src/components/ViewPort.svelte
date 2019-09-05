@@ -1,50 +1,65 @@
 <script>
-  // Svelte
-  import { onMount } from "svelte";
-
   // Stores
-  import {
-    viewMode,
-    projectsCount,
-    newProject,
-    newTask
-  } from "../stores/muthur";
-  import { projects } from "../stores/db";
+  import { viewMode } from "../stores/muthur";
 
   // Components
   import Header from "./Header.svelte";
-  import Controls from "./Controls.svelte";
-  import InitApp from "../layouts/InitApp.svelte";
-  import NonProject from "../layouts/NonProject.svelte";
-  import AddProject from "../layouts/AddProject.svelte";
-  import AddTask from "../layouts/AddTask.svelte";
-  import Projects from "../layouts/Projects.svelte";
+  import Projects from "./Projects.svelte";
+  import Tasks from "./Tasks.svelte";
+  import AddProject from "./AddProject.svelte";
+  import AddTask from "./AddTask.svelte";
 
-  // State
-  let isInit = false;
-
-  // Lifecycle
-  onMount(() => {
-    const initTimeout = setTimeout(() => {
-      isInit = true;
-      clearTimeout(initTimeout);
-    }, 6000);
-    $projects.count().then(res => projectsCount.set(res));
-  });
+  // HotKeys
+  function onWindowKeydown(e) {
+    switch (e.key) {
+      case `p`:
+        if (e.metaKey || e.ctrlKey) {
+          viewMode.set(`addProject`);
+        }
+        break;
+      case `t`:
+        if (e.metaKey || e.ctrlKey) {
+          viewMode.set(`addTask`);
+        }
+        break;
+      case `ArrowLeft`:
+        if (e.shiftKey) {
+          switch ($viewMode) {
+            case `projects`:
+              viewMode.set(`tasks`);
+              break;
+            case `tasks`:
+              viewMode.set(`projects`);
+              break;
+          }
+        }
+        break;
+      case `ArrowRight`:
+        if (e.shiftKey) {
+          switch ($viewMode) {
+            case `projects`:
+              viewMode.set(`tasks`);
+              break;
+            case `tasks`:
+              viewMode.set(`projects`);
+              break;
+          }
+        }
+        break;
+    }
+  }
 </script>
 
-<!-- {#if isInit} -->
-<Header />
-{#if $viewMode === `AddProject`}
-  <AddProject />
-{:else if $viewMode === `AddTask`}
-  <AddTask />
-{:else if $projectsCount === 0}
-  <NonProject />
-{:else}
+<svelte:window on:keydown={onWindowKeydown} />
+
+{#if $viewMode === `projects`}
+  <Header />
   <Projects />
+{:else if $viewMode === `tasks`}
+  <Header />
+  <Tasks />
+{:else if $viewMode === `addProject`}
+  <AddProject />
+{:else if $viewMode === `addTask`}
+  <AddTask />
 {/if}
-<Controls />
-<!-- {:else}
-  <InitApp />
-{/if} -->
