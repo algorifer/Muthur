@@ -4,14 +4,13 @@
 
   // Stores
   import { dbProjects } from "../stores/db";
-  import { viewMode } from "../stores/muthur";
 
   // Components
-  import ProjectsList from "../elements/ProjectsList.svelte";
-  import ProjectInfo from "../elements/ProjectInfo.svelte";
-  import ProjectsHolder from "../elements/ProjectsHolder.svelte";
+  import List from "./List.svelte";
+  import Info from "./Info.svelte";
+  import Holder from "./Holder.svelte";
 
-  // State
+  // Model
   let projects = [];
   let currentIndex = -1;
 
@@ -79,16 +78,16 @@
   </span>
 {:else}
   <main>
-    <ProjectsList
+    <List
       {currentIndex}
       projects={projects.map(p => ({ name: p.name, id: p._id }))} />
     {#if currentProject}
-      <ProjectInfo
+      <Info
         name={currentProject.name}
         desc={currentProject.desc}
         id={currentProject._id} />
     {:else}
-      <ProjectsHolder />
+      <Holder />
     {/if}
   </main>
 {/if}

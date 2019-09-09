@@ -1,5 +1,6 @@
 <script>
-  export let tasks;
+  // Model
+  export let projects;
   export let currentIndex;
 </script>
 
@@ -15,7 +16,7 @@
 
   li {
     position: relative;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     transition: transform 0.2s;
   }
 
@@ -32,7 +33,7 @@
 </style>
 
 <ul>
-  {#each tasks as task, i (task.id)}
-    <li class={i === currentIndex ? `active` : ``}>{task.name}</li>
+  {#each projects as project, i (project.id)}
+    <li class={i === currentIndex ? `active` : ``}>{project.name}</li>
   {/each}
 </ul>

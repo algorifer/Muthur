@@ -4,22 +4,22 @@
 
   // Components
   import Header from "./Header.svelte";
-  import Projects from "./Projects.svelte";
-  import Tasks from "./Tasks.svelte";
-  import AddProject from "./AddProject.svelte";
-  import AddTask from "./AddTask.svelte";
+  import Projects from "../projects/index.svelte";
+  import Tasks from "../tasks/index.svelte";
+  import CreateProject from "../createProject/index.svelte";
+  import CreateTask from "../createTask/index.svelte";
 
   // HotKeys
   function onWindowKeydown(e) {
     switch (e.key) {
       case `p`:
         if (e.metaKey || e.ctrlKey) {
-          viewMode.set(`addProject`);
+          viewMode.set(`createProject`);
         }
         break;
       case `t`:
         if (e.metaKey || e.ctrlKey) {
-          viewMode.set(`addTask`);
+          viewMode.set(`createTask`);
         }
         break;
       case `ArrowLeft`:
@@ -58,8 +58,8 @@
 {:else if $viewMode === `tasks`}
   <Header />
   <Tasks />
-{:else if $viewMode === `addProject`}
-  <AddProject />
-{:else if $viewMode === `addTask`}
-  <AddTask />
+{:else if $viewMode === `createProject`}
+  <CreateProject />
+{:else if $viewMode === `createTask`}
+  <CreateTask />
 {/if}

@@ -2,7 +2,7 @@
   // Utils
   const { DateTime } = require("luxon");
 
-  // State
+  // Model
   export let project;
   export let deadline;
   export let id;

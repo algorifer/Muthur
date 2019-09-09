@@ -17,6 +17,7 @@
     input.style.height = `${input.scrollHeight +
       (input.offsetHeight - input.clientHeight)}px`;
   };
+  const dispatch = createEventDispatcher();
 
   // Events
   $: if (value) inputResize();
@@ -24,8 +25,10 @@
   function onKyedown(e) {
     if (e.key === `Enter` && !e.shiftKey) {
       e.preventDefault();
-      const dispatch = createEventDispatcher();
       dispatch(`submit`);
+    } else if (e.key === `Tab`) {
+      e.preventDefault();
+      dispatch(`help`);
     }
   }
 </script>

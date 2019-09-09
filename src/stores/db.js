@@ -1,5 +1,15 @@
-import dbFactory from '../dbFactory';
-import { readable } from 'svelte/store';
+const {app} = require('electron');
+const Datastore = require('nedb-promises');
+import {readable} from 'svelte/store';
+
+const dbFactory = fileName =>
+  Datastore.create({
+    filename: `${
+      !process.env.ROLLUP_WATCH ? '.' : app.getAppPath('userData')
+    }/data/${fileName}`,
+    timestampData: true,
+    autoload: true
+  });
 
 export const dbProjects = readable(dbFactory(`projects.db`));
 export const dbDivisions = readable(dbFactory(`divisions.db`));

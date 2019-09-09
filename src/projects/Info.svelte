@@ -1,25 +1,20 @@
 <script>
-  // Svelte
-  import { onMount } from "svelte";
-
   // Stores
   import { dbTasks } from "../stores/db";
 
-  // State
+  // Model
   export let name;
   export let desc;
   export let id;
   let tasksCount = null;
 
+  // Update
   $: {
     $dbTasks
       .count({ project: name })
       .then(res => (tasksCount = res))
       .catch(err => console.log(err));
   }
-
-  // Lifecycle
-  onMount(() => {});
 </script>
 
 <style>

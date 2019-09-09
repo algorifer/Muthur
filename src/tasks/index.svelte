@@ -4,14 +4,13 @@
 
   // Stores
   import { dbTasks } from "../stores/db";
-  import { viewMode } from "../stores/muthur";
 
   // Components
-  import TasksList from "../elements/TasksList.svelte";
-  import TaskInfo from "../elements/TaskInfo.svelte";
-  import TasksHolder from "../elements/TasksHolder.svelte";
+  import List from "./List.svelte";
+  import Info from "./Info.svelte";
+  import Holder from "./Holder.svelte";
 
-  // State
+  // Model
   let tasks = [];
   let currentIndex = -1;
 
@@ -79,7 +78,7 @@
   </span>
 {:else}
   <main>
-    <TasksList
+    <List
       {currentIndex}
       tasks={tasks.map(t => ({
         name: t.name,
@@ -87,12 +86,12 @@
         id: t._id
       }))} />
     {#if currentTask}
-      <TaskInfo
+      <Info
         deadline={currentTask.deadline}
         id={currentTask._id}
         project={currentTask.project} />
     {:else}
-      <TasksHolder />
+      <Holder />
     {/if}
   </main>
 {/if}
