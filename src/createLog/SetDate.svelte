@@ -8,25 +8,23 @@
   import CreateHelper from "../components/CreateHelper.svelte";
 
   // Model
-  const now = DateTime.local().toISO();
-  let value = ``;
-  export let task;
+  let now = DateTime.local().toISODate();
+  export let log;
   export let msgError;
 
-  $: helpers = [
-    { name: `${now.split(`:`)[0]}:${now.split(`:`)[1]}`, desc: `format` }
-  ];
+  $: value = now;
+  $: helpers = [{ name: now, desc: `format` }];
 
   // Update
-  const setDeadline = () => {
+  const setDate = () => {
     msgError = false;
     if (!value.length) {
-      task.deadline = `none`;
+      msgError = `required field`;
       return;
     }
     const date = DateTime.fromISO(value);
     if (date.isValid) {
-      task.deadline = date.toISO();
+      log.date = date.toISO();
     } else {
       value = ``;
       msgError = `inValid format`;
@@ -61,18 +59,16 @@
 
 <li class="request">
   <span>○</span>
-  <p in:typewriter>Does the task have a deadline?</p>
+  <p in:typewriter>When?</p>
 </li>
 <li>
-  <span>deadline</span>
-  {#if !task.deadline}
-    <Input bind:value on:submit={setDeadline} placeholder="none" />
+  <span>date</span>
+  {#if !log.date}
+    <Input bind:value on:submit={setDate} placeholder="required" />
   {:else}
-    <p>
-      {task.deadline === `none` ? `none` : DateTime.fromISO(task.deadline).toLocaleString()}
-    </p>
+    <p>{DateTime.fromISO(log.date).toLocaleString()}</p>
   {/if}
 </li>
-{#if !task.deadline}
+{#if !log.date}
   <CreateHelper {helpers} />
 {/if}

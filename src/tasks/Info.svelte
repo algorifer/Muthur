@@ -10,8 +10,11 @@
 
 <style>
   article {
-    width: 100%;
-    padding: 0 20px;
+    position: fixed;
+    top: 100px;
+    right: 0;
+    width: 50%;
+    padding: 0 40px;
     border-left: 1px solid var(--f_low);
   }
 

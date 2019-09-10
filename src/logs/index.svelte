@@ -2,27 +2,28 @@
   // Svelte
   import { onMount } from "svelte";
 
+  // Utils
+  const { DateTime } = require("luxon");
+
   // Stores
-  import { dbTasks } from "../stores/db";
+  import { dbLogs } from "../stores/db";
 
   // Components
   import List from "./List.svelte";
-  import Info from "./Info.svelte";
-  import Holder from "./Holder.svelte";
 
   // Model
-  let tasks = [];
+  let logs = [];
   let currentIndex = -1;
-
-  $: currentTask = tasks[currentIndex];
 
   // Lifecycle
   onMount(() => {
-    $dbTasks
+    $dbLogs
       .find()
       .exec()
       .then(res => {
-        tasks = res;
+        logs = res.sort(
+          (a, b) => DateTime.fromISO(b.date) - DateTime.fromISO(a.date)
+        );
       })
       .catch(err => console.log(err));
   });
@@ -32,7 +33,7 @@
     switch (e.key) {
       case `ArrowDown`:
         e.preventDefault();
-        if (currentIndex < tasks.length - 1) {
+        if (currentIndex < logs.length - 1) {
           currentIndex = currentIndex + 1;
         }
         break;
@@ -70,30 +71,24 @@
 
 <svelte:window on:keydown={onWindowKeydown} />
 
-{#if !tasks.length}
-  <p>○ Create your first task</p>
+{#if !logs.length}
+  <p>○ Create your first log</p>
   <span>
     <b>cmd (ctrl)</b>
     +
-    <b>t</b>
-    for create task
+    <b>l</b>
+    for create log
   </span>
 {:else}
   <main>
-    <List
-      {currentIndex}
-      tasks={tasks.map(t => ({
-        name: t.name,
-        project: t.project,
-        id: t._id
-      }))} />
-    {#if currentTask}
+    <List {currentIndex} {logs} />
+    <!-- {#if currentProject}
       <Info
-        deadline={currentTask.deadline}
-        id={currentTask._id}
-        project={currentTask.project} />
+        name={currentProject.name}
+        desc={currentProject.desc}
+        id={currentProject._id} />
     {:else}
       <Holder />
-    {/if}
+    {/if} -->
   </main>
 {/if}

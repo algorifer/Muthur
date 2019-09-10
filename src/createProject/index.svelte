@@ -1,4 +1,7 @@
 <script>
+  // Svelte
+  import { afterUpdate } from "svelte";
+
   // Stores
   import { viewMode } from "../stores/muthur";
 
@@ -12,9 +15,18 @@
   import Success from "./Success.svelte";
 
   // Model
-  let project = {},
-    msgError = false,
-    isSuccess = false;
+  let list;
+  let project = {};
+  let msgError = false;
+  let isSuccess = false;
+
+  // Lifecycle
+  afterUpdate(() => {
+    const scrollTimeout = setTimeout(() => {
+      window.scrollTo(0, list.scrollHeight + 200);
+      clearTimeout(scrollTimeout);
+    }, 100);
+  });
 
   // Update
   $: if (isSuccess) {
@@ -45,7 +57,7 @@
 <svelte:window on:keydown={onWindowKeydown} />
 
 <CreateHeader title="Add Project" />
-<ul>
+<ul bind:this={list}>
   <SetName bind:project bind:msgError />
   {#if project.name}
     <SetDesc bind:project bind:msgError />

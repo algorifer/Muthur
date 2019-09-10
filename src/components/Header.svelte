@@ -69,7 +69,7 @@
         <button class={$viewMode === `journal` ? `active` : ``}>Journal</button>
       </li>
       <li>
-        <button class={$viewMode === `log` ? `active` : ``}>Log</button>
+        <button class={$viewMode === `logs` ? `active` : ``}>Logs</button>
       </li>
     </ul>
   </nav>

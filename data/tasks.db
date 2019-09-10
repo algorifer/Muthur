@@ -14,3 +14,4 @@
 {"name":"Guitar teaching","deadline":"none","project":"Jam","_id":"wKpsDAZoAnxE7o3c","createdAt":{"$$date":1567705622382},"updatedAt":{"$$date":1567705622382}}
 {"name":"Add artifact timestamp","deadline":"none","project":"Purity","_id":"wbcYBE0iQmNzGdeB","createdAt":{"$$date":1567705413401},"updatedAt":{"$$date":1567705413401}}
 {"name":"Add logs","deadline":"2019-10-20T00:00:00.000+03:00","project":"Muthur","_id":"weyN8M8b7pbo7q9N","createdAt":{"$$date":1567705989793},"updatedAt":{"$$date":1567705989793}}
+{"name":"test","deadline":"none","project":"test","_id":"SZ7jAGKMBOKWigyY","createdAt":{"$$date":1568132393133},"updatedAt":{"$$date":1568132393133}}

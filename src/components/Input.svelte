@@ -20,7 +20,7 @@
   const dispatch = createEventDispatcher();
 
   // Events
-  $: if (value) inputResize();
+  $: if (value && input) inputResize();
 
   function onKyedown(e) {
     if (e.key === `Enter` && !e.shiftKey) {

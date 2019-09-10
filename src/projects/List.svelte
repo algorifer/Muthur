@@ -1,7 +1,20 @@
 <script>
+  // Svelte
+  import { afterUpdate } from "svelte";
+
   // Model
+  let listHeight;
   export let projects;
   export let currentIndex;
+
+  // Lifecycle
+  afterUpdate(() => {
+    window.scrollTo({
+      top: currentIndex * (listHeight / projects.length),
+      left: 0,
+      behavior: "smooth"
+    });
+  });
 </script>
 
 <style>
@@ -32,7 +45,7 @@
   }
 </style>
 
-<ul>
+<ul bind:clientHeight={listHeight}>
   {#each projects as project, i (project.id)}
     <li class={i === currentIndex ? `active` : ``}>{project.name}</li>
   {/each}

@@ -45,7 +45,7 @@
       {#each helpers as help (help.name)}
         <li animate:flip={{ duration: 200 }}>
           <span>{help.name}</span>
-          ~ {help.desc}
+          {#if help.desc}~ {help.desc}{/if}
         </li>
       {/each}
     </ul>

@@ -4,6 +4,10 @@
 </script>
 
 <style type="text/scss">
+  :global(html) {
+    scroll-behavior: smooth;
+  }
+
   :global(body) {
     display: flex;
     flex-direction: column;

@@ -6,7 +6,7 @@
   import typewriter from "../helpers/typewriter";
 
   // Stores
-  import { dbProjects } from "../stores/db";
+  import { dbTypes } from "../stores/db";
 
   // Components
   import Input from "../components/Input.svelte";
@@ -14,48 +14,45 @@
 
   // Model
   let value = ``;
-  let projects = [];
-  export let task = {};
-  export let log = {};
-  export let project;
+  let types = [];
+  export let log;
+  export let type;
   export let msgError;
-  export let isProjectNew;
+  export let isTypeNew;
 
-  $: helpers = projects.filter(
-    p =>
-      !p.name.toLowerCase().indexOf(value.toLowerCase()) &&
-      p.name.toLowerCase() !== value.toLowerCase()
+  $: helpers = types.filter(
+    t =>
+      !t.name.toLowerCase().indexOf(value.toLowerCase()) &&
+      t.name.toLowerCase() !== value.toLowerCase()
   );
 
   // Lifecycle
   onMount(() => {
-    $dbProjects
+    $dbTypes
       .find()
       .exec()
       .then(res => {
-        projects = res.map(r => ({ name: r.name, desc: r.desc }));
+        types = res.map(r => ({ name: r.name, desc: r.desc }));
       })
       .catch(err => console.log(err));
   });
 
   // Update
-  const setProject = () => {
+  const setType = () => {
     msgError = false;
     if (!value.length) {
       msgError = `required field`;
       return;
     }
-    const findProjects = projects.filter(
-      p => p.name.toLowerCase() === value.toLowerCase()
+    const findTypes = types.filter(
+      t => t.name.toLowerCase() === value.toLowerCase()
     );
-    if (!findProjects.length) {
-      isProjectNew = true;
-      project.name = value;
-      task.project = value;
-      log.project = value;
+    if (!findTypes.length) {
+      isTypeNew = true;
+      type.name = value;
+      log.type = value;
     } else {
-      task.project = findProjects[0].name;
-      log.project = findProjects[0].name;
+      log.type = findTypes[0].name;
     }
   };
 
@@ -93,20 +90,20 @@
 
 <li class="request">
   <span>○</span>
-  <p in:typewriter>What project does it include?</p>
+  <p in:typewriter>Which type?</p>
 </li>
 <li>
-  <span>{isProjectNew ? `newProject` : `project`}</span>
-  {#if !task.project}
+  <span>{isTypeNew ? `newType` : `type`}</span>
+  {#if !log.type}
     <Input
       bind:value
-      on:submit={setProject}
+      on:submit={setType}
       on:help={help}
       placeholder="required" />
   {:else}
-    <p>{task.project}</p>
+    <p>{log.type}</p>
   {/if}
 </li>
-{#if !task.project}
+{#if !log.type}
   <CreateHelper {helpers} />
 {/if}

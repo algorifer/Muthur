@@ -31,11 +31,13 @@
   function onWindowKeydown(e) {
     switch (e.key) {
       case `ArrowDown`:
+        e.preventDefault();
         if (currentIndex < projects.length - 1) {
           currentIndex = currentIndex + 1;
         }
         break;
       case `ArrowUp`:
+        e.preventDefault();
         if (currentIndex > 0) {
           currentIndex = currentIndex - 1;
         }

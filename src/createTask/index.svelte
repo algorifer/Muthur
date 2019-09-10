@@ -1,4 +1,7 @@
 <script>
+  // Svelte
+  import { afterUpdate } from "svelte";
+
   // Stores
   import { viewMode } from "../stores/muthur";
 
@@ -14,12 +17,22 @@
   import Success from "./Success.svelte";
 
   // Model
-  const dateFormat = `2020-05-25T14:24`;
+  let list;
   let task = {};
   let project = {};
   let isProjectNew = false;
   let msgError = false;
-  let isSuccess = false;
+
+  // Lifecycle
+  afterUpdate(() => {
+    const scrollTimeout = setTimeout(() => {
+      window.scrollTo(0, list.scrollHeight + 200);
+      clearTimeout(scrollTimeout);
+    }, 100);
+  });
+
+  // Updates
+  $: isSuccess = task._id && (!isProjectNew || project._id);
 
   $: if (isSuccess) {
     const saveTimeout = setTimeout(() => {
@@ -49,7 +62,7 @@
 <svelte:window on:keydown={onWindowKeydown} />
 
 <CreateHeader title="Add Task" />
-<ul>
+<ul bind:this={list}>
   <SetTask bind:task bind:msgError />
   {#if task.name}
     <SetDeadline bind:task bind:msgError />

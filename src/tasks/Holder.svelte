@@ -1,5 +1,6 @@
 <style>
   div {
+    width: 50%;
     font-style: italic;
     border-left: 1px solid var(--f_low);
   }

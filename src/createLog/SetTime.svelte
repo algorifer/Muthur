@@ -1,32 +1,26 @@
 <script>
   // Utils
   import typewriter from "../helpers/typewriter";
-  const { DateTime } = require("luxon");
 
   // Components
   import Input from "../components/Input.svelte";
   import CreateHelper from "../components/CreateHelper.svelte";
 
   // Model
-  const now = DateTime.local().toISO();
   let value = ``;
-  export let task;
+  let helpers = [{ name: `integer or floating number`, desc: `format` }];
+  export let log;
   export let msgError;
 
-  $: helpers = [
-    { name: `${now.split(`:`)[0]}:${now.split(`:`)[1]}`, desc: `format` }
-  ];
-
   // Update
-  const setDeadline = () => {
+  const setTime = () => {
     msgError = false;
     if (!value.length) {
-      task.deadline = `none`;
+      msgError = `required field`;
       return;
     }
-    const date = DateTime.fromISO(value);
-    if (date.isValid) {
-      task.deadline = date.toISO();
+    if (parseFloat(value)) {
+      log.time = value;
     } else {
       value = ``;
       msgError = `inValid format`;
@@ -61,18 +55,16 @@
 
 <li class="request">
   <span>○</span>
-  <p in:typewriter>Does the task have a deadline?</p>
+  <p in:typewriter>How many hours?</p>
 </li>
 <li>
-  <span>deadline</span>
-  {#if !task.deadline}
-    <Input bind:value on:submit={setDeadline} placeholder="none" />
+  <span>time</span>
+  {#if !log.time}
+    <Input bind:value on:submit={setTime} placeholder="required" />
   {:else}
-    <p>
-      {task.deadline === `none` ? `none` : DateTime.fromISO(task.deadline).toLocaleString()}
-    </p>
+    <p>{log.time} {log.time === 1 ? `hour` : `hours`}</p>
   {/if}
 </li>
-{#if !task.deadline}
+{#if !log.time}
   <CreateHelper {helpers} />
 {/if}

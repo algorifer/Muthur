@@ -6,7 +6,7 @@
   import typewriter from "../helpers/typewriter";
 
   // Stores
-  import { dbProjects } from "../stores/db";
+  import { dbDivisions } from "../stores/db";
 
   // Components
   import Input from "../components/Input.svelte";
@@ -14,48 +14,45 @@
 
   // Model
   let value = ``;
-  let projects = [];
-  export let task = {};
-  export let log = {};
-  export let project;
+  let divisions = [];
+  export let log;
+  export let division;
   export let msgError;
-  export let isProjectNew;
+  export let isDivisionNew;
 
-  $: helpers = projects.filter(
-    p =>
-      !p.name.toLowerCase().indexOf(value.toLowerCase()) &&
-      p.name.toLowerCase() !== value.toLowerCase()
+  $: helpers = divisions.filter(
+    d =>
+      !d.name.toLowerCase().indexOf(value.toLowerCase()) &&
+      d.name.toLowerCase() !== value.toLowerCase()
   );
 
   // Lifecycle
   onMount(() => {
-    $dbProjects
+    $dbDivisions
       .find()
       .exec()
       .then(res => {
-        projects = res.map(r => ({ name: r.name, desc: r.desc }));
+        divisions = res.map(r => ({ name: r.name, desc: r.desc }));
       })
       .catch(err => console.log(err));
   });
 
   // Update
-  const setProject = () => {
+  const setDivision = () => {
     msgError = false;
     if (!value.length) {
       msgError = `required field`;
       return;
     }
-    const findProjects = projects.filter(
-      p => p.name.toLowerCase() === value.toLowerCase()
+    const findDivisions = divisions.filter(
+      d => d.name.toLowerCase() === value.toLowerCase()
     );
-    if (!findProjects.length) {
-      isProjectNew = true;
-      project.name = value;
-      task.project = value;
-      log.project = value;
+    if (!findDivisions.length) {
+      isDivisionNew = true;
+      division.name = value;
+      log.division = value;
     } else {
-      task.project = findProjects[0].name;
-      log.project = findProjects[0].name;
+      log.division = findDivisions[0].name;
     }
   };
 
@@ -93,20 +90,20 @@
 
 <li class="request">
   <span>○</span>
-  <p in:typewriter>What project does it include?</p>
+  <p in:typewriter>Which division?</p>
 </li>
 <li>
-  <span>{isProjectNew ? `newProject` : `project`}</span>
-  {#if !task.project}
+  <span>{isDivisionNew ? `newDivision` : `division`}</span>
+  {#if !log.division}
     <Input
       bind:value
-      on:submit={setProject}
+      on:submit={setDivision}
       on:help={help}
       placeholder="required" />
   {:else}
-    <p>{task.project}</p>
+    <p>{log.division}</p>
   {/if}
 </li>
-{#if !task.project}
+{#if !log.division}
   <CreateHelper {helpers} />
 {/if}
