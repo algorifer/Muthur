@@ -106,7 +106,7 @@
     <SetDivisionDesc bind:division bind:msgError />
   {/if}
   {#if (log.division && !isDivisionNew) || division.desc}
-    <SetTask bind:log bind:msgError />
+    <SetTask bind:log bind:task bind:msgError bind:isTaskNew />
   {/if}
   {#if task.name}
     <SetDeadline bind:task bind:msgError />

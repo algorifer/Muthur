@@ -1,4 +1,8 @@
-{"name":"Writing","desc":"Narrative, Research, Documentation, and Communication","_id":"1yUZ2N2C1wkpSY1a","createdAt":{"$$date":1568125390477},"updatedAt":{"$$date":1568125390477}}
-{"name":"Development","desc":"Programming, Testing, Math, and Debugging","_id":"OMdAcYt5lQSSbUI5","createdAt":{"$$date":1568125535026},"updatedAt":{"$$date":1568125535026}}
-{"name":"Design","desc":"Project Planning, Research, and Organization","_id":"ZSO6MX0rHhMOIFSP","createdAt":{"$$date":1568125182548},"updatedAt":{"$$date":1568125182548}}
-{"name":"Linguistics","desc":"Language Development","_id":"lDEjCrFhl5ibta5I","createdAt":{"$$date":1568125459226},"updatedAt":{"$$date":1568125459226}}
+{"name":"Design","desc":"Project Planning, Research, and Organization","_id":"LyyhtUd7jEw28rRH","createdAt":{"$$date":1568143678948},"updatedAt":{"$$date":1568143678948}}
+{"name":"Writing","desc":"Narrative, Research, Documentation, and Communication","_id":"4UAPLCLCQcp6X5kb","createdAt":{"$$date":1568143957529},"updatedAt":{"$$date":1568143957529}}
+{"name":"Linguistics","desc":"Language Development","_id":"NKXVT9VHlcsiubjb","createdAt":{"$$date":1568144042358},"updatedAt":{"$$date":1568144042358}}
+{"name":"Development","desc":"Programming, Testing, Math, and Debugging","_id":"ES73hUcDSCG5nMs9","createdAt":{"$$date":1568144151653},"updatedAt":{"$$date":1568144151653}}
+{"name":"Research","desc":"Learning, Testing, Studying, and Teaching","_id":"sqLz2hQ1Lutswobg","createdAt":{"$$date":1568144337977},"updatedAt":{"$$date":1568144337977}}
+{"name":"Composition","desc":"Composing, Producing, and Mixing","_id":"ZERhwfOcAyUEY6aN","createdAt":{"$$date":1568144585356},"updatedAt":{"$$date":1568144585356}}
+{"name":"Acoustic","desc":"Instrument Play and Recording","_id":"Wlhy5M0pyDgq6h8g","createdAt":{"$$date":1568144895267},"updatedAt":{"$$date":1568144895267}}
+{"name":"Photography","desc":"Picture Taking and Editing","_id":"Hrxmi8lZmzoDVko1","createdAt":{"$$date":1568145509480},"updatedAt":{"$$date":1568145509480}}

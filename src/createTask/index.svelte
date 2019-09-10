@@ -18,7 +18,7 @@
 
   // Model
   let list;
-  let task = {};
+  let task = { done: false };
   let project = {};
   let isProjectNew = false;
   let msgError = false;

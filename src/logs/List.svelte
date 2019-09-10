@@ -29,63 +29,55 @@
   }
 
   li {
-    border-bottom: 1px solid var(--f_low);
     margin-bottom: 20px;
   }
 
-  .active {
+  .active .meta {
     border-color: var(--f_inv);
   }
 
   p {
     margin: 0;
-    padding: 10px 0 0;
+    padding: 5px 0;
     display: flex;
-    justify-content: space-between;
     align-items: baseline;
   }
 
-  .date_time {
-    font-weight: bold;
+  .section {
     padding-bottom: 5px;
   }
 
   .meta {
-    padding: 10px;
+    justify-content: space-between;
+    padding: 5px 0;
     margin: 0;
-    background: var(--b_low);
+    border-bottom: 1px solid var(--b_high);
   }
 
-  .meta span {
-    width: 33%;
+  .time {
+    font-weight: bold;
+    margin-right: 10px;
   }
 
-  .type {
-    text-align: left;
+  .date {
+    font-style: italic;
   }
 
   .project {
-    text-align: center;
-    text-transform: uppercase;
-  }
-
-  .division {
-    text-align: right;
+    font-weight: bold;
+    margin-left: auto;
   }
 </style>
 
 <ul bind:clientHeight={listHeight}>
   {#each logs as log, i (log._id)}
     <li class={i === currentIndex ? `active` : ``}>
-      <p class="date_time">
-        <span class="time">{log.time}h</span>
-        <span>{DateTime.fromISO(log.date).toLocaleString()}</span>
-      </p>
       <p class="meta">
-        <span class="type">{log.type}</span>
+        <span class="time">{log.time}h</span>
+        <span class="date">{DateTime.fromISO(log.date).toLocaleString()}</span>
         <span class="project">{log.project}</span>
-        <span class="division">{log.division}</span>
       </p>
+      <p class="section">{log.type} / {log.division}</p>
     </li>
   {/each}
 </ul>
