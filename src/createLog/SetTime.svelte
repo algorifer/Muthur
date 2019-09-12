@@ -1,4 +1,7 @@
 <script>
+  // Svelte
+  import { fly } from "svelte/transition";
+
   // Utils
   import typewriter from "../helpers/typewriter";
 
@@ -53,10 +56,12 @@
   }
 </style>
 
-<li class="request">
-  <span>○</span>
-  <p in:typewriter>How many hours?</p>
-</li>
+{#if !log.time}
+  <li class="request" out:fly={{ y: -20, duration: 200 }}>
+    <span>○</span>
+    <p in:typewriter>How many hours?</p>
+  </li>
+{/if}
 <li>
   <span>time</span>
   {#if !log.time}

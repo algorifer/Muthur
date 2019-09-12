@@ -91,10 +91,12 @@
   }
 </style>
 
-<li class="request">
-  <span>○</span>
-  <p in:typewriter>What project does it include?</p>
-</li>
+{#if !task.project}
+  <li class="request">
+    <span>○</span>
+    <p in:typewriter>What project does it include?</p>
+  </li>
+{/if}
 <li>
   <span>{isProjectNew ? `newProject` : `project`}</span>
   {#if !task.project}

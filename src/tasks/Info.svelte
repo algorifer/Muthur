@@ -2,7 +2,11 @@
   // Utils
   const { DateTime } = require("luxon");
 
+  // Components
+  import Stat from "./Stat.svelte";
+
   // Model
+  export let name;
   export let project;
   export let deadline;
   export let id;
@@ -30,6 +34,7 @@
   }
 
   .id {
+    margin-top: 15px;
     color: var(--f_med);
   }
 </style>
@@ -43,5 +48,6 @@
     <span>deadline:</span>
     {deadline === `none` ? `none` : DateTime.fromISO(deadline).toLocaleString()}
   </p>
+  <Stat {name} />
   <p class="id">{`⍠ ${id}`}</p>
 </article>

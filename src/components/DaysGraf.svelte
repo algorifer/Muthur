@@ -31,8 +31,9 @@
 
   span {
     height: 100%;
-    border-right: 2px solid var(--b_low);
+    margin: 0 1px;
     flex-grow: 2;
+    border-radius: 5px;
   }
 
   span:last-child {
@@ -40,7 +41,7 @@
   }
 
   .active {
-    background: var(--stat_1);
+    background: var(--b_high);
   }
 </style>
 

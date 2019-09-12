@@ -1,4 +1,7 @@
 <script>
+  // Svelte
+  import { fly } from "svelte/transition";
+
   // Utils
   import typewriter from "../helpers/typewriter";
   const { DateTime } = require("luxon");
@@ -57,10 +60,12 @@
   }
 </style>
 
-<li class="request">
-  <span>○</span>
-  <p in:typewriter>When?</p>
-</li>
+{#if !log.date}
+  <li class="request" out:fly={{ y: -20, duration: 200 }}>
+    <span>○</span>
+    <p in:typewriter>When?</p>
+  </li>
+{/if}
 <li>
   <span>date</span>
   {#if !log.date}

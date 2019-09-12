@@ -1,17 +1,17 @@
-const { app, BrowserWindow, webFrame, Menu } = require('electron');
+const {app, BrowserWindow, webFrame, Menu} = require('electron');
 
 require('electron').protocol.registerSchemesAsPrivileged([
-  { scheme: 'js', privileges: { standard: true, secure: true } }
+  {scheme: 'js', privileges: {standard: true, secure: true}}
 ]);
 
 app.win = null;
 
 app.on(`ready`, () => {
   app.win = new BrowserWindow({
-    width: 600,
-    height: 900,
-    // minWidth: 310,
-    // minHeight: 350,
+    width: 800,
+    height: 530,
+    minWidth: 800,
+    minHeight: 530,
     backgroundColor: '#eeeeee',
     // icon: path.join(__dirname, { darwin: 'icon.icns', linux: 'icon.png', win32: 'icon.ico' }[process.platform] || 'icon.ico'),
     icon: 'icon.png',

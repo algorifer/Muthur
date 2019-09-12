@@ -1,10 +1,14 @@
 <script>
+  // Components
+  import StatLine from "../components/StatLine.svelte";
+  import StatDate from "../components/StatDate.svelte";
+
   // Stores
   import { dbLogs } from "../stores/db";
 
   // Model
-  let logs = null;
   export let name;
+  let logs = null;
 
   $: $dbLogs
     .find({ task: name })
@@ -14,79 +18,49 @@
     .catch(err => console.log(err));
 
   $: logsCount = logs ? logs.length : null;
+
   $: time = logs
     ? logs.reduce((hours, item) => {
         return hours + parseFloat(item.time);
       }, 0)
     : null;
-
-  $: divisions = logs
-    ? logs
-        .reduce((arr, item) => {
-          if (arr.indexOf(item.division) < 0) {
-            return [...arr, item.division];
-          }
-          return arr;
-        }, [])
-        .map(item => ({
-          name: item,
-          time: logs.reduce((hours, log) => {
-            if (log.division === item) {
-              return hours + parseFloat(log.time);
-            }
-            return hours;
-          }, 0)
-        }))
-    : [];
-
-  $: types = logs
-    ? logs
-        .reduce((arr, item) => {
-          if (arr.indexOf(item.type) < 0) {
-            return [...arr, item.type];
-          }
-          return arr;
-        }, [])
-        .map(item => ({
-          name: item,
-          time: logs.reduce((hours, log) => {
-            if (log.type === item) {
-              return hours + parseFloat(log.time);
-            }
-            return hours;
-          }, 0)
-        }))
-    : [];
 </script>
 
 <style>
+  li {
+    padding: 0;
+    margin: 0;
+  }
+
   ul {
-    margin: 10px 0;
+    margin: 0;
     padding: 0;
     list-style: none;
   }
 
-  p {
-    color: var(--f_med);
-    text-transform: uppercase;
-    font-style: italic;
+  .section {
+    margin-bottom: 15px;
+  }
+
+  .name {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 5px;
   }
 </style>
 
 <ul>
   {#if time && logsCount}
-    <li>{time}h / {logsCount} logs</li>
+    <li class="section">
+      <ul>
+        <li class="name">
+          <span>{time}h / {logsCount} logs</span>
+        </li>
+      </ul>
+    </li>
   {/if}
-  <p>Divisions:</p>
-  {#if divisions}
-    {#each divisions as division}
-      <li>{division.name} / {division.time}h</li>
-    {/each}
-  {/if}
-  <p>Types:</p>
-  {#if types}
-    {#each types as type}
-      <li>{type.name} / {type.time}h</li>
-    {/each}
-  {/if}
+  <StatDate {logs} />
+  <StatLine {logs} selector="division" />
+  <StatLine {logs} selector="type" />
 </ul>
