@@ -5,6 +5,9 @@
   // Stores
   import { dbTasks } from "../stores/db";
 
+  // Components
+  import Stat from "./Stat.svelte";
+
   // Model
   export let name;
   export let desc;
@@ -42,45 +45,14 @@
     margin-bottom: 10px;
   }
 
-  span {
-    position: relative;
-    z-index: 3;
-    font-style: italic;
-    text-transform: uppercase;
-    color: var(--f_higt);
-  }
-
   .id {
+    margin-top: 20px;
     color: var(--f_med);
-  }
-
-  .statistic {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    padding: 5px 0;
-    border-bottom: 3px solid var(--b_med);
-  }
-
-  .task_line {
-    position: absolute;
-    bottom: -3px;
-    left: 0;
-    z-index: 1;
-    display: block;
-    height: 3px;
-    background: var(--b_high);
   }
 </style>
 
 <article>
   <p>{desc}</p>
-  {#if tasksCount}
-    <p class="statistic task">
-      <span class="task_line" style={`width: ${taskPercent}%`} />
-      <span>tasks:</span>
-      <span>{tasksCount}</span>
-    </p>
-  {/if}
+  <Stat {name} />
   <p class="id">{`⍠ ${id}`}</p>
 </article>

@@ -44,6 +44,13 @@
   --b_med: #ced0ce;
   --b_low: #f5f5f5;
   --b_inv: #ed2c3e;
+
+  --stat_1: #d59844;
+  --stat_2: #2e9169;
+  --stat_3: #403e95;
+  --stat_4: #326289;
+  --stat_5: #545454;
+  --stat_6: #ced0ce;
 }
 
 html {
