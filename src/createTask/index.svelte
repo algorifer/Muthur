@@ -8,19 +8,17 @@
   // Components
   import CreateHeader from "../components/CreateHeader.svelte";
   import CreateError from "../components/CreateError.svelte";
-  import SetTask from "./SetTask.svelte";
-  import SetDeadline from "./SetDeadline.svelte";
-  import SetProject from "./SetProject.svelte";
-  import SetDesc from "../createProject/SetDesc.svelte";
-  import SetNote from "../createProject/SetNote.svelte";
-  import Save from "./Save.svelte";
-  import Success from "./Success.svelte";
+  import SetName from "../components/SetName.svelte";
+  import SetProject from "../components/SetProject.svelte";
+  import SetDesc from "../components/SetDesc.svelte";
+  import SetNote from "../components/SetNote.svelte";
+  import CreateSuccess from "../components/CreateSuccess.svelte";
+  import CreateSave from "../components/CreateSave.svelte";
 
   // Model
   let list;
-  let task = { done: false };
+  let task = {};
   let project = {};
-  let isProjectNew = false;
   let msgError = false;
 
   // Lifecycle
@@ -32,7 +30,7 @@
   });
 
   // Updates
-  $: isSuccess = task._id && (!isProjectNew || project._id);
+  $: isSuccess = task._id && (!projects.name || project._id);
 
   $: if (isSuccess) {
     const saveTimeout = setTimeout(() => {
@@ -63,22 +61,19 @@
 
 <CreateHeader title="Add Task" />
 <ul bind:this={list}>
-  <SetTask bind:task bind:msgError />
-  {#if task.name}
-    <SetDeadline bind:task bind:msgError />
-  {/if}
+  <SetName bind:obj={task} bind:msgError />
   {#if task.deadline}
-    <SetProject bind:task bind:project bind:msgError bind:isProjectNew />
+    <SetProject bind:obj={task} bind:project bind:msgError />
   {/if}
   {#if project.name}
-    <SetDesc bind:project bind:msgError />
+    <SetDesc bind:obj={project} bind:msgError />
   {/if}
   {#if project.desc}
-    <SetNote bind:project bind:msgError />
+    <SetNote bind:obj={project} bind:msgError />
   {/if}
-  {#if (task.project && !isProjectNew) || project.note}
-    <Save bind:task bind:project {isProjectNew} bind:msgError bind:isSuccess />
+  {#if (task.project && !project.name) || project.note}
+    <CreateSave bind:task bind:project bind:msgError />
   {/if}
   <CreateError {msgError} />
-  <Success {isSuccess} {isProjectNew} {task} {project} />
+  <CreateSuccess {isSuccess} {task} {project} />
 </ul>

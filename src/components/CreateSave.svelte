@@ -14,18 +14,15 @@
 
   // Components
   import Input from "../components/Input.svelte";
+  import CreateField from "../components/CreateField.svelte";
 
   // Model
   let value = ``;
-  export let log;
-  export let project;
-  export let type;
-  export let division;
-  export let task;
-  export let isProjectNew;
-  export let isTypeNew;
-  export let isDivisionNew;
-  export let isTaskNew;
+  export let log = {};
+  export let project = {};
+  export let type = {};
+  export let division = {};
+  export let task = {};
   export let msgError;
 
   // Update
@@ -34,38 +31,40 @@
     switch (value.toLowerCase()) {
       case `yes`:
       case `y`:
-        if (isProjectNew) {
+        if (project.name) {
           $dbProjects
             .insert(project)
             .then(res => (project = res))
             .catch(err => (msgError = err));
         }
-        if (isTypeNew) {
+        if (type.name) {
           $dbTypes
             .insert(type)
             .then(res => (type = res))
             .catch(err => (msgError = err));
         }
-        if (isDivisionNew) {
+        if (division.name) {
           $dbDivisions
             .insert(division)
             .then(res => (division = res))
             .catch(err => (msgError = err));
         }
-        if (isTaskNew) {
+        if (task.name) {
           $dbTasks
             .insert(task)
             .then(res => (task = res))
             .catch(err => (msgError = err));
         }
-        $dbLogs
-          .insert(log)
-          .then(res => (log = res))
-          .catch(err => (msgError = err));
+        if (log.date) {
+          $dbLogs
+            .insert(log)
+            .then(res => (log = res))
+            .catch(err => (msgError = err));
+        }
         break;
       case `no`:
       case `n`:
-        return viewMode.set(`logs`);
+        return viewMode.set(`tasks`);
       default:
         value = ``;
         msgError = `wrong command`;
@@ -73,36 +72,10 @@
   };
 </script>
 
-<style>
-  li {
-    display: flex;
-    align-items: baseline;
-  }
-
-  span {
-    width: 25%;
-    flex-shrink: 0;
-    padding: 0 20px 0 0;
-    text-align: right;
-    color: var(--f_med);
-  }
-
-  p {
-    margin: 0;
-    padding: 5px 20px;
-    border-left: 1px solid var(--f_low);
-  }
-
-  .request p {
-    color: var(--f_inv);
-  }
-</style>
-
-<li class="request">
-  <span>○</span>
-  <p in:typewriter>Save?</p>
-</li>
-<li>
-  <span>fin</span>
-  <Input bind:value on:submit={save} placeholder="[y]es or [n]o" />
-</li>
+<CreateField
+  name="fin"
+  prop={false}
+  bind:value
+  on:submit={save}
+  request="Save?"
+  placeholder="[y]es or [n]o" />

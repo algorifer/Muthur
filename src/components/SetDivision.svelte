@@ -2,23 +2,19 @@
   // Svelte
   import { onMount } from "svelte";
 
-  // Utils
-  import typewriter from "../helpers/typewriter";
-
   // Stores
   import { dbDivisions } from "../stores/db";
 
   // Components
-  import Input from "../components/Input.svelte";
   import CreateHelper from "../components/CreateHelper.svelte";
+  import CreateField from "../components/CreateField.svelte";
 
   // Model
   let value = ``;
   let divisions = [];
-  export let log;
+  export let obj;
   export let division;
   export let msgError;
-  export let isDivisionNew;
 
   $: helpers = divisions.filter(
     d =>
@@ -48,11 +44,10 @@
       d => d.name.toLowerCase() === value.toLowerCase()
     );
     if (!findDivisions.length) {
-      isDivisionNew = true;
       division.name = value;
-      log.division = value;
+      obj.division = value;
     } else {
-      log.division = findDivisions[0].name;
+      obj.division = findDivisions[0].name;
     }
   };
 
@@ -63,47 +58,14 @@
   };
 </script>
 
-<style>
-  li {
-    display: flex;
-    align-items: baseline;
-  }
-
-  span {
-    width: 25%;
-    flex-shrink: 0;
-    padding: 0 20px 0 0;
-    text-align: right;
-    color: var(--f_med);
-  }
-
-  p {
-    margin: 0;
-    padding: 5px 20px;
-    border-left: 1px solid var(--f_low);
-  }
-
-  .request p {
-    color: var(--f_inv);
-  }
-</style>
-
-<li class="request">
-  <span>○</span>
-  <p in:typewriter>Which division?</p>
-</li>
-<li>
-  <span>{isDivisionNew ? `newDivision` : `division`}</span>
-  {#if !log.division}
-    <Input
-      bind:value
-      on:submit={setDivision}
-      on:help={help}
-      placeholder="required" />
-  {:else}
-    <p>{log.division}</p>
-  {/if}
-</li>
-{#if !log.division}
+<CreateField
+  name={division.name ? `newDivision` : `division`}
+  prop={obj.division}
+  bind:value
+  on:submit={setDivision}
+  on:help={help}
+  request="Which division?"
+  placeholder="required" />
+{#if !obj.division}
   <CreateHelper {helpers} />
 {/if}

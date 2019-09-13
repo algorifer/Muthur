@@ -8,7 +8,6 @@
   // Model
   export let name;
   export let project;
-  export let deadline;
   export let id;
 </script>
 
@@ -43,10 +42,6 @@
   <p>
     <span>project:</span>
     {project}
-  </p>
-  <p>
-    <span>deadline:</span>
-    {deadline === `none` ? `none` : DateTime.fromISO(deadline).toLocaleString()}
   </p>
   <Stat {name} />
   <p class="id">{`⍠ ${id}`}</p>

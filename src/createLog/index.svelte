@@ -8,30 +8,23 @@
   // Components
   import CreateHeader from "../components/CreateHeader.svelte";
   import CreateError from "../components/CreateError.svelte";
-  import SetDate from "./SetDate.svelte";
-  import SetTime from "./SetTime.svelte";
-  import SetProject from "../createTask/SetProject.svelte";
-  import SetDesc from "../createProject/SetDesc.svelte";
-  import SetNote from "../createProject/SetNote.svelte";
-  import SetType from "./SetType.svelte";
-  import SetTypeDesc from "./SetTypeDesc.svelte";
-  import SetDivision from "./SetDivision.svelte";
-  import SetDivisionDesc from "./SetDivisionDesc.svelte";
-  import SetTask from "./SetTask.svelte";
-  import SetDeadline from "../createTask/SetDeadline.svelte";
-  import Save from "./Save.svelte";
-  import Success from "./Success.svelte";
+  import SetDate from "../components/SetDate.svelte";
+  import SetTime from "../components/SetTime.svelte";
+  import SetProject from "../components/SetProject.svelte";
+  import SetDesc from "../components/SetDesc.svelte";
+  import SetNote from "../components/SetNote.svelte";
+  import SetType from "../components/SetType.svelte";
+  import SetDivision from "../components/SetDivision.svelte";
+  import SetTask from "../components/SetTask.svelte";
+  import CreateSuccess from "../components/CreateSuccess.svelte";
+  import CreateSave from "../components/CreateSave.svelte";
 
   // Model
   let list;
   let log = {};
-  let isProjectNew = false;
   let project = {};
-  let isTypeNew = false;
   let type = {};
-  let isDivisionNew = false;
   let division = {};
-  let isTaskNew = false;
   let task = {};
   let msgError = false;
 
@@ -46,10 +39,10 @@
   // Update
   $: isSuccess =
     log._id &&
-    (!isProjectNew || project._id) &&
-    (!isTypeNew || type._id) &&
-    (!isDivisionNew || division._id) &&
-    (!isTaskNew || task._id);
+    (!project.name || project._id) &&
+    (!type.name || type._id) &&
+    (!division.name || division._id) &&
+    (!task.name || task._id);
 
   $: if (isSuccess) {
     const saveTimeout = setTimeout(() => {
@@ -80,50 +73,43 @@
 
 <CreateHeader title="Add Log" />
 <ul bind:this={list}>
-  <SetDate bind:log bind:msgError />
+  <SetDate bind:obj={log} bind:msgError />
   {#if log.date}
-    <SetTime bind:log bind:msgError />
+    <SetTime bind:obj={log} bind:msgError />
   {/if}
   {#if log.time}
-    <SetProject bind:log bind:project bind:msgError bind:isProjectNew />
+    <SetProject bind:obj={log} bind:project bind:msgError />
   {/if}
   {#if project.name}
-    <SetDesc bind:project bind:msgError />
+    <SetDesc bind:obj={project} bind:msgError />
   {/if}
   {#if project.desc}
-    <SetNote bind:project bind:msgError />
+    <SetNote bind:obj={project} bind:msgError />
   {/if}
-  {#if (log.project && !isProjectNew) || project.note}
-    <SetType bind:log bind:type bind:msgError bind:isTypeNew />
+  {#if (log.project && !project.name) || project.note}
+    <SetType bind:obj={log} bind:type bind:msgError />
   {/if}
   {#if type.name}
-    <SetTypeDesc bind:type bind:msgError />
+    <SetDesc bind:obj={type} bind:msgError />
   {/if}
-  {#if (log.type && !isTypeNew) || type.desc}
-    <SetDivision bind:log bind:division bind:msgError bind:isDivisionNew />
+  {#if (log.type && !type.name) || type.desc}
+    <SetDivision bind:obj={log} bind:division bind:msgError />
   {/if}
   {#if division.name}
-    <SetDivisionDesc bind:division bind:msgError />
+    <SetDesc bind:obj={division} bind:msgError />
   {/if}
-  {#if (log.division && !isDivisionNew) || division.desc}
-    <SetTask bind:log bind:task bind:msgError bind:isTaskNew />
+  {#if (log.division && !division.name) || division.desc}
+    <SetTask bind:obj={log} bind:task bind:msgError />
   {/if}
-  {#if task.name}
-    <SetDeadline bind:task bind:msgError />
-  {/if}
-  {#if (log.task && !isTaskNew) || task.deadline}
-    <Save
+  {#if log.task}
+    <CreateSave
       bind:log
       bind:project
       bind:type
       bind:division
       bind:task
-      {isProjectNew}
-      {isTypeNew}
-      {isDivisionNew}
-      {isTaskNew}
       bind:msgError />
   {/if}
-  <Success {log} {project} {type} {division} {task} {isSuccess} />
+  <CreateSuccess {log} {project} {type} {division} {task} {isSuccess} />
   <CreateError {msgError} />
 </ul>

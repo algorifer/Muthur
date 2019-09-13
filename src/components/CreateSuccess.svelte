@@ -61,8 +61,10 @@
       <p in:typewriter>{`Task created! ID: ${task._id}`}</p>
     </li>
   {/if}
-  <li class="request">
-    <span>⍜</span>
-    <p in:typewriter>{`Log created! ID: ${log._id}`}</p>
-  </li>
+  {#if log._id}
+    <li class="request">
+      <span>⍜</span>
+      <p in:typewriter>{`Log created! ID: ${log._id}`}</p>
+    </li>
+  {/if}
 {/if}

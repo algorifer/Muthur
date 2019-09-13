@@ -90,7 +90,6 @@
     {#if currentTask}
       <Info
         name={currentTask.name}
-        deadline={currentTask.deadline}
         id={currentTask._id}
         project={currentTask.project} />
     {:else}

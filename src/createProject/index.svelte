@@ -8,17 +8,18 @@
   // Components
   import CreateHeader from "../components/CreateHeader.svelte";
   import CreateError from "../components/CreateError.svelte";
-  import SetName from "./SetName.svelte";
-  import SetDesc from "./SetDesc.svelte";
-  import SetNote from "./SetNote.svelte";
-  import Save from "./Save.svelte";
-  import Success from "./Success.svelte";
+  import SetName from "../components/SetName.svelte";
+  import SetDesc from "../components/SetDesc.svelte";
+  import SetNote from "../components/SetNote.svelte";
+  import CreateSuccess from "../components/CreateSuccess.svelte";
+  import CreateSave from "../components/CreateSave.svelte";
 
   // Model
   let list;
   let project = {};
   let msgError = false;
-  let isSuccess = false;
+
+  $: isSuccess = project._id ? true : false;
 
   // Lifecycle
   afterUpdate(() => {
@@ -58,16 +59,16 @@
 
 <CreateHeader title="Add Project" />
 <ul bind:this={list}>
-  <SetName bind:project bind:msgError />
+  <SetName bind:obj={project} bind:msgError />
   {#if project.name}
-    <SetDesc bind:project bind:msgError />
+    <SetDesc bind:obj={project} bind:msgError />
   {/if}
   {#if project.desc}
-    <SetNote bind:project bind:msgError />
+    <SetNote bind:obj={project} bind:msgError />
   {/if}
   {#if project.note}
-    <Save bind:project bind:msgError bind:isSuccess />
+    <CreateSave bind:project bind:msgError />
   {/if}
-  <CreateError bind:msgError />
-  <Success bind:project bind:isSuccess />
+  <CreateError {msgError} />
+  <CreateSuccess {project} />
 </ul>

@@ -2,23 +2,19 @@
   // Svelte
   import { onMount } from "svelte";
 
-  // Utils
-  import typewriter from "../helpers/typewriter";
-
   // Stores
   import { dbTasks } from "../stores/db";
 
   // Components
-  import Input from "../components/Input.svelte";
   import CreateHelper from "../components/CreateHelper.svelte";
+  import CreateField from "../components/CreateField.svelte";
 
   // Model
   let value = ``;
   let tasks = [];
-  export let log;
+  export let obj;
   export let task;
   export let msgError;
-  export let isTaskNew;
 
   $: helpers = tasks.filter(
     t =>
@@ -29,7 +25,7 @@
   // Lifecycle
   onMount(() => {
     $dbTasks
-      .find({ project: log.project })
+      .find({ project: obj.project })
       .exec()
       .then(res => {
         tasks = res.map(r => ({ name: r.name }));
@@ -41,19 +37,18 @@
   const setTask = () => {
     msgError = false;
     if (!value.length) {
-      log.task = `none`;
+      obj.task = `none`;
       return;
     }
     const findTasks = tasks.filter(
       t => t.name.toLowerCase() === value.toLowerCase()
     );
     if (!findTasks.length) {
-      isTaskNew = true;
       task.name = value;
-      task.project = log.project;
-      log.task = value;
+      task.project = obj.project;
+      obj.task = value;
     } else {
-      log.task = findTasks[0].name;
+      obj.task = findTasks[0].name;
     }
   };
 
@@ -64,43 +59,14 @@
   };
 </script>
 
-<style>
-  li {
-    display: flex;
-    align-items: baseline;
-  }
-
-  span {
-    width: 25%;
-    flex-shrink: 0;
-    padding: 0 20px 0 0;
-    text-align: right;
-    color: var(--f_med);
-  }
-
-  p {
-    margin: 0;
-    padding: 5px 20px;
-    border-left: 1px solid var(--f_low);
-  }
-
-  .request p {
-    color: var(--f_inv);
-  }
-</style>
-
-<li class="request">
-  <span>○</span>
-  <p in:typewriter>Which task?</p>
-</li>
-<li>
-  <span>task</span>
-  {#if !log.task}
-    <Input bind:value on:submit={setTask} on:help={help} placeholder="none" />
-  {:else}
-    <p>{log.task}</p>
-  {/if}
-</li>
-{#if !log.task}
+<CreateField
+  name={task.name ? `newtask` : `task`}
+  prop={obj.task}
+  bind:value
+  on:submit={setTask}
+  on:help={help}
+  request="Which task?"
+  placeholder="required" />
+{#if !obj.task}
   <CreateHelper {helpers} />
 {/if}

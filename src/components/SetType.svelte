@@ -2,23 +2,19 @@
   // Svelte
   import { onMount } from "svelte";
 
-  // Utils
-  import typewriter from "../helpers/typewriter";
-
   // Stores
   import { dbTypes } from "../stores/db";
 
   // Components
-  import Input from "../components/Input.svelte";
   import CreateHelper from "../components/CreateHelper.svelte";
+  import CreateField from "../components/CreateField.svelte";
 
   // Model
   let value = ``;
   let types = [];
-  export let log;
+  export let obj;
   export let type;
   export let msgError;
-  export let isTypeNew;
 
   $: helpers = types.filter(
     t =>
@@ -48,11 +44,10 @@
       t => t.name.toLowerCase() === value.toLowerCase()
     );
     if (!findTypes.length) {
-      isTypeNew = true;
       type.name = value;
-      log.type = value;
+      obj.type = value;
     } else {
-      log.type = findTypes[0].name;
+      obj.type = findTypes[0].name;
     }
   };
 
@@ -63,47 +58,14 @@
   };
 </script>
 
-<style>
-  li {
-    display: flex;
-    align-items: baseline;
-  }
-
-  span {
-    width: 25%;
-    flex-shrink: 0;
-    padding: 0 20px 0 0;
-    text-align: right;
-    color: var(--f_med);
-  }
-
-  p {
-    margin: 0;
-    padding: 5px 20px;
-    border-left: 1px solid var(--f_low);
-  }
-
-  .request p {
-    color: var(--f_inv);
-  }
-</style>
-
-<li class="request">
-  <span>○</span>
-  <p in:typewriter>Which type?</p>
-</li>
-<li>
-  <span>{isTypeNew ? `newType` : `type`}</span>
-  {#if !log.type}
-    <Input
-      bind:value
-      on:submit={setType}
-      on:help={help}
-      placeholder="required" />
-  {:else}
-    <p>{log.type}</p>
-  {/if}
-</li>
-{#if !log.type}
+<CreateField
+  name={type.name ? `newType` : `type`}
+  prop={obj.type}
+  bind:value
+  on:submit={setType}
+  on:help={help}
+  request="Which type?"
+  placeholder="required" />
+{#if !obj.type}
   <CreateHelper {helpers} />
 {/if}
