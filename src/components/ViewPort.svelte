@@ -6,6 +6,8 @@
   import Header from "./Header.svelte";
   import Projects from "../projects/index.svelte";
   import Tasks from "../tasks/index.svelte";
+  import Divisions from "../divisions/index.svelte";
+  import Types from "../types/index.svelte";
   import Logs from "../logs/index.svelte";
   import CreateProject from "../createProject/index.svelte";
   import CreateTask from "../createTask/index.svelte";
@@ -32,14 +34,20 @@
       case `ArrowLeft`:
         if (e.shiftKey) {
           switch ($viewMode) {
-            case `projects`:
-              viewMode.set(`tasks`);
-              break;
             case `tasks`:
               viewMode.set(`logs`);
               break;
-            case `logs`:
+            case `projects`:
+              viewMode.set(`tasks`);
+              break;
+            case `divisions`:
               viewMode.set(`projects`);
+              break;
+            case `types`:
+              viewMode.set(`divisions`);
+              break;
+            case `logs`:
+              viewMode.set(`types`);
               break;
           }
         }
@@ -47,11 +55,17 @@
       case `ArrowRight`:
         if (e.shiftKey) {
           switch ($viewMode) {
-            case `projects`:
-              viewMode.set(`logs`);
-              break;
             case `tasks`:
               viewMode.set(`projects`);
+              break;
+            case `projects`:
+              viewMode.set(`divisions`);
+              break;
+            case `divisions`:
+              viewMode.set(`types`);
+              break;
+            case `types`:
+              viewMode.set(`logs`);
               break;
             case `logs`:
               viewMode.set(`tasks`);
@@ -71,6 +85,12 @@
 {:else if $viewMode === `tasks`}
   <Header />
   <Tasks />
+{:else if $viewMode === `divisions`}
+  <Header />
+  <Divisions />
+{:else if $viewMode === `types`}
+  <Header />
+  <Types />
 {:else if $viewMode === `logs`}
   <Header />
   <Logs />

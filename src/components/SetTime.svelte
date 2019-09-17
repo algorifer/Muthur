@@ -17,7 +17,7 @@
       return;
     }
     if (parseFloat(value)) {
-      obj.time = value;
+      obj.time = parseFloat(value);
     } else {
       value = ``;
       msgError = `inValid format`;

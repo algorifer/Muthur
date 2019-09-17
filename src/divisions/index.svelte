@@ -6,21 +6,29 @@
   const { DateTime } = require("luxon");
 
   // Stores
-  import { dbLogs } from "../stores/db";
+  import { dbDivisions, dbLogs } from "../stores/db";
 
   // Components
-  import List from "./List.svelte";
   import LastDays from "../components/LastDays.svelte";
+  import List from "../components/List.svelte";
 
   // Model
-  let logs = [];
+  let divisions = [];
   let currentIndex = -1;
+  let logs = [];
+
+  $: currentDivision = divisions[currentIndex];
 
   // Lifecycle
   onMount(() => {
+    $dbDivisions
+      .find()
+      .then(res => {
+        divisions = res;
+      })
+      .catch(err => console.log(err));
     $dbLogs
       .find()
-      .exec()
       .then(res => {
         logs = res.sort(
           (a, b) => DateTime.fromISO(b.date) - DateTime.fromISO(a.date)
@@ -34,7 +42,7 @@
     switch (e.key) {
       case `ArrowDown`:
         e.preventDefault();
-        if (currentIndex < logs.length - 1) {
+        if (currentIndex < divisions.length - 1) {
           currentIndex = currentIndex + 1;
         }
         break;
@@ -50,9 +58,8 @@
 
 <style>
   main {
-    position: relative;
-    /* display: flex; */
-    /* align-items: flex-start; */
+    display: flex;
+    align-items: flex-start;
   }
 
   p {
@@ -73,17 +80,10 @@
 
 <svelte:window on:keydown={onWindowKeydown} />
 
-{#if !logs.length}
-  <p>○ Create your first log</p>
-  <span>
-    <b>cmd (ctrl)</b>
-    +
-    <b>l</b>
-    for create log
-  </span>
-{:else}
-  <LastDays {logs} />
-  <main>
-    <List {currentIndex} {logs} />
-  </main>
-{/if}
+<LastDays
+  {logs}
+  prop="division"
+  active={currentDivision ? currentDivision.name : false} />
+<main>
+  <List data={divisions} {currentIndex} />
+</main>

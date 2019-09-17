@@ -4,13 +4,15 @@
 
   // Model
   let listHeight;
-  export let projects;
+  export let data;
   export let currentIndex;
+
+  $: console.log(currentIndex);
 
   // Lifecycle
   afterUpdate(() => {
     window.scrollTo({
-      top: currentIndex * (listHeight / projects.length),
+      top: currentIndex * (listHeight / data.length),
       left: 0,
       behavior: "smooth"
     });
@@ -46,7 +48,7 @@
 </style>
 
 <ul bind:clientHeight={listHeight}>
-  {#each projects as project, i (project.id)}
-    <li class={i === currentIndex ? `active` : ``}>{project.name}</li>
+  {#each data as item, i (item._id)}
+    <li class:active={i === currentIndex}>{item.name}</li>
   {/each}
 </ul>

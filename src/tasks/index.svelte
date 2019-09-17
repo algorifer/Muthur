@@ -6,7 +6,7 @@
   import { dbTasks } from "../stores/db";
 
   // Components
-  import List from "./List.svelte";
+  import List from "../components/List.svelte";
   import Info from "./Info.svelte";
   import Holder from "./Holder.svelte";
 
@@ -80,13 +80,7 @@
   </span>
 {:else}
   <main>
-    <List
-      {currentIndex}
-      tasks={tasks.map(t => ({
-        name: t.name,
-        project: t.project,
-        id: t._id
-      }))} />
+    <List {currentIndex} data={tasks} />
     {#if currentTask}
       <Info
         name={currentTask.name}

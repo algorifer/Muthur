@@ -63,13 +63,18 @@
         </button>
       </li>
       <li>
-        <button class={$viewMode === `stats` ? `active` : ``}>Stats</button>
+        <button class={$viewMode === `divisions` ? `active` : ``}>
+          Divisions
+        </button>
       </li>
       <li>
-        <button class={$viewMode === `journal` ? `active` : ``}>Journal</button>
+        <button class={$viewMode === `types` ? `active` : ``}>Types</button>
       </li>
       <li>
         <button class={$viewMode === `logs` ? `active` : ``}>Logs</button>
+      </li>
+      <li>
+        <button class={$viewMode === `journal` ? `active` : ``}>Journal</button>
       </li>
     </ul>
   </nav>
