@@ -17,14 +17,14 @@
     flex-shrink: 0;
     padding: 0 20px 0 0;
     text-align: right;
-    color: var(--f_med);
+    color: rgba(0, 0, 0, 0.6);
   }
 
   p {
     margin: 0;
-    padding: 5px 20px;
+    padding: 10px 20px;
     color: var(--b_inv);
-    border-left: 1px solid var(--f_low);
+    border-left: 1px solid rgba(0, 0, 0, 0.6);
   }
 </style>
 

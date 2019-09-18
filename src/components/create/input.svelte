@@ -37,14 +37,14 @@
   textarea {
     width: 100%;
     margin: 0;
-    padding: 5px 20px;
+    padding: 10px 20px;
     font-family: inherit;
-    font-size: 14px;
+    font-size: inherit;
     line-height: 1.2;
     color: inherit;
     background: none;
     border: none;
-    border-left: 1px solid var(--f_low);
+    border-left: 1px solid rgba(0, 0, 0, 0.6);
     resize: none;
   }
 </style>

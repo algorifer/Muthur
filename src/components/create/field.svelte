@@ -1,9 +1,8 @@
 <script>
   // Svelte
-  import { fly } from "svelte/transition";
+  import { fade } from "svelte/transition";
 
   // Utils
-  import typewriter from "../../helpers/typewriter";
   const { DateTime } = require("luxon");
 
   // Components
@@ -28,24 +27,20 @@
     flex-shrink: 0;
     padding: 0 20px 0 0;
     text-align: right;
-    color: var(--f_med);
+    color: rgba(0, 0, 0, 0.6);
   }
 
   p {
     margin: 0;
-    padding: 5px 20px;
-    border-left: 1px solid var(--f_low);
-  }
-
-  .request p {
-    color: var(--f_inv);
+    padding: 10px 20px;
+    border-left: 1px solid rgba(0, 0, 0, 0.6);
   }
 </style>
 
 {#if !prop}
-  <li class="request" out:fly={{ x: 50, duration: 200 }}>
+  <li>
     <span>○</span>
-    <p in:typewriter>{request}</p>
+    <p>{request}</p>
   </li>
 {/if}
 <li>

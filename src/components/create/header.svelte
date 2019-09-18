@@ -6,8 +6,10 @@
 <style>
   header {
     display: flex;
-    align-items: baseline;
-    margin-bottom: 40px;
+    align-items: center;
+    min-height: 50px;
+    padding: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.6);
   }
 
   span {
@@ -15,21 +17,26 @@
     flex-shrink: 0;
     padding: 0 20px 0 0;
     text-align: right;
-    font-style: italic;
-    color: var(--f_med);
+    color: rgba(0, 0, 0, 0.6);
   }
 
   b {
+    display: inline-block;
+    min-width: 16px;
+    padding: 2px;
     font-weight: normal;
-    color: var(--f_high);
+    text-align: center;
+    color: #000;
+    background: var(--background);
+    border-radius: 3px;
+    box-shadow: 1px 3px 0 #000;
   }
 
   h1 {
     margin: 0;
-    font-size: 14px;
+    font-size: inherit;
     line-height: 1;
     text-transform: uppercase;
-    color: var(--f_inv);
   }
 </style>
 

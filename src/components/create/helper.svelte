@@ -17,16 +17,16 @@
     flex-shrink: 0;
     padding: 0 20px 0 0;
     text-align: right;
-    color: var(--f_med);
+    color: rgba(0, 0, 0, 0.6);
   }
 
   ul {
     margin: 0;
     width: 100%;
-    padding: 5px 20px;
+    padding: 10px 20px;
     font-style: italic;
-    color: var(--f_med);
-    border-left: 1px solid var(--f_low);
+    color: rgba(0, 0, 0, 0.6);
+    border-left: 1px solid rgba(0, 0, 0, 0.6);
     overflow: hidden;
     white-space: nowrap;
   }
@@ -34,7 +34,7 @@
   ul span {
     width: auto;
     padding-right: 10px;
-    color: var(--f_high);
+    color: #000;
   }
 </style>
 
