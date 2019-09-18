@@ -54,6 +54,16 @@
           currentIndex = currentIndex - 1;
         }
         break;
+      case `Backspace`:
+        e.preventDefault();
+        $dbProjects.remove({ _id: currentProject._id }).then(() =>
+          $dbProjects
+            .find()
+            .then(res => {
+              projects = res;
+            })
+            .catch(err => console.log(err))
+        );
     }
   }
 </script>

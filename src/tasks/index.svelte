@@ -54,6 +54,16 @@
           currentIndex = currentIndex - 1;
         }
         break;
+      case `Backspace`:
+        e.preventDefault();
+        $dbTasks.remove({ _id: currentTask._id }).then(() =>
+          $dbTasks
+            .find()
+            .then(res => {
+              tasks = res;
+            })
+            .catch(err => console.log(err))
+        );
     }
   }
 </script>

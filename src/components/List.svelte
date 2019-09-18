@@ -7,8 +7,6 @@
   export let data;
   export let currentIndex;
 
-  $: console.log(currentIndex);
-
   // Lifecycle
   afterUpdate(() => {
     window.scrollTo({

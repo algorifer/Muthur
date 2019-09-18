@@ -1,4 +1,3 @@
-{"name":"test","project":"test project","_id":"1luedBRzzSmeXGTn","createdAt":{"$$date":1568361395072},"updatedAt":{"$$date":1568361395072}}
 {"name":"Long-term online game maintenance","project":"Study","deadline":"none","_id":"1vGD7XWB9qUy86Xe","createdAt":{"$$date":1568145338885},"updatedAt":{"$$date":1568145338885}}
 {"name":"Creative writing","project":"Study","deadline":"none","_id":"CM3aMROyo19BWGAU","createdAt":{"$$date":1568143957529},"updatedAt":{"$$date":1568143957529}}
 {"name":"Syntax","project":"Study","deadline":"none","_id":"HuyOi2HcUuzuVHDU","createdAt":{"$$date":1568144042358},"updatedAt":{"$$date":1568144042358}}
@@ -8,7 +7,6 @@
 {"name":"Add artifact timestamp","project":"Purity","deadline":"none","_id":"dObc1W2SymivFrN9","createdAt":{"$$date":1568144259505},"updatedAt":{"$$date":1568144259505}}
 {"name":"Document routines","project":"Routine","deadline":"none","_id":"fkyJ7lIopyH0kzYO","createdAt":{"$$date":1568143835498},"updatedAt":{"$$date":1568143835498}}
 {"name":"Composition practice","project":"Jam","deadline":"none","_id":"hf35qR7qV38sRPXB","createdAt":{"$$date":1568144585356},"updatedAt":{"$$date":1568144585356}}
-{"name":"test","project":"Japan","_id":"jWlPRbsndCxk4FNf","createdAt":{"$$date":1568361294556},"updatedAt":{"$$date":1568361294556}}
 {"name":"Corporate programming careers","project":"Study","deadline":"none","_id":"kU0PV1iblsZTFhBZ","createdAt":{"$$date":1568145128104},"updatedAt":{"$$date":1568145128104}}
 {"name":"Web programming teaching","project":"Tinker","deadline":"none","_id":"lvcnLgPFo9n9bBHD","createdAt":{"$$date":1568144959209},"updatedAt":{"$$date":1568144959209}}
 {"name":"Game studies","project":"Study","deadline":"none","_id":"qhbguOCO5dKPpBip","createdAt":{"$$date":1568144337978},"updatedAt":{"$$date":1568144337978}}

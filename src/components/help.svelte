@@ -6,6 +6,7 @@
 <style>
   p {
     margin: 0 0px 15px;
+    padding-left: 10px;
     color: rgba(0, 0, 0, 0.6);
   }
 
@@ -20,37 +21,50 @@
     border-radius: 3px;
     box-shadow: 1px 3px 0 #000;
   }
+
+  .title {
+    margin-bottom: 10px;
+    padding-left: 0;
+    text-transform: uppercase;
+  }
 </style>
 
 <InfoWrapper title="help">
+  <p class="title">> Navigation</p>
   <p>
     <b>↑</b>
     or
     <b>↓</b>
-    for switch items
+    switch items
   </p>
   <p>
     <b>←</b>
     or
     <b>→</b>
-    for switch menu
+    switch menu
   </p>
+  <p class="title">> Create</p>
   <p>
     <b>cmd (ctrl)</b>
     +
     <b>t</b>
-    for create task
+    create task
   </p>
   <p>
     <b>cmd (ctrl)</b>
     +
     <b>p</b>
-    for create project
+    create project
   </p>
   <p>
     <b>cmd (ctrl)</b>
     +
     <b>l</b>
-    for create log
+    create log
+  </p>
+  <p class="title">> Delete</p>
+  <p>
+    <b>Backspace</b>
+    del item
   </p>
 </InfoWrapper>

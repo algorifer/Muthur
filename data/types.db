@@ -1,4 +1,3 @@
-{"name":"test","desc":"test type desc","_id":"1SsUs2aGYvDTd3wX","createdAt":{"$$date":1568361294556},"updatedAt":{"$$date":1568361294556}}
 {"name":"Writing","desc":"Narrative, Research, Documentation, and Communication","_id":"4UAPLCLCQcp6X5kb","createdAt":{"$$date":1568143957529},"updatedAt":{"$$date":1568143957529}}
 {"name":"Development","desc":"Programming, Testing, Math, and Debugging","_id":"ES73hUcDSCG5nMs9","createdAt":{"$$date":1568144151653},"updatedAt":{"$$date":1568144151653}}
 {"name":"Photography","desc":"Picture Taking and Editing","_id":"Hrxmi8lZmzoDVko1","createdAt":{"$$date":1568145509480},"updatedAt":{"$$date":1568145509480}}

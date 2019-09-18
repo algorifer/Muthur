@@ -54,6 +54,16 @@
           currentIndex = currentIndex - 1;
         }
         break;
+      case `Backspace`:
+        e.preventDefault();
+        $dbTypes.remove({ _id: currentType._id }).then(() =>
+          $dbTypes
+            .find()
+            .then(res => {
+              types = res;
+            })
+            .catch(err => console.log(err))
+        );
     }
   }
 </script>

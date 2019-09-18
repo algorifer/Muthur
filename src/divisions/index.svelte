@@ -54,6 +54,16 @@
           currentIndex = currentIndex - 1;
         }
         break;
+      case `Backspace`:
+        e.preventDefault();
+        $dbDivisions.remove({ _id: currentDivision._id }).then(() =>
+          $dbDivisions
+            .find()
+            .then(res => {
+              divisions = res;
+            })
+            .catch(err => console.log(err))
+        );
     }
   }
 </script>
