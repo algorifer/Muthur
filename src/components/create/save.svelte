@@ -1,6 +1,6 @@
 <script>
   // Utils
-  import typewriter from "../../helpers/typewriter";
+  import typewriter from "../../utils/typewriter";
 
   // Stores
   import {
@@ -13,8 +13,8 @@
   import { viewMode } from "../../stores/muthur";
 
   // Components
-  import Input from "./input.svelte";
-  import CreateField from "./field.svelte";
+  import Input from "./Input.svelte";
+  import CreateField from "./Field.svelte";
 
   // Model
   let value = ``;

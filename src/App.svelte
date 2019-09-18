@@ -20,7 +20,7 @@
     font-family: "iosevka", "Courier New", Courier, monospace;
     font-size: 12px;
     line-height: 1.2;
-    background: var(--background);
+    background: var(--bg);
     color: var(--f_high);
     -webkit-app-region: drag;
   }

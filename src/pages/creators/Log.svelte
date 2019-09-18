@@ -3,21 +3,21 @@
   import { afterUpdate } from "svelte";
 
   // Stores
-  import { viewMode } from "../stores/muthur";
+  import { viewMode } from "../../stores/muthur";
 
   // Components
-  import CreateHeader from "../components/create/header.svelte";
-  import CreateError from "../components/create/error.svelte";
-  import CreateSuccess from "../components/create/success.svelte";
-  import CreateSave from "../components/create/save.svelte";
-  import SetDate from "../components/set/date.svelte";
-  import SetTime from "../components/set/time.svelte";
-  import SetProject from "../components/set/project.svelte";
-  import SetDesc from "../components/set/desc.svelte";
-  import SetNote from "../components/set/note.svelte";
-  import SetType from "../components/set/type.svelte";
-  import SetDivision from "../components/set/division.svelte";
-  import SetTask from "../components/set/task.svelte";
+  import CreateHeader from "../../components/create/Header.svelte";
+  import CreateError from "../../components/create/Error.svelte";
+  import CreateSuccess from "../../components/create/Success.svelte";
+  import CreateSave from "../../components/create/Save.svelte";
+  import SetDate from "../../components/set/Date.svelte";
+  import SetTime from "../../components/set/Time.svelte";
+  import SetProject from "../../components/set/Project.svelte";
+  import SetDesc from "../../components/set/Desc.svelte";
+  import SetNote from "../../components/set/Note.svelte";
+  import SetType from "../../components/set/Type.svelte";
+  import SetDivision from "../../components/set/Division.svelte";
+  import SetTask from "../../components/set/Task.svelte";
 
   // Model
   let list;

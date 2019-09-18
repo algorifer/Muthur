@@ -1,13 +1,13 @@
 <script>
   // Components
-  import InfoWrapper from "./infoWrapper.svelte";
+  import InfoWrapper from "./InfoWrapper.svelte";
 </script>
 
 <style>
   p {
     margin: 0 0px 15px;
     padding-left: 10px;
-    color: rgba(0, 0, 0, 0.6);
+    color: var(--f_med);
   }
 
   b {
@@ -16,10 +16,10 @@
     padding: 2px;
     font-weight: normal;
     text-align: center;
-    color: #000;
-    background: var(--background);
+    color: var(--f);
+    background: var(--bg);
     border-radius: 3px;
-    box-shadow: 1px 3px 0 #000;
+    box-shadow: 1px 3px 0 var(--f);
   }
 
   .title {

@@ -1,6 +1,6 @@
 <script>
   // Utils
-  import typewriter from "../../helpers/typewriter";
+  import typewriter from "../../utils/typewriter";
 
   // Model
   export let msgError;
@@ -17,14 +17,14 @@
     flex-shrink: 0;
     padding: 0 20px 0 0;
     text-align: right;
-    color: rgba(0, 0, 0, 0.6);
+    color: var(--f_med);
   }
 
   p {
     margin: 0;
     padding: 10px 20px;
-    color: var(--b_inv);
-    border-left: 1px solid rgba(0, 0, 0, 0.6);
+    color: var(--error);
+    border-left: 1px solid var(--f_med);
   }
 </style>
 

@@ -34,8 +34,8 @@
   }
 
   .active {
-    color: #fff;
-    background: #000;
+    color: var(--bg);
+    background: var(--f);
   }
 
   .active::before {

@@ -6,12 +6,12 @@
   const { DateTime } = require("luxon");
 
   // Stores
-  import { dbTasks, dbLogs } from "../stores/db";
+  import { dbTasks, dbLogs } from "../../stores/db";
 
   // Components
-  import LastDays from "../components/LastDays.svelte";
-  import Help from "../components/help.svelte";
-  import List from "../components/list.svelte";
+  import LastDays from "../../components/LastDays.svelte";
+  import Help from "../../components/Help.svelte";
+  import List from "../../components/List.svelte";
   import Info from "./info.svelte";
 
   // Model

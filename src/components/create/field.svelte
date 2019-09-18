@@ -1,12 +1,9 @@
 <script>
-  // Svelte
-  import { fade } from "svelte/transition";
-
   // Utils
   const { DateTime } = require("luxon");
 
   // Components
-  import Input from "./input.svelte";
+  import Input from "./Input.svelte";
 
   // Model
   export let name;
@@ -27,13 +24,13 @@
     flex-shrink: 0;
     padding: 0 20px 0 0;
     text-align: right;
-    color: rgba(0, 0, 0, 0.6);
+    color: var(--f_med);
   }
 
   p {
     margin: 0;
     padding: 10px 20px;
-    border-left: 1px solid rgba(0, 0, 0, 0.6);
+    border-left: 1px solid var(--f_med);
   }
 </style>
 

@@ -11,13 +11,13 @@
     width: 100%;
     height: 7px;
     padding-bottom: 1px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+    border-bottom: 1px solid var(--f_med);
   }
 
   span {
     height: 100%;
     margin: 0 1px;
-    background: #000;
+    background: var(--f);
   }
 </style>
 

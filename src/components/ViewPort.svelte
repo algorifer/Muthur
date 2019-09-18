@@ -3,15 +3,15 @@
   import { viewMode } from "../stores/muthur";
 
   // Components
-  import Header from "./header.svelte";
-  import Projects from "../projects/index.svelte";
-  import Tasks from "../tasks/index.svelte";
-  import Divisions from "../divisions/index.svelte";
-  import Types from "../types/index.svelte";
-  import Logs from "../logs/index.svelte";
-  import CreateProject from "../creators/project.svelte";
-  import CreateTask from "../creators/task.svelte";
-  import CreateLog from "../creators/log.svelte";
+  import Header from "./Header.svelte";
+  import Projects from "../pages/projects/Projects.svelte";
+  import Tasks from "../pages/tasks/Tasks.svelte";
+  import Divisions from "../pages/divisions/Divisions.svelte";
+  import Types from "../pages/types/Types.svelte";
+  import Logs from "../pages/logs/Logs.svelte";
+  import CreateProject from "../pages/creators/Project.svelte";
+  import CreateTask from "../pages/creators/Task.svelte";
+  import CreateLog from "../pages/creators/Log.svelte";
 
   // HotKeys
   function onWindowKeydown(e) {

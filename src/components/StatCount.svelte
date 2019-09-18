@@ -1,6 +1,6 @@
 <script>
   // Utils
-  import getHours from "../helpers/getHours";
+  import getHours from "../utils/getHours";
 
   // Model
   export let logs = [];

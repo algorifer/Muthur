@@ -3,13 +3,13 @@
   const { DateTime } = require("luxon");
 
   // Stores
-  import { dbLogs } from "../stores/db";
+  import { dbLogs } from "../../stores/db";
 
   // Components
-  import InfoWrapper from "../components/infoWrapper.svelte";
-  import StatCount from "../components/StatCount.svelte";
-  import StatLine from "../components/StatLine.svelte";
-  import StatDate from "../components/StatDate.svelte";
+  import InfoWrapper from "../../components/InfoWrapper.svelte";
+  import StatCount from "../../components/StatCount.svelte";
+  import StatLine from "../../components/StatLine.svelte";
+  import StatDate from "../../components/StatDate.svelte";
 
   // Model
   export let currentTask;
@@ -33,7 +33,7 @@
   .proj {
     font-style: italic;
     text-transform: uppercase;
-    color: rgba(0, 0, 0, 0.6);
+    color: var(--f_med);
   }
 </style>
 

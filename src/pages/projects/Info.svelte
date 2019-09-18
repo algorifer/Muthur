@@ -3,14 +3,14 @@
   import { beforeUpdate } from "svelte";
 
   // Stores
-  import { dbTasks, dbLogs } from "../stores/db";
+  import { dbTasks, dbLogs } from "../../stores/db";
 
   // Components
-  import InfoWrapper from "../components/infoWrapper.svelte";
-  import StatCount from "../components/StatCount.svelte";
-  import StatTask from "../components/StatTask.svelte";
-  import StatLine from "../components/StatLine.svelte";
-  import StatDate from "../components/StatDate.svelte";
+  import InfoWrapper from "../../components/InfoWrapper.svelte";
+  import StatCount from "../../components/StatCount.svelte";
+  import StatTask from "../../components/StatTask.svelte";
+  import StatLine from "../../components/StatLine.svelte";
+  import StatDate from "../../components/StatDate.svelte";
 
   // Model
   export let currentProject;

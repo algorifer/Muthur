@@ -6,21 +6,31 @@
   const { DateTime } = require("luxon");
 
   // Stores
-  import { dbLogs } from "../stores/db";
+  import { dbProjects, dbLogs } from "../../stores/db";
 
   // Components
-  import List from "./List.svelte";
-  import LastDays from "../components/LastDays.svelte";
+  import LastDays from "../../components/LastDays.svelte";
+  import Help from "../../components/Help.svelte";
+  import List from "../../components/List.svelte";
+  import Info from "./Info.svelte";
 
   // Model
+  let projects = [];
+  let currentIndex = -1;
   let logs = [];
-  let currentIndex = 0;
+
+  $: currentProject = projects[currentIndex];
 
   // Lifecycle
   onMount(() => {
+    $dbProjects
+      .find()
+      .then(res => {
+        projects = res;
+      })
+      .catch(err => console.log(err));
     $dbLogs
       .find()
-      .exec()
       .then(res => {
         logs = res.sort(
           (a, b) => DateTime.fromISO(b.date) - DateTime.fromISO(a.date)
@@ -34,7 +44,7 @@
     switch (e.key) {
       case `ArrowDown`:
         e.preventDefault();
-        if (currentIndex < logs.length - 1) {
+        if (currentIndex < projects.length - 1) {
           currentIndex = currentIndex + 1;
         }
         break;
@@ -46,13 +56,11 @@
         break;
       case `Backspace`:
         e.preventDefault();
-        $dbLogs.remove({ _id: logs[currentIndex]._id }).then(() =>
-          $dbLogs
+        $dbProjects.remove({ _id: currentProject._id }).then(() =>
+          $dbProjects
             .find()
             .then(res => {
-              logs = res.sort(
-                (a, b) => DateTime.fromISO(b.date) - DateTime.fromISO(a.date)
-              );
+              projects = res;
             })
             .catch(err => console.log(err))
         );
@@ -60,9 +68,24 @@
   }
 </script>
 
+<style>
+  main {
+    display: flex;
+    align-items: flex-start;
+  }
+</style>
+
 <svelte:window on:keydown={onWindowKeydown} />
 
 <main>
-  <List {currentIndex} {logs} />
+  <List {currentIndex} data={projects} />
+  {#if currentProject}
+    <Info {currentProject} {logs} />
+  {:else}
+    <Help />
+  {/if}
 </main>
-<LastDays {logs} />
+<LastDays
+  {logs}
+  prop="project"
+  active={currentProject ? currentProject.name : false} />

@@ -1,5 +1,6 @@
 {"date":"2019-07-15T00:00:00.000+03:00","time":1.5,"project":"Japan","type":"Linguistics","division":"Abstract","task":"Kanji","_id":"0JvODKVIgcpjyiHE","createdAt":{"$$date":1568144483475},"updatedAt":{"$$date":1568144483475}}
 {"date":"2019-07-07T00:00:00.000+03:00","time":0.5,"project":"Japan","type":"Linguistics","division":"Abstract","task":"Kanji","_id":"4FoUypNg9cyopYtc","createdAt":{"$$date":1568145300382},"updatedAt":{"$$date":1568145300382}}
+{"date":"2019-09-18T00:00:00.000+03:00","time":6,"project":"Japan","type":"Development","division":"Personal","task":"Japanese","_id":"5xzickxTk6Rqmgj1","createdAt":{"$$date":1568817315698},"updatedAt":{"$$date":1568817315698}}
 {"date":"2019-07-13T00:00:00.000+03:00","time":1.5,"project":"Sport","type":"Research","division":"Personal","task":"Gymnastics","_id":"7NEVUEctlrFDAYGd","createdAt":{"$$date":1568144738565},"updatedAt":{"$$date":1568144738565}}
 {"date":"2019-07-13T00:00:00.000+03:00","time":1,"project":"Jam","type":"Composition","division":"Audio","task":"Composition practice","_id":"AHFouHwGukiZRloq","createdAt":{"$$date":1568144695351},"updatedAt":{"$$date":1568144695351}}
 {"date":"2019-07-16T00:00:00.000+03:00","time":1.5,"project":"Study","type":"Research","division":"Abstract","task":"Game studies","_id":"ATYxfKG52lni3Nf6","createdAt":{"$$date":1568144337978},"updatedAt":{"$$date":1568144337978}}
@@ -27,4 +28,3 @@
 {"date":"2019-07-15T00:00:00.000+03:00","time":1.5,"project":"Sport","type":"Research","division":"Personal","task":"Gymnastics","_id":"uJiNBGObPRAboisa","createdAt":{"$$date":1568144407450},"updatedAt":{"$$date":1568144407450}}
 {"date":"2019-07-14T00:00:00.000+03:00","time":1.5,"project":"Sport","type":"Research","division":"Personal","task":"Gymnastics","_id":"vpiYmk146FnMNNz7","createdAt":{"$$date":1568144634972},"updatedAt":{"$$date":1568144634972}}
 {"date":"2019-07-09T00:00:00.000+03:00","time":1.5,"project":"Jam","type":"Acoustic","division":"Audio","task":"Guitar teaching","_id":"vxRVEslnIWWx3biU","createdAt":{"$$date":1568145083564},"updatedAt":{"$$date":1568145083564}}
-{"date":"2019-09-18T00:00:00.000+03:00","time":6,"project":"Japan","type":"Development","division":"Personal","task":"Japanese","_id":"5xzickxTk6Rqmgj1","createdAt":{"$$date":1568817315698},"updatedAt":{"$$date":1568817315698}}

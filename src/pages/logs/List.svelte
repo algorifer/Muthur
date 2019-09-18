@@ -31,14 +31,13 @@
   li {
     display: flex;
     justify-content: space-between;
-    /* margin-bottom: 10px; */
     padding: 5px 10px;
-    border-bottom: 1px dotted rgba(0, 0, 0, 0.2);
+    border-bottom: 1px dotted var(--f_dark);
   }
 
   .active {
-    background: #000;
-    color: #fff;
+    background: var(--f);
+    color: var(--bg);
   }
 
   p {

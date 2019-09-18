@@ -1,6 +1,6 @@
 <script>
   // Components
-  import CreateField from "../create/field.svelte";
+  import CreateField from "../create/Field.svelte";
 
   // Model
   let value = ``;

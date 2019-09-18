@@ -6,8 +6,8 @@
   import { dbProjects } from "../../stores/db";
 
   // Components
-  import CreateHelper from "../create/helper.svelte";
-  import CreateField from "../create/field.svelte";
+  import CreateHelper from "../create/Helper.svelte";
+  import CreateField from "../create/Field.svelte";
 
   // Model
   let value = ``;

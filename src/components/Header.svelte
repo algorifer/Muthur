@@ -12,15 +12,15 @@
     height: 50px;
     align-items: center;
     padding: 14px 20px;
-    background: #eeefee;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+    background: var(--bg);
+    border-bottom: 1px solid var(--f_med);
   }
 
   h1 {
     margin: 0;
     font-size: inherit;
     line-height: 1;
-    color: #000;
+    color: var(--f);
   }
 
   nav {
@@ -41,7 +41,7 @@
     font-family: inherit;
     font-size: inherit;
     line-height: 1;
-    color: #000;
+    color: var(--f);
     opacity: 0.6;
     border: none;
     background: none;
@@ -50,8 +50,8 @@
 
   .active {
     opacity: 1;
-    background: #000;
-    color: #fff;
+    background: var(--f);
+    color: var(--bg);
   }
 </style>
 

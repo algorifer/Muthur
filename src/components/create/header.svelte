@@ -9,7 +9,7 @@
     align-items: center;
     min-height: 50px;
     padding: 10px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+    border-bottom: 1px solid var(--f_med);
   }
 
   span {
@@ -17,7 +17,7 @@
     flex-shrink: 0;
     padding: 0 20px 0 0;
     text-align: right;
-    color: rgba(0, 0, 0, 0.6);
+    color: var(--f_med);
   }
 
   b {
@@ -26,10 +26,10 @@
     padding: 2px;
     font-weight: normal;
     text-align: center;
-    color: #000;
-    background: var(--background);
+    color: var(--f);
+    background: var(--bg);
     border-radius: 3px;
-    box-shadow: 1px 3px 0 #000;
+    box-shadow: 1px 3px 0 var(--f);
   }
 
   h1 {

@@ -21,7 +21,7 @@
     display: block;
     width: 1px;
     height: 50px;
-    background: rgba(0, 0, 0, 0.6);
+    background: var(--f_med);
   }
 
   p {
@@ -30,8 +30,8 @@
     left: -40px;
     padding: 5px 4px;
     writing-mode: vertical-lr;
-    border-right: 1px solid rgba(0, 0, 0, 0.2);
-    border-left: 1px solid rgba(0, 0, 0, 0.6);
+    border-right: 1px solid var(--f_dark);
+    border-left: 1px solid var(--f_med);
   }
 
   ul {

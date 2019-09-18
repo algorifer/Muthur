@@ -6,27 +6,27 @@
   const { DateTime } = require("luxon");
 
   // Stores
-  import { dbProjects, dbLogs } from "../stores/db";
+  import { dbDivisions, dbLogs } from "../../stores/db";
 
   // Components
-  import LastDays from "../components/LastDays.svelte";
-  import Help from "../components/help.svelte";
-  import List from "../components/List.svelte";
-  import Info from "./info.svelte";
+  import LastDays from "../../components/LastDays.svelte";
+  import Help from "../../components/Help.svelte";
+  import List from "../../components/List.svelte";
+  import Info from "./Info.svelte";
 
   // Model
-  let projects = [];
+  let divisions = [];
   let currentIndex = -1;
   let logs = [];
 
-  $: currentProject = projects[currentIndex];
+  $: currentDivision = divisions[currentIndex];
 
   // Lifecycle
   onMount(() => {
-    $dbProjects
+    $dbDivisions
       .find()
       .then(res => {
-        projects = res;
+        divisions = res;
       })
       .catch(err => console.log(err));
     $dbLogs
@@ -44,7 +44,7 @@
     switch (e.key) {
       case `ArrowDown`:
         e.preventDefault();
-        if (currentIndex < projects.length - 1) {
+        if (currentIndex < divisions.length - 1) {
           currentIndex = currentIndex + 1;
         }
         break;
@@ -56,11 +56,11 @@
         break;
       case `Backspace`:
         e.preventDefault();
-        $dbProjects.remove({ _id: currentProject._id }).then(() =>
-          $dbProjects
+        $dbDivisions.remove({ _id: currentDivision._id }).then(() =>
+          $dbDivisions
             .find()
             .then(res => {
-              projects = res;
+              divisions = res;
             })
             .catch(err => console.log(err))
         );
@@ -78,14 +78,14 @@
 <svelte:window on:keydown={onWindowKeydown} />
 
 <main>
-  <List {currentIndex} data={projects} />
-  {#if currentProject}
-    <Info {currentProject} {logs} />
+  <List data={divisions} {currentIndex} />
+  {#if currentDivision}
+    <Info {currentDivision} {logs} />
   {:else}
     <Help />
   {/if}
 </main>
 <LastDays
   {logs}
-  prop="project"
-  active={currentProject ? currentProject.name : false} />
+  prop="division"
+  active={currentDivision ? currentDivision.name : false} />

@@ -6,31 +6,21 @@
   const { DateTime } = require("luxon");
 
   // Stores
-  import { dbDivisions, dbLogs } from "../stores/db";
+  import { dbLogs } from "../../stores/db";
 
   // Components
-  import LastDays from "../components/LastDays.svelte";
-  import Help from "../components/help.svelte";
-  import List from "../components/List.svelte";
-  import Info from "./info.svelte";
+  import List from "./List.svelte";
+  import LastDays from "../../components/LastDays.svelte";
 
   // Model
-  let divisions = [];
-  let currentIndex = -1;
   let logs = [];
-
-  $: currentDivision = divisions[currentIndex];
+  let currentIndex = 0;
 
   // Lifecycle
   onMount(() => {
-    $dbDivisions
-      .find()
-      .then(res => {
-        divisions = res;
-      })
-      .catch(err => console.log(err));
     $dbLogs
       .find()
+      .exec()
       .then(res => {
         logs = res.sort(
           (a, b) => DateTime.fromISO(b.date) - DateTime.fromISO(a.date)
@@ -44,7 +34,7 @@
     switch (e.key) {
       case `ArrowDown`:
         e.preventDefault();
-        if (currentIndex < divisions.length - 1) {
+        if (currentIndex < logs.length - 1) {
           currentIndex = currentIndex + 1;
         }
         break;
@@ -56,11 +46,13 @@
         break;
       case `Backspace`:
         e.preventDefault();
-        $dbDivisions.remove({ _id: currentDivision._id }).then(() =>
-          $dbDivisions
+        $dbLogs.remove({ _id: logs[currentIndex]._id }).then(() =>
+          $dbLogs
             .find()
             .then(res => {
-              divisions = res;
+              logs = res.sort(
+                (a, b) => DateTime.fromISO(b.date) - DateTime.fromISO(a.date)
+              );
             })
             .catch(err => console.log(err))
         );
@@ -68,24 +60,9 @@
   }
 </script>
 
-<style>
-  main {
-    display: flex;
-    align-items: flex-start;
-  }
-</style>
-
 <svelte:window on:keydown={onWindowKeydown} />
 
 <main>
-  <List data={divisions} {currentIndex} />
-  {#if currentDivision}
-    <Info {currentDivision} {logs} />
-  {:else}
-    <Help />
-  {/if}
+  <List {currentIndex} {logs} />
 </main>
-<LastDays
-  {logs}
-  prop="division"
-  active={currentDivision ? currentDivision.name : false} />
+<LastDays {logs} />

@@ -44,7 +44,7 @@
     color: inherit;
     background: none;
     border: none;
-    border-left: 1px solid rgba(0, 0, 0, 0.6);
+    border-left: 1px solid var(--f_med);
     resize: none;
   }
 </style>

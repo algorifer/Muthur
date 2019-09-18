@@ -17,7 +17,7 @@
     flex-shrink: 0;
     padding: 0 20px 0 0;
     text-align: right;
-    color: rgba(0, 0, 0, 0.6);
+    color: var(--f_med);
   }
 
   ul {
@@ -25,8 +25,8 @@
     width: 100%;
     padding: 10px 20px;
     font-style: italic;
-    color: rgba(0, 0, 0, 0.6);
-    border-left: 1px solid rgba(0, 0, 0, 0.6);
+    color: var(--f_med);
+    border-left: 1px solid var(--f_med);
     overflow: hidden;
     white-space: nowrap;
   }
@@ -34,7 +34,7 @@
   ul span {
     width: auto;
     padding-right: 10px;
-    color: #000;
+    color: var(--f);
   }
 </style>
 

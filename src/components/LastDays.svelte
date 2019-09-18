@@ -66,8 +66,8 @@
     bottom: 0;
     margin-top: auto;
     /* padding: 10px 0 0; */
-    background: #eeefee;
-    border-top: 1px solid rgba(0, 0, 0, 0.6);
+    background: var(--bg);
+    border-top: 1px solid var(--f_med);
   }
 
   .graf {
@@ -88,14 +88,14 @@
     height: 100%;
     width: 100%;
     padding: 0px 1px;
-    border-right: 1px solid rgba(0, 0, 0, 0.6);
+    border-right: 1px solid var(--f_med);
   }
 
   .item {
     display: block;
-    background: rgba(0, 0, 0, 0);
+    background: var(--f_t);
     transition: background-color 0.2s;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+    border-bottom: 1px solid var(--f_med);
   }
 
   .item:first-child {
@@ -103,7 +103,7 @@
   }
 
   .item--active {
-    background: rgba(0, 0, 0, 1);
+    background: var(--f);
   }
 
   .stat {
