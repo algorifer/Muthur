@@ -5,16 +5,22 @@
 
 <style>
   header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     display: flex;
-    align-items: baseline;
-    margin-bottom: 40px;
+    height: 50px;
+    align-items: center;
+    padding: 14px 20px;
+    background: #eeefee;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.6);
   }
 
   h1 {
     margin: 0;
-    font-size: 14px;
+    font-size: inherit;
     line-height: 1;
-    color: var(--f_inv);
+    color: #000;
   }
 
   nav {
@@ -29,24 +35,23 @@
     list-style: none;
   }
 
-  li {
-    margin-right: 10px;
-  }
-
   button {
     margin: 0;
-    padding: 0;
+    padding: 2px 10px;
     font-family: inherit;
-    font-size: 14px;
+    font-size: inherit;
     line-height: 1;
-    color: var(--f_med);
+    color: #000;
+    opacity: 0.6;
     border: none;
     background: none;
-    transition: color 0.5s;
+    text-transform: uppercase;
   }
 
   .active {
-    color: var(--f_high);
+    opacity: 1;
+    background: #000;
+    color: #fff;
   }
 </style>
 
@@ -73,9 +78,9 @@
       <li>
         <button class={$viewMode === `logs` ? `active` : ``}>Logs</button>
       </li>
-      <li>
+      <!-- <li>
         <button class={$viewMode === `journal` ? `active` : ``}>Journal</button>
-      </li>
+      </li> -->
     </ul>
   </nav>
 </header>

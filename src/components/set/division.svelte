@@ -3,11 +3,11 @@
   import { onMount } from "svelte";
 
   // Stores
-  import { dbDivisions } from "../stores/db";
+  import { dbDivisions } from "../../stores/db";
 
   // Components
-  import CreateHelper from "../components/CreateHelper.svelte";
-  import CreateField from "../components/CreateField.svelte";
+  import CreateHelper from "../create/helper.svelte";
+  import CreateField from "../create/field.svelte";
 
   // Model
   let value = ``;

@@ -14,7 +14,7 @@
 
   // Model
   let logs = [];
-  let currentIndex = -1;
+  let currentIndex = 0;
 
   // Lifecycle
   onMount(() => {
@@ -82,8 +82,8 @@
     for create log
   </span>
 {:else}
-  <LastDays {logs} />
   <main>
     <List {currentIndex} {logs} />
   </main>
+  <LastDays {logs} />
 {/if}

@@ -16,9 +16,9 @@
     width: 100vw;
     min-height: 100vh;
     margin: 0;
-    padding: 40px;
+    padding: 0;
     font-family: "iosevka", "Courier New", Courier, monospace;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 1.2;
     background: var(--background);
     color: var(--f_high);

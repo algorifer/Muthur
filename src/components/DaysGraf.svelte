@@ -5,7 +5,7 @@
   // Model
   export let start;
   export let end;
-  export let logs;
+  export let selectLogs;
 
   $: days =
     start && end
@@ -14,7 +14,8 @@
 
   $: active = days.map(
     (item, i) =>
-      logs.filter(item => item.date === start.plus({ days: i }).toISO()).length
+      selectLogs.filter(item => item.date === start.plus({ days: i }).toISO())
+        .length
   );
 </script>
 
@@ -24,16 +25,16 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 5px;
+    height: 7px;
     margin-bottom: 5px;
-    background: var(--b_low);
+    padding-bottom: 1px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.6);
   }
 
   span {
     height: 100%;
-    margin: 0 1px;
     flex-grow: 2;
-    border-radius: 5px;
+    border-right: 1px solid rgba(0, 0, 0, 0.6);
   }
 
   span:last-child {
@@ -41,7 +42,7 @@
   }
 
   .active {
-    background: var(--b_high);
+    background: #000;
   }
 </style>
 

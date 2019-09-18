@@ -3,17 +3,17 @@
   import GrafLine from "./GrafLine.svelte";
 
   // Model
-  export let logs;
+  export let selectLogs;
   export let selector;
 
-  $: time = logs
-    ? logs.reduce((hours, item) => {
+  $: time = selectLogs
+    ? selectLogs.reduce((hours, item) => {
         return hours + parseFloat(item.time);
       }, 0)
     : null;
 
-  $: items = logs
-    ? logs
+  $: items = selectLogs
+    ? selectLogs
         .reduce((arr, item) => {
           if (arr.indexOf(item[selector]) < 0) {
             return [...arr, item[selector]];
@@ -22,7 +22,7 @@
         }, [])
         .map(item => ({
           name: item,
-          time: logs.reduce((hours, log) => {
+          time: selectLogs.reduce((hours, log) => {
             if (log[selector] === item) {
               return hours + parseFloat(log.time);
             }

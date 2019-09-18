@@ -6,18 +6,18 @@
   import { viewMode } from "../stores/muthur";
 
   // Components
-  import CreateHeader from "../components/CreateHeader.svelte";
-  import CreateError from "../components/CreateError.svelte";
-  import SetDate from "../components/SetDate.svelte";
-  import SetTime from "../components/SetTime.svelte";
-  import SetProject from "../components/SetProject.svelte";
-  import SetDesc from "../components/SetDesc.svelte";
-  import SetNote from "../components/SetNote.svelte";
-  import SetType from "../components/SetType.svelte";
-  import SetDivision from "../components/SetDivision.svelte";
-  import SetTask from "../components/SetTask.svelte";
-  import CreateSuccess from "../components/CreateSuccess.svelte";
-  import CreateSave from "../components/CreateSave.svelte";
+  import CreateHeader from "../components/create/header.svelte";
+  import CreateError from "../components/create/error.svelte";
+  import CreateSuccess from "../components/create/success.svelte";
+  import CreateSave from "../components/create/save.svelte";
+  import SetDate from "../components/set/date.svelte";
+  import SetTime from "../components/set/time.svelte";
+  import SetProject from "../components/set/project.svelte";
+  import SetDesc from "../components/set/desc.svelte";
+  import SetNote from "../components/set/note.svelte";
+  import SetType from "../components/set/type.svelte";
+  import SetDivision from "../components/set/division.svelte";
+  import SetTask from "../components/set/task.svelte";
 
   // Model
   let list;

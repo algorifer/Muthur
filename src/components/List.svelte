@@ -24,26 +24,25 @@
     width: 40%;
     flex-shrink: 0;
     margin: 0;
-    margin-right: 40px;
-    padding: 0;
+    padding: 20px;
     list-style: none;
   }
 
   li {
     position: relative;
-    margin-bottom: 5px;
-    transition: transform 0.2s;
+    display: flex;
+    padding: 5px;
+    transition: 0.1s;
   }
 
   .active {
-    transform: translateX(12px);
+    color: #fff;
+    background: #000;
   }
 
   .active::before {
     content: "◉";
-    position: absolute;
-    left: -12px;
-    color: var(--f_inv);
+    margin-right: 5px;
   }
 </style>
 

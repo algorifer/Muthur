@@ -3,15 +3,15 @@
   import { viewMode } from "../stores/muthur";
 
   // Components
-  import Header from "./Header.svelte";
+  import Header from "./header.svelte";
   import Projects from "../projects/index.svelte";
   import Tasks from "../tasks/index.svelte";
   import Divisions from "../divisions/index.svelte";
   import Types from "../types/index.svelte";
   import Logs from "../logs/index.svelte";
-  import CreateProject from "../createProject/index.svelte";
-  import CreateTask from "../createTask/index.svelte";
-  import CreateLog from "../createLog/index.svelte";
+  import CreateProject from "../creators/project.svelte";
+  import CreateTask from "../creators/task.svelte";
+  import CreateLog from "../creators/log.svelte";
 
   // HotKeys
   function onWindowKeydown(e) {
@@ -32,7 +32,7 @@
         }
         break;
       case `ArrowLeft`:
-        if (e.shiftKey) {
+        if (!e.shiftKey) {
           switch ($viewMode) {
             case `tasks`:
               viewMode.set(`logs`);
@@ -53,7 +53,7 @@
         }
         break;
       case `ArrowRight`:
-        if (e.shiftKey) {
+        if (!e.shiftKey) {
           switch ($viewMode) {
             case `tasks`:
               viewMode.set(`projects`);

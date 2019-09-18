@@ -9,9 +9,9 @@ app.win = null;
 app.on(`ready`, () => {
   app.win = new BrowserWindow({
     width: 800,
-    height: 530,
+    height: 600,
     minWidth: 800,
-    minHeight: 530,
+    minHeight: 600,
     backgroundColor: '#eeeeee',
     // icon: path.join(__dirname, { darwin: 'icon.icns', linux: 'icon.png', win32: 'icon.ico' }[process.platform] || 'icon.ico'),
     icon: 'icon.png',

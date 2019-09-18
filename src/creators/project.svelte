@@ -6,20 +6,20 @@
   import { viewMode } from "../stores/muthur";
 
   // Components
-  import CreateHeader from "../components/CreateHeader.svelte";
-  import CreateError from "../components/CreateError.svelte";
-  import SetName from "../components/SetName.svelte";
-  import SetProject from "../components/SetProject.svelte";
-  import SetDesc from "../components/SetDesc.svelte";
-  import SetNote from "../components/SetNote.svelte";
-  import CreateSuccess from "../components/CreateSuccess.svelte";
-  import CreateSave from "../components/CreateSave.svelte";
+  import CreateHeader from "../components/create/header.svelte";
+  import CreateError from "../components/create/error.svelte";
+  import CreateSuccess from "../components/create/success.svelte";
+  import CreateSave from "../components/create/save.svelte";
+  import SetName from "../components/set/name.svelte";
+  import SetDesc from "../components/set/desc.svelte";
+  import SetNote from "../components/set/note.svelte";
 
   // Model
   let list;
-  let task = {};
   let project = {};
   let msgError = false;
+
+  $: isSuccess = project._id ? true : false;
 
   // Lifecycle
   afterUpdate(() => {
@@ -29,12 +29,10 @@
     }, 100);
   });
 
-  // Updates
-  $: isSuccess = task._id && (!projects.name || project._id);
-
+  // Update
   $: if (isSuccess) {
     const saveTimeout = setTimeout(() => {
-      viewMode.set(`tasks`);
+      viewMode.set(`projects`);
       clearTimeout(saveTimeout);
     }, 1500);
   }
@@ -59,21 +57,18 @@
 
 <svelte:window on:keydown={onWindowKeydown} />
 
-<CreateHeader title="Add Task" />
+<CreateHeader title="Add Project" />
 <ul bind:this={list}>
-  <SetName bind:obj={task} bind:msgError />
-  {#if task.deadline}
-    <SetProject bind:obj={task} bind:project bind:msgError />
-  {/if}
+  <SetName bind:obj={project} bind:msgError />
   {#if project.name}
     <SetDesc bind:obj={project} bind:msgError />
   {/if}
   {#if project.desc}
     <SetNote bind:obj={project} bind:msgError />
   {/if}
-  {#if (task.project && !project.name) || project.note}
-    <CreateSave bind:task bind:project bind:msgError />
+  {#if project.note}
+    <CreateSave bind:project bind:msgError />
   {/if}
   <CreateError {msgError} />
-  <CreateSuccess {isSuccess} {task} {project} />
+  <CreateSuccess {project} />
 </ul>

@@ -1,6 +1,6 @@
 <script>
   // Utils
-  import typewriter from "../helpers/typewriter";
+  import typewriter from "../../helpers/typewriter";
 
   // Model
   export let msgError;

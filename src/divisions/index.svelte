@@ -10,7 +10,9 @@
 
   // Components
   import LastDays from "../components/LastDays.svelte";
+  import Help from "../components/help.svelte";
   import List from "../components/List.svelte";
+  import Info from "./info.svelte";
 
   // Model
   let divisions = [];
@@ -61,29 +63,19 @@
     display: flex;
     align-items: flex-start;
   }
-
-  p {
-    margin: 0 0 20px;
-    text-transform: uppercase;
-    color: var(--f_inv);
-  }
-
-  span {
-    color: var(--f_med);
-  }
-
-  b {
-    font-weight: normal;
-    color: var(--f_high);
-  }
 </style>
 
 <svelte:window on:keydown={onWindowKeydown} />
 
+<main>
+  <List data={divisions} {currentIndex} />
+  {#if currentDivision}
+    <Info {currentDivision} {logs} />
+  {:else}
+    <Help />
+  {/if}
+</main>
 <LastDays
   {logs}
   prop="division"
   active={currentDivision ? currentDivision.name : false} />
-<main>
-  <List data={divisions} {currentIndex} />
-</main>

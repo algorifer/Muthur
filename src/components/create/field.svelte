@@ -3,11 +3,11 @@
   import { fly } from "svelte/transition";
 
   // Utils
-  import typewriter from "../helpers/typewriter";
+  import typewriter from "../../helpers/typewriter";
   const { DateTime } = require("luxon");
 
   // Components
-  import Input from "./Input.svelte";
+  import Input from "./input.svelte";
 
   // Model
   export let name;

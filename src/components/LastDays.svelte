@@ -61,13 +61,23 @@
 </script>
 
 <style>
+  section {
+    position: sticky;
+    bottom: 0;
+    margin-top: auto;
+    /* padding: 10px 0 0; */
+    background: #eeefee;
+    border-top: 1px solid rgba(0, 0, 0, 0.6);
+  }
+
   .graf {
     display: flex;
     align-items: stretch;
     justify-content: stretch;
     width: 100%;
-    height: 72px;
-    margin-bottom: 40px;
+    height: 50px;
+    margin: 0 0 10px;
+    padding: 0 2px;
   }
 
   .day {
@@ -77,26 +87,29 @@
     align-items: stretch;
     height: 100%;
     width: 100%;
-    margin-right: 1px;
-    padding: 1px 0 2px;
-    background: var(--b_low);
+    padding: 0px 1px;
+    border-right: 1px solid rgba(0, 0, 0, 0.6);
   }
 
   .item {
     display: block;
-    background: var(--b_med);
-    margin-top: 1px;
-    border-radius: 5px;
+    background: rgba(0, 0, 0, 0);
     transition: background-color 0.2s;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+  }
+
+  .item:first-child {
+    margin: 0;
   }
 
   .item--active {
-    background: var(--b_high);
+    background: rgba(0, 0, 0, 1);
   }
 
   .stat {
     display: flex;
     justify-content: space-between;
+    padding: 0 20px;
   }
 
   p {
@@ -105,11 +118,6 @@
 </style>
 
 <section>
-  <div class="stat">
-    <p>{parseInt((allTime / daysCount) * 10) / 10} h/d</p>
-    <p>{allTime} hours</p>
-    <p>{daysCount} days</p>
-  </div>
   <div class="graf">
     {#each data as day, i (i)}
       <div class="day">
@@ -126,5 +134,10 @@
         {/each}
       </div>
     {/each}
+  </div>
+  <div class="stat">
+    <p>{parseInt((allTime / daysCount) * 10) / 10} h/d</p>
+    <p>{allTime} hours</p>
+    <p>{daysCount} days</p>
   </div>
 </section>

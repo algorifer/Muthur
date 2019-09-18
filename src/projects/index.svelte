@@ -2,17 +2,22 @@
   // Svelte
   import { onMount } from "svelte";
 
+  // Utils
+  const { DateTime } = require("luxon");
+
   // Stores
-  import { dbProjects } from "../stores/db";
+  import { dbProjects, dbLogs } from "../stores/db";
 
   // Components
+  import LastDays from "../components/LastDays.svelte";
+  import Help from "../components/help.svelte";
   import List from "../components/List.svelte";
-  import Info from "./Info.svelte";
-  import Holder from "./Holder.svelte";
+  import Info from "./info.svelte";
 
   // Model
   let projects = [];
   let currentIndex = -1;
+  let logs = [];
 
   $: currentProject = projects[currentIndex];
 
@@ -20,9 +25,16 @@
   onMount(() => {
     $dbProjects
       .find()
-      .exec()
       .then(res => {
         projects = res;
+      })
+      .catch(err => console.log(err));
+    $dbLogs
+      .find()
+      .then(res => {
+        logs = res.sort(
+          (a, b) => DateTime.fromISO(b.date) - DateTime.fromISO(a.date)
+        );
       })
       .catch(err => console.log(err));
   });
@@ -51,43 +63,19 @@
     display: flex;
     align-items: flex-start;
   }
-
-  p {
-    margin: 0 0 20px;
-    text-transform: uppercase;
-    color: var(--f_inv);
-  }
-
-  span {
-    color: var(--f_med);
-  }
-
-  b {
-    font-weight: normal;
-    color: var(--f_high);
-  }
 </style>
 
 <svelte:window on:keydown={onWindowKeydown} />
 
-{#if !projects.length}
-  <p>○ Create your first project</p>
-  <span>
-    <b>cmd (ctrl)</b>
-    +
-    <b>p</b>
-    for create project
-  </span>
-{:else}
-  <main>
-    <List {currentIndex} data={projects} />
-    {#if currentProject}
-      <Info
-        name={currentProject.name}
-        desc={currentProject.desc}
-        id={currentProject._id} />
-    {:else}
-      <Holder />
-    {/if}
-  </main>
-{/if}
+<main>
+  <List {currentIndex} data={projects} />
+  {#if currentProject}
+    <Info {currentProject} {logs} />
+  {:else}
+    <Help />
+  {/if}
+</main>
+<LastDays
+  {logs}
+  prop="project"
+  active={currentProject ? currentProject.name : false} />

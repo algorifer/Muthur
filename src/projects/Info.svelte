@@ -3,19 +3,30 @@
   import { beforeUpdate } from "svelte";
 
   // Stores
-  import { dbTasks } from "../stores/db";
+  import { dbTasks, dbLogs } from "../stores/db";
 
   // Components
-  import Stat from "./Stat.svelte";
+  import InfoWrapper from "../components/infoWrapper.svelte";
+  import StatCount from "../components/StatCount.svelte";
+  import StatTask from "../components/StatTask.svelte";
+  import StatLine from "../components/StatLine.svelte";
+  import StatDate from "../components/StatDate.svelte";
 
   // Model
-  export let name;
-  export let desc;
-  export let id;
+  export let currentProject;
+  export let logs;
   let tasksCount = null;
   let allTaskCount = 0;
+  let selectLogs = null;
 
   $: taskPercent = tasksCount / (allTaskCount / 100);
+
+  $: $dbLogs
+    .find({ project: currentProject.name })
+    .then(res => {
+      selectLogs = res;
+    })
+    .catch(err => console.log(err));
 
   // Lifecycle
   beforeUpdate(() => {
@@ -31,28 +42,17 @@
 </script>
 
 <style>
-  article {
-    position: fixed;
-    top: 100px;
-    right: 0;
-    width: 50%;
-    padding: 0 40px;
-    border-left: 1px solid var(--f_low);
-  }
-
-  p {
-    margin: 0;
-    margin-bottom: 10px;
-  }
-
-  .id {
-    margin-top: 20px;
-    color: var(--f_med);
+  li {
+    padding: 0;
+    margin-bottom: 15px;
   }
 </style>
 
-<article>
-  <p>{desc}</p>
-  <Stat {name} />
-  <p class="id">{`⍠ ${id}`}</p>
-</article>
+<InfoWrapper title={currentProject._id}>
+  <li>{currentProject.desc}</li>
+  <StatCount {selectLogs} {logs} />
+  <StatDate {selectLogs} />
+  <StatTask selector={{ project: currentProject.name }} />
+  <StatLine {selectLogs} selector="division" />
+  <StatLine {selectLogs} selector="type" />
+</InfoWrapper>

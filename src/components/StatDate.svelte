@@ -6,20 +6,20 @@
   import DaysGraf from "./DaysGraf.svelte";
 
   // Model
-  export let logs;
+  export let selectLogs;
 
-  $: start = logs
-    ? logs.reduce((time, log) => {
+  $: start = selectLogs
+    ? selectLogs.reduce((time, log) => {
         const newTime = DateTime.fromISO(log.date);
         return time.toMillis() < newTime.toMillis() ? time : newTime;
-      }, DateTime.fromISO(logs[0].date))
+      }, DateTime.fromISO(selectLogs[0].date))
     : null;
 
-  $: end = logs
-    ? logs.reduce((time, log) => {
+  $: end = selectLogs
+    ? selectLogs.reduce((time, log) => {
         const newTime = DateTime.fromISO(log.date);
         return time.toMillis() > newTime.toMillis() ? time : newTime;
-      }, DateTime.fromISO(logs[0].date))
+      }, DateTime.fromISO(selectLogs[0].date))
     : null;
 </script>
 
@@ -55,6 +55,6 @@
         <span>{end.toLocaleString()}</span>
       </li>
     </ul>
-    <DaysGraf {start} {end} {logs} />
+    <DaysGraf {start} {end} {selectLogs} />
   </li>
 {/if}

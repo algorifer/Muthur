@@ -13,7 +13,7 @@
   // Lifecycle
   afterUpdate(() => {
     window.scrollTo({
-      top: currentIndex * (listHeight / logs.length),
+      top: currentIndex * (listHeight / logs.length) - 50,
       left: 0,
       behavior: "smooth"
     });
@@ -24,16 +24,21 @@
   ul {
     width: 100%;
     margin: 0;
-    padding: 0;
+    padding: 20px;
     list-style: none;
   }
 
   li {
-    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    /* margin-bottom: 10px; */
+    padding: 5px 10px;
+    border-bottom: 1px dotted rgba(0, 0, 0, 0.2);
   }
 
-  .active .meta {
-    border-color: var(--f_inv);
+  .active {
+    background: #000;
+    color: #fff;
   }
 
   p {
@@ -51,21 +56,24 @@
     justify-content: space-between;
     padding: 5px 0;
     margin: 0;
-    border-bottom: 1px solid var(--b_high);
+    flex-grow: 2;
   }
 
   .time {
+    width: 50px;
+    flex-shrink: 0;
     font-weight: bold;
     margin-right: 10px;
   }
 
   .date {
+    width: 100px;
     font-style: italic;
   }
 
   .project {
     font-weight: bold;
-    margin-left: auto;
+    margin: 0 auto 0 0;
   }
 </style>
 

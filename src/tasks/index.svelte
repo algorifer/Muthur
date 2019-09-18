@@ -2,17 +2,22 @@
   // Svelte
   import { onMount } from "svelte";
 
+  // Utils
+  const { DateTime } = require("luxon");
+
   // Stores
-  import { dbTasks } from "../stores/db";
+  import { dbTasks, dbLogs } from "../stores/db";
 
   // Components
-  import List from "../components/List.svelte";
-  import Info from "./Info.svelte";
-  import Holder from "./Holder.svelte";
+  import LastDays from "../components/LastDays.svelte";
+  import Help from "../components/help.svelte";
+  import List from "../components/list.svelte";
+  import Info from "./info.svelte";
 
   // Model
   let tasks = [];
   let currentIndex = -1;
+  let logs = [];
 
   $: currentTask = tasks[currentIndex];
 
@@ -20,9 +25,16 @@
   onMount(() => {
     $dbTasks
       .find()
-      .exec()
       .then(res => {
         tasks = res;
+      })
+      .catch(err => console.log(err));
+    $dbLogs
+      .find()
+      .then(res => {
+        logs = res.sort(
+          (a, b) => DateTime.fromISO(b.date) - DateTime.fromISO(a.date)
+        );
       })
       .catch(err => console.log(err));
   });
@@ -51,43 +63,16 @@
     display: flex;
     align-items: flex-start;
   }
-
-  p {
-    margin: 0 0 20px;
-    text-transform: uppercase;
-    color: var(--f_inv);
-  }
-
-  span {
-    color: var(--f_med);
-  }
-
-  b {
-    font-weight: normal;
-    color: var(--f_high);
-  }
 </style>
 
 <svelte:window on:keydown={onWindowKeydown} />
 
-{#if !tasks.length}
-  <p>○ Create your first task</p>
-  <span>
-    <b>cmd (ctrl)</b>
-    +
-    <b>t</b>
-    for create task
-  </span>
-{:else}
-  <main>
-    <List {currentIndex} data={tasks} />
-    {#if currentTask}
-      <Info
-        name={currentTask.name}
-        id={currentTask._id}
-        project={currentTask.project} />
-    {:else}
-      <Holder />
-    {/if}
-  </main>
-{/if}
+<main>
+  <List {currentIndex} data={tasks} />
+  {#if currentTask}
+    <Info {currentTask} {logs} />
+  {:else}
+    <Help />
+  {/if}
+</main>
+<LastDays {logs} prop="task" active={currentTask ? currentTask.name : false} />
