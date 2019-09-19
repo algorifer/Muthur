@@ -67,4 +67,11 @@
     <b>Backspace</b>
     del item
   </p>
+  <p class="title">> Timer</p>
+  <p>
+    <b>cmd (ctrl)</b>
+    +
+    <b>Enter</b>
+    start / stop timer
+  </p>
 </InfoWrapper>

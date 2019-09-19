@@ -1,9 +1,13 @@
 <script>
   // Svelte
-  import { afterUpdate } from "svelte";
+  import { afterUpdate, onMount, onDestroy } from "svelte";
+
+  // Utils
+  const { DateTime } = require("luxon");
 
   // Stores
   import { viewMode } from "../../stores/muthur";
+  import { startTime, stopTime } from "../../stores/timer";
 
   // Components
   import CreateHeader from "../../components/create/Header.svelte";
@@ -29,11 +33,24 @@
   let msgError = false;
 
   // Lifecycle
+  onMount(() => {
+    if ($startTime) {
+      const diff = $stopTime.diff($startTime, ["hours", "minutes"]);
+      log.date = $startTime.toISO();
+      log.time = diff.hours + Math.ceil((diff.minutes / 60) * 10) / 10;
+    }
+  });
+
   afterUpdate(() => {
     const scrollTimeout = setTimeout(() => {
       window.scrollTo(0, list.scrollHeight + 200);
       clearTimeout(scrollTimeout);
     }, 100);
+  });
+
+  onDestroy(() => {
+    startTime.set(false);
+    stopTime.set(false);
   });
 
   // Update

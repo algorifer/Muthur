@@ -21,7 +21,7 @@
     font-size: 12px;
     line-height: 1.2;
     background: var(--bg);
-    color: var(--f_high);
+    color: var(--f);
     -webkit-app-region: drag;
   }
 </style>

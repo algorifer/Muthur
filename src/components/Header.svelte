@@ -1,6 +1,9 @@
 <script>
   // Store
   import { viewMode } from "../stores/muthur";
+
+  // Components
+  import Timer from "./Timer.svelte";
 </script>
 
 <style>
@@ -24,6 +27,8 @@
   }
 
   nav {
+    display: flex;
+    justify-content: space-between;
     width: 100%;
     margin-left: 20px;
   }
@@ -82,5 +87,6 @@
         <button class={$viewMode === `journal` ? `active` : ``}>Journal</button>
       </li> -->
     </ul>
+    <Timer />
   </nav>
 </header>
