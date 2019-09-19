@@ -1,4 +1,7 @@
 <script>
+  // Utils
+  import exportData from "../utils/export";
+
   // Stores
   import { viewMode } from "../stores/muthur";
 
@@ -29,6 +32,11 @@
       case `l`:
         if (e.metaKey || e.ctrlKey) {
           viewMode.set(`createLog`);
+        }
+        break;
+      case `s`:
+        if (e.metaKey || e.ctrlKey) {
+          exportData();
         }
         break;
       case `ArrowLeft`:

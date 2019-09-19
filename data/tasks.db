@@ -1,14 +1,14 @@
-{"name":"Long-term online game maintenance","project":"Study","deadline":"none","_id":"1vGD7XWB9qUy86Xe","createdAt":{"$$date":1568145338885},"updatedAt":{"$$date":1568145338885}}
-{"name":"Creative writing","project":"Study","deadline":"none","_id":"CM3aMROyo19BWGAU","createdAt":{"$$date":1568143957529},"updatedAt":{"$$date":1568143957529}}
-{"name":"Syntax","project":"Study","deadline":"none","_id":"HuyOi2HcUuzuVHDU","createdAt":{"$$date":1568144042358},"updatedAt":{"$$date":1568144042358}}
-{"name":"Add artifact timestamp and recent activities sorting","project":"V-OS","deadline":"none","_id":"N9xvfk1xNw8Qa8so","createdAt":{"$$date":1568144151654},"updatedAt":{"$$date":1568144151654}}
-{"name":"Kanji","project":"Japan","deadline":"none","_id":"QSiabeCJ4A2bptXE","createdAt":{"$$date":1568144483475},"updatedAt":{"$$date":1568144483475}}
-{"name":"Guitar teaching","project":"Jam","deadline":"none","_id":"airDOA810IdP3YMs","createdAt":{"$$date":1568144895267},"updatedAt":{"$$date":1568144895267}}
-{"name":"Add artifact timestamp","project":"Purity","deadline":"none","_id":"dObc1W2SymivFrN9","createdAt":{"$$date":1568144259505},"updatedAt":{"$$date":1568144259505}}
-{"name":"Document routines","project":"Routine","deadline":"none","_id":"fkyJ7lIopyH0kzYO","createdAt":{"$$date":1568143835498},"updatedAt":{"$$date":1568143835498}}
-{"name":"Composition practice","project":"Jam","deadline":"none","_id":"hf35qR7qV38sRPXB","createdAt":{"$$date":1568144585356},"updatedAt":{"$$date":1568144585356}}
-{"name":"Corporate programming careers","project":"Study","deadline":"none","_id":"kU0PV1iblsZTFhBZ","createdAt":{"$$date":1568145128104},"updatedAt":{"$$date":1568145128104}}
-{"name":"Web programming teaching","project":"Tinker","deadline":"none","_id":"lvcnLgPFo9n9bBHD","createdAt":{"$$date":1568144959209},"updatedAt":{"$$date":1568144959209}}
-{"name":"Game studies","project":"Study","deadline":"none","_id":"qhbguOCO5dKPpBip","createdAt":{"$$date":1568144337978},"updatedAt":{"$$date":1568144337978}}
-{"name":"Gymnastics","project":"Sport","deadline":"none","_id":"uE4ta2ag3aMAApbY","createdAt":{"$$date":1568144407449},"updatedAt":{"$$date":1568144407449}}
-{"name":"Japanese","project":"Japan","deadline":"none","_id":"w5NgCs0DDSC7urKA","createdAt":{"$$date":1568144828970},"updatedAt":{"$$date":1568144828970}}
+{"name":"Long-term online game maintenance","project":"Study","deadline":"none","_id":"1vGD7XWB9qUy86Xe"}
+{"name":"Creative writing","project":"Study","deadline":"none","_id":"CM3aMROyo19BWGAU"}
+{"name":"Syntax","project":"Study","deadline":"none","_id":"HuyOi2HcUuzuVHDU"}
+{"name":"Add artifact timestamp and recent activities sorting","project":"V-OS","deadline":"none","_id":"N9xvfk1xNw8Qa8so"}
+{"name":"Kanji","project":"Japan","deadline":"none","_id":"QSiabeCJ4A2bptXE"}
+{"name":"Guitar teaching","project":"Jam","deadline":"none","_id":"airDOA810IdP3YMs"}
+{"name":"Add artifact timestamp","project":"Purity","deadline":"none","_id":"dObc1W2SymivFrN9"}
+{"name":"Document routines","project":"Routine","deadline":"none","_id":"fkyJ7lIopyH0kzYO"}
+{"name":"Composition practice","project":"Jam","deadline":"none","_id":"hf35qR7qV38sRPXB"}
+{"name":"Corporate programming careers","project":"Study","deadline":"none","_id":"kU0PV1iblsZTFhBZ"}
+{"name":"Web programming teaching","project":"Tinker","deadline":"none","_id":"lvcnLgPFo9n9bBHD"}
+{"name":"Game studies","project":"Study","deadline":"none","_id":"qhbguOCO5dKPpBip"}
+{"name":"Gymnastics","project":"Sport","deadline":"none","_id":"uE4ta2ag3aMAApbY"}
+{"name":"Japanese","project":"Japan","deadline":"none","_id":"w5NgCs0DDSC7urKA"}

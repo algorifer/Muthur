@@ -7,7 +7,7 @@ const dbFactory = fileName =>
     filename: `${
       !process.env.ROLLUP_WATCH ? '.' : app.getAppPath('userData')
     }/data/${fileName}`,
-    timestampData: true,
+    timestampData: false,
     autoload: true
   });
 
