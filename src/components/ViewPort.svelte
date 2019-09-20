@@ -15,6 +15,7 @@
   import CreateProject from "../pages/creators/Project.svelte";
   import CreateTask from "../pages/creators/Task.svelte";
   import CreateLog from "../pages/creators/Log.svelte";
+  import ProjectView from "../pages/projectView/ProjectView.svelte";
 
   // HotKeys
   function onWindowKeydown(e) {
@@ -108,4 +109,6 @@
   <CreateTask />
 {:else if $viewMode === `createLog`}
   <CreateLog />
+{:else if $viewMode === `projectView`}
+  <ProjectView />
 {/if}

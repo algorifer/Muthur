@@ -36,7 +36,7 @@
 
 <div>
   <span class="desc">TIMER:</span>
-  {#if $time}
+  {#if $time !== false}
     <span class="active">{$time} hours</span>
   {:else}
     <span>STOP</span>

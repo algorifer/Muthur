@@ -7,6 +7,7 @@
 
   // Stores
   import { dbProjects, dbLogs } from "../../stores/db";
+  import { viewMode, viewPage } from "../../stores/muthur";
 
   // Components
   import LastDays from "../../components/LastDays.svelte";
@@ -64,6 +65,14 @@
             })
             .catch(err => console.log(err))
         );
+        break;
+      case `Enter`:
+        if (currentProject.name) {
+          e.preventDefault();
+          viewMode.set(`projectView`);
+          viewPage.set(currentProject._id);
+        }
+        break;
     }
   }
 </script>
