@@ -1,8 +1,17 @@
-{"name":"Writing","desc":"Narrative, Research, Documentation, and Communication","_id":"4UAPLCLCQcp6X5kb"}
-{"name":"Development","desc":"Programming, Testing, Math, and Debugging","_id":"ES73hUcDSCG5nMs9"}
+{"name":"Graphic","desc":"2D Graphic Development","_id":"7aJNYVBLSTnZ3jnA"}
+{"name":"Maintenance","desc":"Personal Organization and Maintenance","_id":"HnStUWwxJasTODGr"}
 {"name":"Photography","desc":"Picture Taking and Editing","_id":"Hrxmi8lZmzoDVko1"}
-{"name":"Design","desc":"Project Planning, Research, and Organization","_id":"LyyhtUd7jEw28rRH"}
-{"name":"Linguistics","desc":"Language Development","_id":"NKXVT9VHlcsiubjb"}
-{"name":"Acoustic","desc":"Instrument Play and Recording","_id":"Wlhy5M0pyDgq6h8g"}
-{"name":"Composition","desc":"Composing, Producing, and Mixing","_id":"ZERhwfOcAyUEY6aN"}
+{"name":"Writing","desc":"Narrative, Research, Documentation, and Communication","_id":"QMu5VcY8mIYG1mx0"}
+{"name":"Design","desc":"Project Planning, Research, and Organization","_id":"RrVTnW9C9muncDw0"}
+{"name":"Modeling","desc":"Modeling, Sculpting, Rigging, Texturing","_id":"gYJ3uuILJuwbNEC1"}
+{"name":"Composition","desc":"Composing, Producing, and Mixing","_id":"gaTB7Q37ogovwBlS"}
+{"name":"Performance","desc":"Audio and Visual Performance","_id":"hPvF5nqj8lv3v1be"}
+{"name":"Acoustic","desc":"Instrument Play and Recording","_id":"jZr3SDIbhQ4e1llD"}
+{"name":"Illustration","desc":"Drawing","_id":"p7SCdS8C0sm6n4Xn"}
 {"name":"Research","desc":"Learning, Testing, Studying, and Teaching","_id":"sqLz2hQ1Lutswobg"}
+{"name":"3D","desc":"Generation, Animation, Lighting, and Rendering","_id":"tC6QV3ss3E2iEiEv"}
+{"name":"Event","desc":"Noteworthy Event","_id":"vN9fRu9M9X3IGE1k"}
+{"name":"Development","desc":"Programming, Testing, Math, and Debugging","_id":"w93nqgwHqTCjGWLE"}
+{"name":"None","desc":"Nothing","_id":"wNk01mq4iOnvjtK3"}
+{"name":"Videography","desc":"Video Filming and Editing","_id":"zUtyfQXLnvaFkDvn"}
+{"name":"Linguistics","desc":"Language Development","_id":"zcCmNR2pgVWBp2Cz"}

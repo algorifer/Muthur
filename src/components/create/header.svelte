@@ -1,6 +1,7 @@
 <script>
   // Model
   export let title;
+  export let noBack = false;
 </script>
 
 <style>
@@ -42,8 +43,10 @@
 
 <header>
   <span>
-    <b>esc</b>
-    back
+    {#if !noBack}
+      <b>esc</b>
+      back
+    {/if}
   </span>
   <h1>{title}</h1>
 </header>

@@ -10,7 +10,7 @@
   // Model
   export let currentType;
   export let logs;
-  let selectLogs = null;
+  let selectLogs = [];
 
   $: $dbLogs
     .find({ type: currentType.name })
@@ -29,6 +29,8 @@
 
 <InfoWrapper title={currentType._id}>
   <li>{currentType.desc}</li>
-  <StatCount {selectLogs} {logs} />
-  <StatDate {selectLogs} />
+  {#if selectLogs.length}
+    <StatCount {selectLogs} {logs} />
+    <StatDate {selectLogs} />
+  {/if}
 </InfoWrapper>

@@ -8,7 +8,8 @@
     dbTasks,
     dbDivisions,
     dbTypes,
-    dbLogs
+    dbLogs,
+    dbUser
   } from "../../stores/db";
   import { viewMode } from "../../stores/muthur";
 
@@ -23,6 +24,7 @@
   export let type = {};
   export let division = {};
   export let task = {};
+  export let user = {};
   export let msgError;
 
   // Update
@@ -61,9 +63,19 @@
             .then(res => (log = res))
             .catch(err => (msgError = err));
         }
+        if (user.name) {
+          $dbUser
+            .insert(user)
+            .then(res => (user = res))
+            .catch(err => (msgError = err));
+        }
         break;
       case `no`:
       case `n`:
+        if (user.name) {
+          value = ``;
+          msgError = `enter yes!`;
+        }
         return viewMode.set(`tasks`);
       default:
         value = ``;

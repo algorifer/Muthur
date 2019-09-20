@@ -7,6 +7,7 @@
 
   // Components
   import Header from "./Header.svelte";
+  import InitApp from "../pages/initApp/InitApp.svelte";
   import Projects from "../pages/projects/Projects.svelte";
   import Tasks from "../pages/tasks/Tasks.svelte";
   import Divisions from "../pages/divisions/Divisions.svelte";
@@ -15,7 +16,11 @@
   import CreateProject from "../pages/creators/Project.svelte";
   import CreateTask from "../pages/creators/Task.svelte";
   import CreateLog from "../pages/creators/Log.svelte";
+  import CreateUser from "../pages/creators/User.svelte";
   import ProjectView from "../pages/projectView/ProjectView.svelte";
+
+  // Model
+  let isInit = false;
 
   // HotKeys
   function onWindowKeydown(e) {
@@ -88,7 +93,9 @@
 
 <svelte:window on:keydown={onWindowKeydown} />
 
-{#if $viewMode === `projects`}
+{#if isInit === false}
+  <InitApp bind:isInit />
+{:else if $viewMode === `projects`}
   <Header />
   <Projects />
 {:else if $viewMode === `tasks`}
@@ -103,6 +110,8 @@
 {:else if $viewMode === `logs`}
   <Header />
   <Logs />
+{:else if $viewMode === `createUser`}
+  <CreateUser />
 {:else if $viewMode === `createProject`}
   <CreateProject />
 {:else if $viewMode === `createTask`}

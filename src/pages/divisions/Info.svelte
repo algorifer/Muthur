@@ -10,7 +10,7 @@
   // Model
   export let currentDivision;
   export let logs;
-  let selectLogs = null;
+  let selectLogs = [];
 
   $: $dbLogs
     .find({ division: currentDivision.name })
@@ -29,6 +29,8 @@
 
 <InfoWrapper title={currentDivision._id}>
   <li class="section">{currentDivision.desc}</li>
-  <StatCount {selectLogs} {logs} />
-  <StatDate {selectLogs} />
+  {#if selectLogs.length}
+    <StatCount {selectLogs} {logs} />
+    <StatDate {selectLogs} />
+  {/if}
 </InfoWrapper>

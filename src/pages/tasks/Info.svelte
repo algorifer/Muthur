@@ -14,7 +14,7 @@
   // Model
   export let currentTask;
   export let logs;
-  let selectLogs = null;
+  let selectLogs = [];
 
   $: $dbLogs
     .find({ task: currentTask.name })
@@ -42,8 +42,10 @@
     <span class="proj">project:</span>
     {currentTask.project}
   </li>
-  <StatCount {selectLogs} {logs} />
-  <StatDate {selectLogs} />
-  <StatLine {selectLogs} selector="division" />
-  <StatLine {selectLogs} selector="type" />
+  {#if selectLogs.length}
+    <StatCount {selectLogs} {logs} />
+    <StatDate {selectLogs} />
+    <StatLine {selectLogs} selector="division" />
+    <StatLine {selectLogs} selector="type" />
+  {/if}
 </InfoWrapper>

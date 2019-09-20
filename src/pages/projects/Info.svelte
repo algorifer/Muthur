@@ -17,7 +17,7 @@
   export let logs;
   let tasksCount = null;
   let allTaskCount = 0;
-  let selectLogs = null;
+  let selectLogs = [];
 
   $: taskPercent = tasksCount / (allTaskCount / 100);
 
@@ -50,9 +50,11 @@
 
 <InfoWrapper title={currentProject._id}>
   <li>{currentProject.desc}</li>
-  <StatCount {selectLogs} {logs} />
-  <StatDate {selectLogs} />
-  <StatTask selector={{ project: currentProject.name }} />
-  <StatLine {selectLogs} selector="division" />
-  <StatLine {selectLogs} selector="type" />
+  {#if selectLogs.length}
+    <StatCount {selectLogs} {logs} />
+    <StatDate {selectLogs} />
+    <StatTask selector={{ project: currentProject.name }} />
+    <StatLine {selectLogs} selector="division" />
+    <StatLine {selectLogs} selector="type" />
+  {/if}
 </InfoWrapper>

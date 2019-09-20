@@ -3,11 +3,20 @@ const fs = require('fs');
 const path = require('path');
 
 import {get} from 'svelte/store';
-import {dbProjects, dbDivisions, dbTypes, dbTasks, dbLogs} from '../stores/db';
+import {
+  dbProjects,
+  dbDivisions,
+  dbTypes,
+  dbTasks,
+  dbLogs,
+  dbUser
+} from '../stores/db';
 
 const createData = async () => {
-  // let projects, divisions, types, tasks, logs;
-
+  const user = await get(dbUser)
+    .find()
+    .then()
+    .catch(err => console.log(err));
   const projects = await get(dbProjects)
     .find()
     .then()
@@ -29,7 +38,7 @@ const createData = async () => {
     .then()
     .catch(err => console.log(err));
 
-  return {projects, divisions, types, tasks, logs};
+  return {user, projects, divisions, types, tasks, logs};
 };
 
 export default () =>

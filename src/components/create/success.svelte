@@ -8,6 +8,7 @@
   export let division;
   export let task;
   export let project;
+  export let user;
   export let isSuccess;
 </script>
 
@@ -61,6 +62,12 @@
     <li>
       <span>⍜</span>
       <p in:typewriter>{`Log created! ID: ${log._id}`}</p>
+    </li>
+  {/if}
+  {#if user._id}
+    <li>
+      <span>⍜</span>
+      <p in:typewriter>{`User created! ID: ${log._id}`}</p>
     </li>
   {/if}
 {/if}
