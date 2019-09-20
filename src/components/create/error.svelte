@@ -4,6 +4,7 @@
 
   // Model
   export let msgError;
+  export let isEdit = false;
 </script>
 
 <style>
@@ -30,7 +31,9 @@
 
 {#if msgError}
   <li>
-    <span>⍭</span>
+    {#if !isEdit}
+      <span>⍭</span>
+    {/if}
     <p in:typewriter>{msgError}</p>
   </li>
 {/if}

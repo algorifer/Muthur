@@ -5,6 +5,7 @@
   // Components
   import PageHelp from "../../components/PageHelp.svelte";
   import Input from "../../components/create/Input.svelte";
+  import Error from "../../components/create/Error.svelte";
 
   // Stores
   import { viewPage, viewMode } from "../../stores/muthur";
@@ -15,6 +16,7 @@
   let currentField = `name`;
   let editField = false;
   let value;
+  let msgError = false;
 
   // Lifecycle
   onMount(() => updateData());
@@ -28,7 +30,13 @@
       .then(res => (data = res[0]))
       .catch(err => console.log(err));
 
-  const changeName = () =>
+  const changeName = () => {
+    if (!value.length) {
+      msgError = `required field`;
+      return;
+    }
+    msgError = false;
+
     $dbProjects
       .update({ _id: data._id }, { $set: { name: value } })
       .then(res => {
@@ -36,8 +44,15 @@
         editField = false;
       })
       .catch(err => console.log(err));
+  };
 
-  const changeDesc = () =>
+  const changeDesc = () => {
+    if (!value.length) {
+      msgError = `required field`;
+      return;
+    }
+    msgError = false;
+
     $dbProjects
       .update({ _id: data._id }, { $set: { desc: value } })
       .then(res => {
@@ -45,6 +60,7 @@
         editField = false;
       })
       .catch(err => console.log(err));
+  };
 
   const changeNote = () =>
     $dbProjects
@@ -155,6 +171,9 @@
     <article>
       {#if editField === `name`}
         <Input bind:value on:submit={changeName} />
+        {#if msgError}
+          <Error {msgError} isEdit={true} />
+        {/if}
       {:else}
         <h1 class:active={currentField === `name`}>{data.name}</h1>
       {/if}
@@ -162,6 +181,9 @@
         <h2>Description</h2>
         {#if editField === `desc`}
           <Input bind:value on:submit={changeDesc} />
+          {#if msgError}
+            <Error {msgError} isEdit={true} />
+          {/if}
         {:else}
           <p class:active={currentField === `desc`}>{data.desc}</p>
         {/if}
