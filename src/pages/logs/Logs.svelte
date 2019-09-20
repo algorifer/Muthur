@@ -10,6 +10,7 @@
 
   // Components
   import List from "./List.svelte";
+  import Holder from "../../components/Holder.svelte";
   import LastDays from "../../components/LastDays.svelte";
 
   // Model
@@ -63,6 +64,10 @@
 <svelte:window on:keydown={onWindowKeydown} />
 
 <main>
-  <List {currentIndex} {logs} />
+  {#if logs.length}
+    <List {currentIndex} {logs} />
+  {:else}
+    <Holder />
+  {/if}
 </main>
 <LastDays {logs} />

@@ -9,6 +9,7 @@
   import { dbDivisions, dbLogs } from "../../stores/db";
 
   // Components
+  import Holder from "../../components/Holder.svelte";
   import LastDays from "../../components/LastDays.svelte";
   import Help from "../../components/Help.svelte";
   import List from "../../components/List.svelte";
@@ -78,7 +79,11 @@
 <svelte:window on:keydown={onWindowKeydown} />
 
 <main>
-  <List data={divisions} {currentIndex} />
+  {#if divisions.length}
+    <List data={divisions} {currentIndex} />
+  {:else}
+    <Holder />
+  {/if}
   {#if currentDivision}
     <Info {currentDivision} {logs} />
   {:else}

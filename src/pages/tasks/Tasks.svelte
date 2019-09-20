@@ -9,6 +9,7 @@
   import { dbTasks, dbLogs } from "../../stores/db";
 
   // Components
+  import Holder from "../../components/Holder.svelte";
   import LastDays from "../../components/LastDays.svelte";
   import Help from "../../components/Help.svelte";
   import List from "../../components/List.svelte";
@@ -78,7 +79,11 @@
 <svelte:window on:keydown={onWindowKeydown} />
 
 <main>
-  <List {currentIndex} data={tasks} />
+  {#if tasks.length}
+    <List {currentIndex} data={tasks} />
+  {:else}
+    <Holder />
+  {/if}
   {#if currentTask}
     <Info {currentTask} {logs} />
   {:else}
