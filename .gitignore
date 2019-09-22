@@ -4,3 +4,4 @@ public/bundle.*
 .env
 .env.build
 data
+dist

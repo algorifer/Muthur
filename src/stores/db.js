@@ -1,12 +1,10 @@
-const {app} = require('electron');
+const {app} = require('electron').remote;
 const Datastore = require('nedb-promises');
 import {readable} from 'svelte/store';
 
 const dbFactory = fileName =>
   Datastore.create({
-    filename: `${
-      !process.env.ROLLUP_WATCH ? '.' : app.getAppPath('userData')
-    }/data/${fileName}`,
+    filename: `${!DEV ? app.getPath('userData') : '.'}/data/${fileName}`,
     timestampData: false,
     autoload: true
   });

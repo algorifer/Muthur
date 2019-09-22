@@ -30,7 +30,7 @@
   });
 
   // Updates
-  $: isSuccess = task._id && (!projects.name || project._id);
+  $: isSuccess = task._id && (!project.name || project._id);
 
   $: if (isSuccess) {
     const saveTimeout = setTimeout(() => {
@@ -62,7 +62,7 @@
 <CreateHeader title="Add Task" />
 <ul bind:this={list}>
   <SetName bind:obj={task} bind:msgError />
-  {#if task.deadline}
+  {#if task.name}
     <SetProject bind:obj={task} bind:project bind:msgError />
   {/if}
   {#if project.name}

@@ -1,4 +1,5 @@
 const {app, BrowserWindow, webFrame, Menu} = require('electron');
+const path = require('path');
 
 require('electron').protocol.registerSchemesAsPrivileged([
   {scheme: 'js', privileges: {standard: true, secure: true}}
@@ -12,8 +13,15 @@ app.on(`ready`, () => {
     height: 600,
     minWidth: 800,
     minHeight: 600,
-    backgroundColor: '#eeeeee',
-    // icon: path.join(__dirname, { darwin: 'icon.icns', linux: 'icon.png', win32: 'icon.ico' }[process.platform] || 'icon.ico'),
+    backgroundColor: '#eeefee',
+    icon: path.join(
+      __dirname,
+      {
+        darwin: 'icon.icns',
+        linux: 'icon.png',
+        win32: 'icon.ico'
+      }[process.platform] || 'icon.ico'
+    ),
     icon: 'icon.png',
     resizable: true,
     frame: process.platform !== 'darwin',
@@ -26,7 +34,7 @@ app.on(`ready`, () => {
     }
   });
 
-  app.win.loadFile('public/index.html');
+  app.win.loadFile(`public/index.html`);
 
   app.win.on('closed', () => {
     win = null;
@@ -81,32 +89,3 @@ app.injectMenu = function(menu) {
     console.warn('Cannot inject menu.');
   }
 };
-
-// let mainWindow;
-
-// function createWindow() {
-//   mainWindow = new BrowserWindow({
-//     width: 1280,
-//     height: 720,
-//     webPreferences: {
-//       nodeIntegration: true
-//     },
-//     icon: 'icon.png'
-//   });
-
-//   mainWindow.loadFile('public/index.html');
-
-//   mainWindow.on('closed', function() {
-//     mainWindow = null;
-//   });
-// }
-
-// app.on('ready', createWindow);
-
-// app.on('window-all-closed', function() {
-//   if (process.platform !== 'darwin') app.quit();
-// });
-
-// app.on('activate', function() {
-//   if (mainWindow === null) createWindow();
-// });

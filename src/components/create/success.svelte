@@ -3,12 +3,12 @@
   import typewriter from "../../utils/typewriter";
 
   // Model
-  export let log;
-  export let type;
-  export let division;
-  export let task;
-  export let project;
-  export let user;
+  export let log = {};
+  export let type = {};
+  export let division = {};
+  export let task = {};
+  export let project = {};
+  export let user = {};
   export let isSuccess;
 </script>
 

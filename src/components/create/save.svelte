@@ -64,6 +64,7 @@
             .catch(err => (msgError = err));
         }
         if (user.name) {
+          console.log($dbUser);
           $dbUser
             .insert(user)
             .then(res => (user = res))
