@@ -15,6 +15,8 @@
         e.preventDefault();
         if (select === `new`) {
           dispatch(`new`);
+        } else {
+          dispatch(`import`);
         }
         break;
       case `ArrowDown`:

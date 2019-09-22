@@ -2,20 +2,34 @@
   // Svelte
   import { onMount } from "svelte";
 
+  // Utils
+  import impotrData from "../../utils/import";
+
   // Stores
   import { dbUser } from "../../stores/db";
   import { viewMode } from "../../stores/muthur";
 
   // Components
+  import Title from "./Title.svelte";
   import InitMenu from "./Menu.svelte";
+  import Import from "./Import.svelte";
+  import Back from "./Back.svelte";
 
   // Model
   let user = null;
-  let isHiShow = false;
-  let isNameShow = false;
-  let isDescShow = false;
   let isCreate = false;
+  let importRes = null;
   export let isInit;
+
+  $: if (importRes && importRes !== `error`) {
+    isCreate = false;
+    const importTimeout = setTimeout(() => {
+      isInit = true;
+      clearTimeout(importTimeout);
+    }, 1500);
+  } else if (importRes === `error`) {
+    isCreate = true;
+  }
 
   // Lifecycle
   onMount(() => {
@@ -23,21 +37,6 @@
       .find()
       .then(res => (user = res[0]))
       .catch(err => console.log(err));
-
-    const hiTimeout = setTimeout(() => {
-      isHiShow = true;
-      clearTimeout(hiTimeout);
-    }, 300);
-
-    const nameTimeout = setTimeout(() => {
-      isNameShow = true;
-      clearTimeout(nameTimeout);
-    }, 1000);
-
-    const descTimeout = setTimeout(() => {
-      isDescShow = true;
-      clearTimeout(descTimeout);
-    }, 2000);
 
     const checkTimeout = setTimeout(() => {
       if (user) {
@@ -52,6 +51,12 @@
   const toNewUser = () => {
     isInit = true;
     viewMode.set(`createUser`);
+  };
+
+  const toImport = () => {
+    impotrData()
+      .then(res => (importRes = res))
+      .catch(err => console.log(err));
   };
 </script>
 
@@ -71,91 +76,15 @@
     flex-shrink: 0;
     margin: 20px;
   }
-
-  p {
-    margin: 0 0 10px;
-    font-size: inherit;
-    text-transform: uppercase;
-    opacity: 0;
-    transition: 1s;
-  }
-
-  h1 {
-    margin: 0 0 10px;
-    padding: 5px 10px;
-    font-size: inherit;
-    transition: 1s;
-  }
-
-  span {
-    color: var(--bg);
-  }
-
-  .active {
-    opacity: 1;
-  }
-
-  h1.active {
-    background: var(--f);
-  }
-
-  .back {
-    position: relative;
-    height: 100%;
-    margin-left: 40px;
-    width: 100%;
-  }
-
-  @keyframes skew {
-    0% {
-      transform: skewX(5deg);
-    }
-    100% {
-      transform: skewX(-5deg);
-    }
-  }
-
-  .back::before,
-  .back::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    display: block;
-    height: 100%;
-    background-image: linear-gradient(to right, var(--f), var(--bg));
-    opacity: 0.5;
-    animation-name: skew;
-    animation-duration: 10s;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-    animation-timing-function: linear;
-  }
-
-  .back::after {
-    content: "";
-    position: absolute;
-    animation-direction: alternate-reverse;
-  }
 </style>
 
 <main>
   <div class="content">
-    <p class:active={isHiShow}>Hello, I am</p>
-    <h1 class:active={isNameShow}>
-      <span class:active={isNameShow}>MU</span>
-      ○
-      <span class:active={isNameShow}>TH</span>
-      ○
-      <span class:active={isNameShow}>UR</span>
-    </h1>
-    <p class:active={isDescShow}>
-      I follow what you do and what you need to do
-    </p>
+    <Title />
     {#if isCreate}
-      <InitMenu on:new={toNewUser} />
+      <InitMenu on:new={toNewUser} on:import={toImport} />
     {/if}
+    <Import {importRes} />
   </div>
-  <div class="back" />
+  <Back />
 </main>
