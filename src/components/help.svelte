@@ -1,4 +1,7 @@
 <script>
+  // Stores
+  import { viewMode } from "../stores/muthur";
+
   // Components
   import InfoWrapper from "./InfoWrapper.svelte";
 </script>
@@ -23,6 +26,12 @@
 </style>
 
 <InfoWrapper title="help">
+  {#if $viewMode === `projects`}
+    <p>
+      <b>Enter</b>
+      edit project
+    </p>
+  {/if}
   <p>
     <b>↑</b>
     or

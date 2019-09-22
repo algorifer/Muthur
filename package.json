@@ -34,7 +34,7 @@
   },
   "build": {
     "appId": "com.electron.${name}",
-    "productName": "muthur",
+    "productName": "Muthur",
     "copyright": "Copyright © 2019 ${author}",
     "files": [
       "**/*",

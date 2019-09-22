@@ -82,10 +82,21 @@ app.toggleVisible = function() {
   }
 };
 
-app.injectMenu = function(menu) {
-  try {
-    Menu.setApplicationMenu(Menu.buildFromTemplate(menu));
-  } catch (err) {
-    console.warn('Cannot inject menu.');
-  }
-};
+Menu.setApplicationMenu(
+  Menu.buildFromTemplate([
+    ...(process.platform === 'darwin'
+      ? [
+          {
+            label: app.getName(),
+            submenu: [
+              {role: 'hide'},
+              {role: 'hideothers'},
+              {role: 'unhide'},
+              {type: 'separator'},
+              {role: 'quit'}
+            ]
+          }
+        ]
+      : [])
+  ])
+);
