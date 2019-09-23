@@ -50,10 +50,10 @@
 
 <InfoWrapper title={currentProject._id}>
   <li>{currentProject.desc}</li>
+  <StatTask selector={{ project: currentProject.name }} />
   {#if selectLogs.length}
     <StatCount {selectLogs} {logs} />
     <StatDate {selectLogs} />
-    <StatTask selector={{ project: currentProject.name }} />
     <StatLine {selectLogs} selector="division" />
     <StatLine {selectLogs} selector="type" />
   {/if}

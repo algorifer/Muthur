@@ -2,14 +2,23 @@
   // Svelte
   import { onMount, onDestroy, createEventDispatcher } from "svelte";
 
-  // State
+  // Stores
+  import { isInput } from "../../stores/muthur";
+
+  // Model
   let input;
   export let value;
   export let placeholder = ``;
 
   // Lifecycle
-  onMount(() => input.focus());
-  onDestroy(() => document.body.focus());
+  onMount(() => {
+    input.focus();
+    isInput.set(true);
+  });
+  onDestroy(() => {
+    document.body.focus();
+    isInput.set(false);
+  });
 
   // Methods
   const inputResize = () => {

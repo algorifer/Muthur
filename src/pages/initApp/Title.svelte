@@ -63,4 +63,4 @@
   ○
   <span class:active={isNameShow}>UR</span>
 </h1>
-<p class:active={isDescShow}>I follow what you do and what you need to do</p>
+<p class:active={isDescShow}>I watch what you do and what you need to do</p>

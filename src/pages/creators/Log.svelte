@@ -11,6 +11,7 @@
 
   // Components
   import CreateHeader from "../../components/create/Header.svelte";
+  import CreateHolder from "../../components/create/Holder.svelte";
   import CreateError from "../../components/create/Error.svelte";
   import CreateSuccess from "../../components/create/Success.svelte";
   import CreateSave from "../../components/create/Save.svelte";
@@ -88,35 +89,47 @@
 
 <svelte:window on:keydown={onWindowKeydown} />
 
-<CreateHeader title="Add Log" />
+<CreateHeader title="Create Log" />
 <ul bind:this={list}>
   <SetDate bind:obj={log} bind:msgError />
   {#if log.date}
     <SetTime bind:obj={log} bind:msgError />
+  {:else}
+    <CreateHolder name="time" />
   {/if}
   {#if log.time}
     <SetProject bind:obj={log} bind:project bind:msgError />
+  {:else}
+    <CreateHolder name="project" />
   {/if}
   {#if project.name}
     <SetDesc bind:obj={project} bind:msgError />
   {/if}
   {#if project.desc}
     <SetNote bind:obj={project} bind:msgError />
+  {:else if project.name}
+    <CreateHolder name="projectNote" />
   {/if}
   {#if (log.project && !project.name) || project.note}
     <SetType bind:obj={log} bind:type bind:msgError />
+  {:else}
+    <CreateHolder name="type" />
   {/if}
   {#if type.name}
     <SetDesc bind:obj={type} bind:msgError />
   {/if}
   {#if (log.type && !type.name) || type.desc}
     <SetDivision bind:obj={log} bind:division bind:msgError />
+  {:else}
+    <CreateHolder name="division" />
   {/if}
   {#if division.name}
     <SetDesc bind:obj={division} bind:msgError />
   {/if}
   {#if (log.division && !division.name) || division.desc}
     <SetTask bind:obj={log} bind:task bind:msgError />
+  {:else}
+    <CreateHolder name="task" />
   {/if}
   {#if log.task}
     <CreateSave
@@ -126,6 +139,8 @@
       bind:division
       bind:task
       bind:msgError />
+  {:else}
+    <CreateHolder name="save" />
   {/if}
   <CreateSuccess {log} {project} {type} {division} {task} {isSuccess} />
   <CreateError {msgError} />

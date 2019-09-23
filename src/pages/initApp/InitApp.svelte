@@ -19,12 +19,11 @@
   let user = null;
   let isCreate = false;
   let importRes = null;
-  export let isInit;
 
   $: if (importRes && importRes !== `error`) {
     isCreate = false;
     const importTimeout = setTimeout(() => {
-      isInit = true;
+      viewMode.set(`tasks`);
       clearTimeout(importTimeout);
     }, 1500);
   } else if (importRes === `error`) {
@@ -40,7 +39,7 @@
 
     const checkTimeout = setTimeout(() => {
       if (user) {
-        isInit = true;
+        viewMode.set(`tasks`);
         return;
       }
       isCreate = true;
@@ -49,7 +48,6 @@
 
   // Update
   const toNewUser = () => {
-    isInit = true;
     viewMode.set(`createUser`);
   };
 

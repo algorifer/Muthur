@@ -24,6 +24,7 @@
     font-size: inherit;
     line-height: 1;
     color: var(--f);
+    white-space: nowrap;
   }
 
   nav {
@@ -61,7 +62,7 @@
 </style>
 
 <header>
-  <h1>MU°TH°UR</h1>
+  <h1>MU ○ TH ○ UR</h1>
   <nav>
     <ul>
       <li>

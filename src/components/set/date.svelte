@@ -36,7 +36,7 @@
   prop={obj.date}
   bind:value
   on:submit={setDate}
-  request="When?"
+  request="Enter a date"
   placeholder="required" />
 {#if !obj.date}
   <CreateHelper {helpers} />

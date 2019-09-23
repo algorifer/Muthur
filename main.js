@@ -1,4 +1,4 @@
-const {app, BrowserWindow, webFrame, Menu} = require('electron');
+const {app, BrowserWindow} = require('electron');
 const path = require('path');
 
 require('electron').protocol.registerSchemesAsPrivileged([
@@ -81,22 +81,3 @@ app.toggleVisible = function() {
     }
   }
 };
-
-Menu.setApplicationMenu(
-  Menu.buildFromTemplate([
-    ...(process.platform === 'darwin'
-      ? [
-          {
-            label: app.getName(),
-            submenu: [
-              {role: 'hide'},
-              {role: 'hideothers'},
-              {role: 'unhide'},
-              {type: 'separator'},
-              {role: 'quit'}
-            ]
-          }
-        ]
-      : [])
-  ])
-);

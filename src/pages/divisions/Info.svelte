@@ -5,6 +5,7 @@
   // Components
   import InfoWrapper from "../../components/InfoWrapper.svelte";
   import StatCount from "../../components/StatCount.svelte";
+  import StatLine from "../../components/StatLine.svelte";
   import StatDate from "../../components/StatDate.svelte";
 
   // Model
@@ -32,5 +33,6 @@
   {#if selectLogs.length}
     <StatCount {selectLogs} {logs} />
     <StatDate {selectLogs} />
+    <StatLine {selectLogs} selector="type" />
   {/if}
 </InfoWrapper>

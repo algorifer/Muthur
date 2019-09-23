@@ -74,8 +74,7 @@
       case `no`:
       case `n`:
         if (user.name) {
-          value = ``;
-          msgError = `enter yes!`;
+          return viewMode.set(`init`);
         }
         return viewMode.set(`tasks`);
       default:

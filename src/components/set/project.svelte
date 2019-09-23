@@ -64,7 +64,7 @@
   bind:value
   on:submit={setProject}
   on:help={help}
-  request="What project does it include?"
+  request="Which project to attach?"
   placeholder="required" />
 {#if !obj.project}
   <CreateHelper {helpers} />

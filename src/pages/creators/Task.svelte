@@ -7,6 +7,7 @@
 
   // Components
   import CreateHeader from "../../components/create/Header.svelte";
+  import CreateHolder from "../../components/create/Holder.svelte";
   import CreateError from "../../components/create/Error.svelte";
   import CreateSuccess from "../../components/create/Success.svelte";
   import CreateSave from "../../components/create/Save.svelte";
@@ -59,20 +60,26 @@
 
 <svelte:window on:keydown={onWindowKeydown} />
 
-<CreateHeader title="Add Task" />
+<CreateHeader title="Create Task" />
 <ul bind:this={list}>
   <SetName bind:obj={task} bind:msgError />
   {#if task.name}
     <SetProject bind:obj={task} bind:project bind:msgError />
+  {:else}
+    <CreateHolder name="project" />
   {/if}
   {#if project.name}
     <SetDesc bind:obj={project} bind:msgError />
   {/if}
   {#if project.desc}
     <SetNote bind:obj={project} bind:msgError />
+  {:else if project.name}
+    <CreateHolder name="projectNote" />
   {/if}
   {#if (task.project && !project.name) || project.note}
     <CreateSave bind:task bind:project bind:msgError />
+  {:else}
+    <CreateHolder name="save" />
   {/if}
   <CreateError {msgError} />
   <CreateSuccess {isSuccess} {task} {project} />

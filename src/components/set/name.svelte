@@ -23,5 +23,5 @@
   prop={obj.name}
   bind:value
   on:submit={setName}
-  request="What is the name?"
+  request="Enter a name"
   placeholder="required" />

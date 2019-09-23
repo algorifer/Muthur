@@ -65,7 +65,7 @@
   bind:value
   on:submit={setTask}
   on:help={help}
-  request="Which task?"
+  request="Which task to attach?"
   placeholder="required" />
 {#if !obj.task}
   <CreateHelper {helpers} />

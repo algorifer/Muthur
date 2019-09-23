@@ -19,32 +19,9 @@
   import CreateUser from "../pages/creators/User.svelte";
   import ProjectView from "../pages/projectView/ProjectView.svelte";
 
-  // Model
-  let isInit = false;
-
   // HotKeys
   function onWindowKeydown(e) {
     switch (e.key) {
-      case `p`:
-        if (e.metaKey || e.ctrlKey) {
-          viewMode.set(`createProject`);
-        }
-        break;
-      case `t`:
-        if (e.metaKey || e.ctrlKey) {
-          viewMode.set(`createTask`);
-        }
-        break;
-      case `l`:
-        if (e.metaKey || e.ctrlKey) {
-          viewMode.set(`createLog`);
-        }
-        break;
-      case `s`:
-        if (e.metaKey || e.ctrlKey) {
-          exportData();
-        }
-        break;
       case `ArrowLeft`:
         if (!e.shiftKey) {
           switch ($viewMode) {
@@ -93,8 +70,8 @@
 
 <svelte:window on:keydown={onWindowKeydown} />
 
-{#if isInit === false}
-  <InitApp bind:isInit />
+{#if $viewMode === `init`}
+  <InitApp />
 {:else if $viewMode === `projects`}
   <Header />
   <Projects />

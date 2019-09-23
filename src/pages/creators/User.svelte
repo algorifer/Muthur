@@ -11,6 +11,7 @@
 
   // Components
   import CreateHeader from "../../components/create/Header.svelte";
+  import CreateHolder from "../../components/create/Holder.svelte";
   import CreateError from "../../components/create/Error.svelte";
   import CreateSuccess from "../../components/create/Success.svelte";
   import CreateSave from "../../components/create/Save.svelte";
@@ -52,6 +53,15 @@
       clearTimeout(saveTimeout);
     }, 1500);
   }
+
+  // Events
+  function onWindowKeydown(e) {
+    switch (e.key) {
+      case `Escape`:
+        viewMode.set(`init`);
+        break;
+    }
+  }
 </script>
 
 <style>
@@ -62,15 +72,21 @@
   }
 </style>
 
-<CreateHeader title="Add User" noBack={true} />
+<svelte:window on:keydown={onWindowKeydown} />
+
+<CreateHeader title="Create User" />
 <ul bind:this={list}>
   <SetName bind:obj={user} bind:msgError />
   {#if user.name}
     <SetDesc bind:obj={user} bind:msgError />
+  {:else}
+    <CreateHolder name="desc" />
   {/if}
   {#if user.desc}
     <CreateSave bind:user bind:msgError />
+  {:else}
+    <CreateHolder name="save" />
   {/if}
   <CreateError {msgError} />
-  <CreateSuccess {user} />
+  <CreateSuccess {user} {isSuccess} />
 </ul>

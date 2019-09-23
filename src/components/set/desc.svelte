@@ -23,5 +23,5 @@
   prop={obj.desc}
   bind:value
   on:submit={setDesc}
-  request="How do you describe?"
+  request="Add a description"
   placeholder="required" />

@@ -1,6 +1,30 @@
 <script>
+  // Svelte
+  import { onMount } from "svelte";
+
+  // Stores
+  import { isInput, viewMode } from "./stores/muthur";
+
   // Components
   import ViewPort from "./components/ViewPort.svelte";
+
+  // Utils
+  import createMenu from "./utils/menu";
+
+  // Lifecycle
+  onMount(() => createMenu(false));
+
+  // Update
+  $: {
+    const isCreateMenu =
+      $viewMode === `tasks` ||
+      $viewMode === `projects` ||
+      $viewMode === `divisions` ||
+      $viewMode === `types` ||
+      $viewMode === `logs`;
+
+    createMenu(isCreateMenu, $isInput);
+  }
 </script>
 
 <style type="text/scss">
