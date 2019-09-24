@@ -26,10 +26,10 @@
 </style>
 
 <InfoWrapper title="help">
-  {#if $viewMode === `projects`}
+  {#if $viewMode === `terms`}
     <p>
       <b>Enter</b>
-      edit project
+      edit term
     </p>
   {/if}
   <p>
@@ -54,7 +54,7 @@
     <b>cmd (ctrl)</b>
     +
     <b>p</b>
-    create project
+    create term
   </p>
   <p>
     <b>cmd (ctrl)</b>

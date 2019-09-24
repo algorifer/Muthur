@@ -9,7 +9,7 @@
 
   // Stores
   import { viewPage, viewMode } from "../../stores/muthur";
-  import { dbProjects } from "../../stores/db";
+  import { dbTerms } from "../../stores/db";
 
   // Model
   let data = null;
@@ -25,7 +25,7 @@
 
   // Update
   const updateData = () =>
-    $dbProjects
+    $dbTerms
       .find({ _id: $viewPage })
       .then(res => (data = res[0]))
       .catch(err => console.log(err));
@@ -37,7 +37,7 @@
     }
     msgError = false;
 
-    $dbProjects
+    $dbTerms
       .update({ _id: data._id }, { $set: { name: value } })
       .then(res => {
         updateData();
@@ -53,7 +53,7 @@
     }
     msgError = false;
 
-    $dbProjects
+    $dbTerms
       .update({ _id: data._id }, { $set: { desc: value } })
       .then(res => {
         updateData();
@@ -63,7 +63,7 @@
   };
 
   const changeNote = () =>
-    $dbProjects
+    $dbTerms
       .update(
         { _id: data._id },
         { $set: { note: value.length ? value : `empty` } }
@@ -78,7 +78,7 @@
   function onWindowKeydown(e) {
     switch (e.key) {
       case `Escape`:
-        viewMode.set(`projects`);
+        viewMode.set(`terms`);
         break;
       case `Enter`:
         e.preventDefault();

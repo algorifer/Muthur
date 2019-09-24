@@ -8,16 +8,16 @@
   // Components
   import Header from "./Header.svelte";
   import InitApp from "../pages/initApp/InitApp.svelte";
-  import Projects from "../pages/projects/Projects.svelte";
+  import Terms from "../pages/terms/Terms.svelte";
   import Tasks from "../pages/tasks/Tasks.svelte";
   import Divisions from "../pages/divisions/Divisions.svelte";
   import Types from "../pages/types/Types.svelte";
   import Logs from "../pages/logs/Logs.svelte";
-  import CreateProject from "../pages/creators/Project.svelte";
+  import CreateTerm from "../pages/creators/Term.svelte";
   import CreateTask from "../pages/creators/Task.svelte";
   import CreateLog from "../pages/creators/Log.svelte";
   import CreateUser from "../pages/creators/User.svelte";
-  import ProjectView from "../pages/projectView/ProjectView.svelte";
+  import TermView from "../pages/termView/TermView.svelte";
 
   // HotKeys
   function onWindowKeydown(e) {
@@ -28,11 +28,11 @@
             case `tasks`:
               viewMode.set(`logs`);
               break;
-            case `projects`:
+            case `terms`:
               viewMode.set(`tasks`);
               break;
             case `divisions`:
-              viewMode.set(`projects`);
+              viewMode.set(`terms`);
               break;
             case `types`:
               viewMode.set(`divisions`);
@@ -47,9 +47,9 @@
         if (!e.shiftKey) {
           switch ($viewMode) {
             case `tasks`:
-              viewMode.set(`projects`);
+              viewMode.set(`terms`);
               break;
-            case `projects`:
+            case `terms`:
               viewMode.set(`divisions`);
               break;
             case `divisions`:
@@ -72,9 +72,9 @@
 
 {#if $viewMode === `init`}
   <InitApp />
-{:else if $viewMode === `projects`}
+{:else if $viewMode === `terms`}
   <Header />
-  <Projects />
+  <Terms />
 {:else if $viewMode === `tasks`}
   <Header />
   <Tasks />
@@ -89,12 +89,12 @@
   <Logs />
 {:else if $viewMode === `createUser`}
   <CreateUser />
-{:else if $viewMode === `createProject`}
-  <CreateProject />
+{:else if $viewMode === `createTerm`}
+  <CreateTerm />
 {:else if $viewMode === `createTask`}
   <CreateTask />
 {:else if $viewMode === `createLog`}
   <CreateLog />
-{:else if $viewMode === `projectView`}
-  <ProjectView />
+{:else if $viewMode === `termView`}
+  <TermView />
 {/if}

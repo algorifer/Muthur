@@ -9,13 +9,14 @@
   import { dbTypes, dbLogs } from "../../stores/db";
 
   // Components
+  import Holder from "../../components/Holder.svelte";
   import LastDays from "../../components/LastDays.svelte";
   import Help from "../../components/Help.svelte";
   import List from "../../components/List.svelte";
   import Info from "./Info.svelte";
 
   // Model
-  let types = [];
+  let types = false;
   let currentIndex = -1;
   let logs = [];
 
@@ -78,7 +79,11 @@
 <svelte:window on:keydown={onWindowKeydown} />
 
 <main>
-  <List data={types} {currentIndex} />
+  {#if types.length}
+    <List data={types} {currentIndex} />
+  {:else if types}
+    <Holder />
+  {/if}
   {#if currentType}
     <Info {currentType} {logs} />
   {:else}

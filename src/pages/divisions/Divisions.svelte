@@ -16,7 +16,7 @@
   import Info from "./Info.svelte";
 
   // Model
-  let divisions = [];
+  let divisions = false;
   let currentIndex = -1;
   let logs = [];
 
@@ -81,7 +81,7 @@
 <main>
   {#if divisions.length}
     <List data={divisions} {currentIndex} />
-  {:else}
+  {:else if divisions}
     <Holder />
   {/if}
   {#if currentDivision}

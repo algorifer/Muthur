@@ -17,10 +17,10 @@
 
   // Model
   let list;
-  let project = {};
+  let term = {};
   let msgError = false;
 
-  $: isSuccess = project._id ? true : false;
+  $: isSuccess = term._id ? true : false;
 
   // Lifecycle
   afterUpdate(() => {
@@ -33,7 +33,7 @@
   // Update
   $: if (isSuccess) {
     const saveTimeout = setTimeout(() => {
-      viewMode.set(`projects`);
+      viewMode.set(`terms`);
       clearTimeout(saveTimeout);
     }, 1500);
   }
@@ -42,7 +42,7 @@
   function onWindowKeydown(e) {
     switch (e.key) {
       case `Escape`:
-        viewMode.set(`projects`);
+        viewMode.set(`terms`);
         break;
     }
   }
@@ -58,24 +58,24 @@
 
 <svelte:window on:keydown={onWindowKeydown} />
 
-<CreateHeader title="Create Project" />
+<CreateHeader title="Create Term" />
 <ul bind:this={list}>
-  <SetName bind:obj={project} bind:msgError />
-  {#if project.name}
-    <SetDesc bind:obj={project} bind:msgError />
+  <SetName bind:obj={term} bind:msgError />
+  {#if term.name}
+    <SetDesc bind:obj={term} bind:msgError />
   {:else}
     <CreateHolder name="desc" />
   {/if}
-  {#if project.desc}
-    <SetNote bind:obj={project} bind:msgError />
+  {#if term.desc}
+    <SetNote bind:obj={term} bind:msgError />
   {:else}
     <CreateHolder name="note" />
   {/if}
-  {#if project.note}
-    <CreateSave bind:project bind:msgError />
+  {#if term.note}
+    <CreateSave bind:term bind:msgError />
   {:else}
     <CreateHolder name="save" />
   {/if}
   <CreateError {msgError} />
-  <CreateSuccess {project} {isSuccess} />
+  <CreateSuccess {term} {isSuccess} />
 </ul>

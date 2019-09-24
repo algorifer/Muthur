@@ -3,7 +3,7 @@
   import { onMount } from "svelte";
 
   // Stores
-  import { dbProjects } from "../../stores/db";
+  import { dbTerms } from "../../stores/db";
 
   // Components
   import CreateHelper from "../create/Helper.svelte";
@@ -11,12 +11,12 @@
 
   // Model
   let value = ``;
-  let projects = [];
+  let terms = [];
   export let obj;
-  export let project;
+  export let term;
   export let msgError;
 
-  $: helpers = projects.filter(
+  $: helpers = terms.filter(
     p =>
       !p.name.toLowerCase().indexOf(value.toLowerCase()) &&
       p.name.toLowerCase() !== value.toLowerCase()
@@ -24,30 +24,30 @@
 
   // Lifecycle
   onMount(() => {
-    $dbProjects
+    $dbTerms
       .find()
       .exec()
       .then(res => {
-        projects = res.map(r => ({ name: r.name, desc: r.desc }));
+        terms = res.map(r => ({ name: r.name, desc: r.desc }));
       })
       .catch(err => console.log(err));
   });
 
   // Update
-  const setProject = () => {
+  const setTerm = () => {
     msgError = false;
     if (!value.length) {
       msgError = `required field`;
       return;
     }
-    const findProjects = projects.filter(
+    const findTerms = terms.filter(
       p => p.name.toLowerCase() === value.toLowerCase()
     );
-    if (!findProjects.length) {
-      project.name = value;
-      obj.project = value;
+    if (!findTerms.length) {
+      term.name = value;
+      obj.term = value;
     } else {
-      obj.project = findProjects[0].name;
+      obj.term = findTerms[0].name;
     }
   };
 
@@ -59,13 +59,13 @@
 </script>
 
 <CreateField
-  name={project.name ? `newProject` : `project`}
-  prop={obj.project}
+  name={term.name ? `newTerm` : `term`}
+  prop={obj.term}
   bind:value
-  on:submit={setProject}
+  on:submit={setTerm}
   on:help={help}
-  request="Which project to attach?"
+  request="Which term to attach?"
   placeholder="required" />
-{#if !obj.project}
-  <CreateHelper {helpers} />
+{#if !obj.term}
+  <CreateHelper {helpers} isTab={true} />
 {/if}

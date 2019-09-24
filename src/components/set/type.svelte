@@ -67,5 +67,5 @@
   request="Which type?"
   placeholder="required" />
 {#if !obj.type}
-  <CreateHelper {helpers} />
+  <CreateHelper {helpers} isTab={true} />
 {/if}

@@ -54,11 +54,42 @@
     color: var(--bg);
     background: var(--f);
   }
+
+  p {
+    margin: 0 0px 15px;
+    color: var(--f_med);
+  }
+
+  b {
+    display: inline-block;
+    min-width: 16px;
+    padding: 2px;
+    font-weight: normal;
+    text-align: center;
+    color: var(--f);
+    background: var(--bg);
+    border-radius: 3px;
+    box-shadow: 1px 3px 0 var(--f);
+  }
 </style>
 
 <svelte:window on:keydown={onWindowKeydown} />
 
 <ul>
-  <li class:active={select === `new`}>Create new</li>
+  <li class:active={select === `new`}>Create new user</li>
   <li class:active={select === `import`}>Import data</li>
 </ul>
+
+<div>
+  <p>use keyboard</p>
+  <p>
+    <b>↑</b>
+    or
+    <b>↓</b>
+    switch items
+  </p>
+  <p>
+    <b>Enter</b>
+    select
+  </p>
+</div>

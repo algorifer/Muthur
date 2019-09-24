@@ -4,6 +4,7 @@
 
   // Model
   export let helpers;
+  export let isTab;
 </script>
 
 <style>
@@ -36,11 +37,27 @@
     padding-right: 10px;
     color: var(--f);
   }
+
+  b {
+    display: inline-block;
+    min-width: 16px;
+    padding: 2px;
+    font-weight: normal;
+    text-align: center;
+    color: var(--f);
+    background: var(--bg);
+    border-radius: 3px;
+    box-shadow: 1px 3px 0 var(--f);
+  }
 </style>
 
 {#if helpers.length}
   <li>
-    <span>⍉</span>
+    <span>
+      {#if isTab}
+        <b>Tab</b>
+      {:else}⍉{/if}
+    </span>
     <ul>
       {#each helpers as help (help.name)}
         <li animate:flip={{ duration: 200 }}>

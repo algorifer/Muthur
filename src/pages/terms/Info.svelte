@@ -13,7 +13,7 @@
   import StatDate from "../../components/StatDate.svelte";
 
   // Model
-  export let currentProject;
+  export let currentTerm;
   export let logs;
   let tasksCount = null;
   let allTaskCount = 0;
@@ -22,7 +22,7 @@
   $: taskPercent = tasksCount / (allTaskCount / 100);
 
   $: $dbLogs
-    .find({ project: currentProject.name })
+    .find({ term: currentTerm.name })
     .then(res => {
       selectLogs = res;
     })
@@ -35,7 +35,7 @@
       .then(res => (allTaskCount = res))
       .catch(err => console.log(err));
     $dbTasks
-      .count({ project: name })
+      .count({ term: name })
       .then(res => (tasksCount = res))
       .catch(err => console.log(err));
   });
@@ -48,9 +48,9 @@
   }
 </style>
 
-<InfoWrapper title={currentProject._id}>
-  <li>{currentProject.desc}</li>
-  <StatTask selector={{ project: currentProject.name }} />
+<InfoWrapper title={currentTerm._id}>
+  <li>{currentTerm.desc}</li>
+  <StatTask selector={{ term: currentTerm.name }} />
   {#if selectLogs.length}
     <StatCount {selectLogs} {logs} />
     <StatDate {selectLogs} />

@@ -7,7 +7,7 @@
   export let type = {};
   export let division = {};
   export let task = {};
-  export let project = {};
+  export let term = {};
   export let user = {};
   export let isSuccess;
 </script>
@@ -34,10 +34,10 @@
 </style>
 
 {#if isSuccess}
-  {#if project._id}
+  {#if term._id}
     <li>
       <span>⍜</span>
-      <p in:typewriter>{`Project created! ID: ${project._id}`}</p>
+      <p in:typewriter>{`Term created! ID: ${term._id}`}</p>
     </li>
   {/if}
   {#if type._id}
@@ -67,7 +67,7 @@
   {#if user._id}
     <li>
       <span>⍜</span>
-      <p in:typewriter>{`User created! ID: ${log._id}`}</p>
+      <p in:typewriter>{`User created! ID: ${user._id}`}</p>
     </li>
   {/if}
 {/if}

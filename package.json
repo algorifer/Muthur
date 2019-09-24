@@ -26,7 +26,8 @@
     "dev": "concurrently \"run-p start:dev autobuild\" \"electron .\"",
     "start": "sirv public",
     "start:dev": "sirv public --dev",
-    "package": "npm run build && electron-builder build --publish never"
+    "package-mac": "npm run build && electron-builder build --mac --publish never",
+    "package-win": "npm run build && electron-builder build --win --publish never"
   },
   "dependencies": {
     "luxon": "^1.17.2",
@@ -54,6 +55,10 @@
     ],
     "mac": {
       "icon": "public/icon.icns"
+    },
+    "win": {
+      "icon": "public/icon.ico",
+      "target": "portable"
     },
     "directories": {
       "output": "dist"

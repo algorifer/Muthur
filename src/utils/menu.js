@@ -9,26 +9,51 @@ import {viewMode} from '../stores/muthur';
 import exportData from './export';
 
 const menuTemplate = (create, input) => [
-  {
-    label: app.getName(),
-    submenu: [
-      {
-        label: 'About',
-        click: () => shell.openExternal('https://person0b.itch.io/muthur')
-      },
-      {
-        label: 'Source',
-        click: () => shell.openExternal('https://github.com/person0b/Muthur')
-      },
-      {type: 'separator'},
-      {role: 'togglefullscreen'},
-      {role: 'hide'},
-      {type: 'separator'},
-      {role: 'quit'}
-      // {role: 'reload'},
-      // {role: 'toggledevtools'}
-    ]
-  },
+  ...(process.platform === 'darwin'
+    ? [
+        {
+          label: app.getName(),
+          submenu: [
+            {
+              label: 'About',
+              click: () => shell.openExternal('https://person0b.itch.io/muthur')
+            },
+            {
+              label: 'Source',
+              click: () =>
+                shell.openExternal('https://github.com/person0b/Muthur')
+            },
+            {type: 'separator'},
+            {role: 'togglefullscreen'},
+            {role: 'hide'},
+            {type: 'separator'},
+            {role: 'quit'}
+            // {role: 'reload'},
+            // {role: 'toggledevtools'}
+          ]
+        }
+      ]
+    : [
+        {
+          label: 'file',
+          submenu: [
+            {
+              label: 'About',
+              click: () => shell.openExternal('https://person0b.itch.io/muthur')
+            },
+            {
+              label: 'Source',
+              click: () =>
+                shell.openExternal('https://github.com/person0b/Muthur')
+            },
+            {type: 'separator'},
+            {role: 'togglefullscreen'},
+            {role: 'hide'},
+            {type: 'separator'},
+            {role: 'quit'}
+          ]
+        }
+      ]),
   ...(input
     ? [
         {
@@ -49,8 +74,8 @@ const menuTemplate = (create, input) => [
           label: 'Create',
           submenu: [
             {
-              label: 'Project',
-              click: () => viewMode.set(`createProject`),
+              label: 'Term',
+              click: () => viewMode.set(`createTerm`),
               accelerator: 'CmdOrCtrl+p'
             },
             {

@@ -17,7 +17,7 @@
   import CreateSave from "../../components/create/Save.svelte";
   import SetDate from "../../components/set/Date.svelte";
   import SetTime from "../../components/set/Time.svelte";
-  import SetProject from "../../components/set/Project.svelte";
+  import SetTerm from "../../components/set/Term.svelte";
   import SetDesc from "../../components/set/Desc.svelte";
   import SetNote from "../../components/set/Note.svelte";
   import SetType from "../../components/set/Type.svelte";
@@ -27,7 +27,7 @@
   // Model
   let list;
   let log = {};
-  let project = {};
+  let term = {};
   let type = {};
   let division = {};
   let task = {};
@@ -57,7 +57,7 @@
   // Update
   $: isSuccess =
     log._id &&
-    (!project.name || project._id) &&
+    (!term.name || term._id) &&
     (!type.name || type._id) &&
     (!division.name || division._id) &&
     (!task.name || task._id);
@@ -98,27 +98,19 @@
     <CreateHolder name="time" />
   {/if}
   {#if log.time}
-    <SetProject bind:obj={log} bind:project bind:msgError />
+    <SetTerm bind:obj={log} bind:term bind:msgError />
   {:else}
-    <CreateHolder name="project" />
+    <CreateHolder name="term" />
   {/if}
-  {#if project.name}
-    <SetDesc bind:obj={project} bind:msgError />
+  {#if term.name}
+    <SetDesc bind:obj={term} bind:msgError />
   {/if}
-  {#if project.desc}
-    <SetNote bind:obj={project} bind:msgError />
-  {:else if project.name}
-    <CreateHolder name="projectNote" />
+  {#if term.desc}
+    <SetNote bind:obj={term} bind:msgError />
+  {:else if term.name}
+    <CreateHolder name="termNote" />
   {/if}
-  {#if (log.project && !project.name) || project.note}
-    <SetType bind:obj={log} bind:type bind:msgError />
-  {:else}
-    <CreateHolder name="type" />
-  {/if}
-  {#if type.name}
-    <SetDesc bind:obj={type} bind:msgError />
-  {/if}
-  {#if (log.type && !type.name) || type.desc}
+  {#if (log.term && !term.name) || term.note}
     <SetDivision bind:obj={log} bind:division bind:msgError />
   {:else}
     <CreateHolder name="division" />
@@ -127,6 +119,14 @@
     <SetDesc bind:obj={division} bind:msgError />
   {/if}
   {#if (log.division && !division.name) || division.desc}
+    <SetType bind:obj={log} bind:type bind:msgError />
+  {:else}
+    <CreateHolder name="type" />
+  {/if}
+  {#if type.name}
+    <SetDesc bind:obj={type} bind:msgError />
+  {/if}
+  {#if (log.type && !type.name) || type.desc}
     <SetTask bind:obj={log} bind:task bind:msgError />
   {:else}
     <CreateHolder name="task" />
@@ -134,7 +134,7 @@
   {#if log.task}
     <CreateSave
       bind:log
-      bind:project
+      bind:term
       bind:type
       bind:division
       bind:task
@@ -142,6 +142,6 @@
   {:else}
     <CreateHolder name="save" />
   {/if}
-  <CreateSuccess {log} {project} {type} {division} {task} {isSuccess} />
+  <CreateSuccess {log} {term} {type} {division} {task} {isSuccess} />
   <CreateError {msgError} />
 </ul>

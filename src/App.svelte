@@ -18,7 +18,7 @@
   $: {
     const isCreateMenu =
       $viewMode === `tasks` ||
-      $viewMode === `projects` ||
+      $viewMode === `terms` ||
       $viewMode === `divisions` ||
       $viewMode === `types` ||
       $viewMode === `logs`;
@@ -47,6 +47,7 @@
     background: var(--bg);
     color: var(--f);
     -webkit-app-region: drag;
+    overflow: hidden;
   }
 </style>
 

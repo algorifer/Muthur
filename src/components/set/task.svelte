@@ -25,7 +25,7 @@
   // Lifecycle
   onMount(() => {
     $dbTasks
-      .find({ project: obj.project })
+      .find({ term: obj.term })
       .exec()
       .then(res => {
         tasks = res.map(r => ({ name: r.name }));
@@ -45,7 +45,7 @@
     );
     if (!findTasks.length) {
       task.name = value;
-      task.project = obj.project;
+      task.term = obj.term;
       obj.task = value;
     } else {
       obj.task = findTasks[0].name;
@@ -68,5 +68,5 @@
   request="Which task to attach?"
   placeholder="required" />
 {#if !obj.task}
-  <CreateHelper {helpers} />
+  <CreateHelper {helpers} isTab={true} />
 {/if}

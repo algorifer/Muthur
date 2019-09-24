@@ -4,7 +4,7 @@ const path = require('path');
 
 import {get} from 'svelte/store';
 import {
-  dbProjects,
+  dbTerms,
   dbDivisions,
   dbTypes,
   dbTasks,
@@ -17,7 +17,7 @@ const createData = async () => {
     .find()
     .then()
     .catch(err => console.log(err));
-  const projects = await get(dbProjects)
+  const terms = await get(dbTerms)
     .find()
     .then()
     .catch(err => console.log(err));
@@ -38,7 +38,7 @@ const createData = async () => {
     .then()
     .catch(err => console.log(err));
 
-  return {user, projects, divisions, types, tasks, logs};
+  return {user, terms, divisions, types, tasks, logs};
 };
 
 export default () =>

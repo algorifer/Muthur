@@ -9,7 +9,9 @@
 
   $: days =
     start && end
-      ? new Array(Interval.fromDateTimes(start, end).length("days") + 1).fill(0)
+      ? new Array(
+          parseInt(Interval.fromDateTimes(start, end).length("days")) + 1
+        ).fill(0)
       : [];
 
   $: active = days.map(

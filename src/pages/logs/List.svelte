@@ -70,7 +70,7 @@
     font-style: italic;
   }
 
-  .project {
+  .term {
     font-weight: bold;
     margin: 0 auto 0 0;
   }
@@ -82,7 +82,7 @@
       <p class="meta">
         <span class="time">{log.time}h</span>
         <span class="date">{DateTime.fromISO(log.date).toLocaleString()}</span>
-        <span class="project">{log.project}</span>
+        <span class="term">{log.term}</span>
       </p>
       <p class="section">{log.type} / {log.division}</p>
     </li>

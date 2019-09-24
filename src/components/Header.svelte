@@ -69,9 +69,7 @@
         <button class={$viewMode === `tasks` ? `active` : ``}>Tasks</button>
       </li>
       <li>
-        <button class={$viewMode === `projects` ? `active` : ``}>
-          Projects
-        </button>
+        <button class={$viewMode === `terms` ? `active` : ``}>Glossary</button>
       </li>
       <li>
         <button class={$viewMode === `divisions` ? `active` : ``}>

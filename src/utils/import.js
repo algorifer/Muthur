@@ -3,7 +3,7 @@ const {dialog, app} = require('electron').remote;
 
 import {get} from 'svelte/store';
 import {
-  dbProjects,
+  dbTerms,
   dbDivisions,
   dbTypes,
   dbTasks,
@@ -29,11 +29,11 @@ const importUser = async data => {
     .catch(err => console.log(err));
 };
 
-const importProjects = async data => {
+const importTerms = async data => {
   if (!data) return `error`;
   const checkData = data.filter(item => item.name && item.desc);
   if (checkData.length === 0) return `error`;
-  await get(dbProjects)
+  await get(dbTerms)
     .insert(checkData)
     .then()
     .catch(err => console.log(err));
@@ -61,7 +61,7 @@ const importTypes = async data => {
 
 const importTasks = async data => {
   if (!data) return `error`;
-  const checkData = data.filter(item => item.name && item.project);
+  const checkData = data.filter(item => item.name && item.term);
   if (checkData.length === 0) return `error`;
   await get(dbTasks)
     .insert(checkData)
@@ -71,7 +71,7 @@ const importTasks = async data => {
 
 const importLogs = async data => {
   if (!data) return `error`;
-  const checkData = data.filter(item => item.date && item.time && item.project);
+  const checkData = data.filter(item => item.date && item.time && item.term);
   if (checkData.length === 0) return `error`;
   await get(dbLogs)
     .insert(checkData)
@@ -82,12 +82,12 @@ const importLogs = async data => {
 const createDb = async data => {
   const user = await importUser(data.user);
   if (user === `error`) return `error`;
-  const projects = await importProjects(data.projects);
+  const terms = await importTerms(data.terms);
   const divisions = await importDivisions(data.divisions);
   const types = await importTypes(data.types);
   const tasks = await importTasks(data.tasks);
   const logs = await importLogs(data.logs);
-  return {user, projects, divisions, types, tasks, logs};
+  return {user, terms, divisions, types, tasks, logs};
 };
 
 export default async () => {

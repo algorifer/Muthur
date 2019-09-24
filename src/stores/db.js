@@ -10,7 +10,7 @@ const dbFactory = fileName =>
   });
 
 export const dbUser = readable(dbFactory(`user.db`));
-export const dbProjects = readable(dbFactory(`projects.db`));
+export const dbTerms = readable(dbFactory(`terms.db`));
 export const dbDivisions = readable(dbFactory(`divisions.db`));
 export const dbTypes = readable(dbFactory(`types.db`));
 export const dbTasks = readable(dbFactory(`tasks.db`));

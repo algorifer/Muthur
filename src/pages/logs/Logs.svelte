@@ -14,7 +14,7 @@
   import LastDays from "../../components/LastDays.svelte";
 
   // Model
-  let logs = [];
+  let logs = false;
   let currentIndex = 0;
 
   // Lifecycle
@@ -66,7 +66,7 @@
 <main>
   {#if logs.length}
     <List {currentIndex} {logs} />
-  {:else}
+  {:else if logs}
     <Holder />
   {/if}
 </main>

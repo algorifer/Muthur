@@ -30,10 +30,10 @@
     {#if importRes.user}
       <li in:typewriter>User Imported</li>
     {/if}
-    {#if importRes.projects !== `error`}
-      <li in:typewriter>Projects Imported</li>
+    {#if importRes.terms !== `error`}
+      <li in:typewriter>Terms Imported</li>
     {:else}
-      <li in:typewriter class="error">Projects Not Imported</li>
+      <li in:typewriter class="error">Terms Not Imported</li>
     {/if}
     {#if importRes.divisions !== `error`}
       <li in:typewriter>Divisions Imported</li>

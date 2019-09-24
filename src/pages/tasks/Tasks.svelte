@@ -16,7 +16,7 @@
   import Info from "./info.svelte";
 
   // Model
-  let tasks = [];
+  let tasks = false;
   let currentIndex = -1;
   let logs = [];
 
@@ -81,7 +81,7 @@
 <main>
   {#if tasks.length}
     <List {currentIndex} data={tasks} />
-  {:else}
+  {:else if tasks}
     <Holder />
   {/if}
   {#if currentTask}

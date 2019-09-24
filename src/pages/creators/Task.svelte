@@ -12,14 +12,14 @@
   import CreateSuccess from "../../components/create/Success.svelte";
   import CreateSave from "../../components/create/Save.svelte";
   import SetName from "../../components/set/Name.svelte";
-  import SetProject from "../../components/set/Project.svelte";
+  import SetTerm from "../../components/set/Term.svelte";
   import SetDesc from "../../components/set/Desc.svelte";
   import SetNote from "../../components/set/Note.svelte";
 
   // Model
   let list;
   let task = {};
-  let project = {};
+  let term = {};
   let msgError = false;
 
   // Lifecycle
@@ -31,7 +31,7 @@
   });
 
   // Updates
-  $: isSuccess = task._id && (!project.name || project._id);
+  $: isSuccess = task._id && (!term.name || term._id);
 
   $: if (isSuccess) {
     const saveTimeout = setTimeout(() => {
@@ -64,23 +64,23 @@
 <ul bind:this={list}>
   <SetName bind:obj={task} bind:msgError />
   {#if task.name}
-    <SetProject bind:obj={task} bind:project bind:msgError />
+    <SetTerm bind:obj={task} bind:term bind:msgError />
   {:else}
-    <CreateHolder name="project" />
+    <CreateHolder name="term" />
   {/if}
-  {#if project.name}
-    <SetDesc bind:obj={project} bind:msgError />
+  {#if term.name}
+    <SetDesc bind:obj={term} bind:msgError />
   {/if}
-  {#if project.desc}
-    <SetNote bind:obj={project} bind:msgError />
-  {:else if project.name}
-    <CreateHolder name="projectNote" />
+  {#if term.desc}
+    <SetNote bind:obj={term} bind:msgError />
+  {:else if term.name}
+    <CreateHolder name="termNote" />
   {/if}
-  {#if (task.project && !project.name) || project.note}
-    <CreateSave bind:task bind:project bind:msgError />
+  {#if (task.term && !term.name) || term.note}
+    <CreateSave bind:task bind:term bind:msgError />
   {:else}
     <CreateHolder name="save" />
   {/if}
   <CreateError {msgError} />
-  <CreateSuccess {isSuccess} {task} {project} />
+  <CreateSuccess {isSuccess} {task} {term} />
 </ul>

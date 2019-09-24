@@ -15,6 +15,7 @@
     input.focus();
     isInput.set(true);
   });
+
   onDestroy(() => {
     document.body.focus();
     isInput.set(false);
@@ -57,6 +58,8 @@
     resize: none;
   }
 </style>
+
+<svelte:window on:keydown={() => input.focus()} />
 
 <textarea
   rows="1"

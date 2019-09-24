@@ -31,7 +31,7 @@
 <ul>
   <li>
     <b>Esc</b>
-    back to projects
+    back to glossary
   </li>
   <li>
     <b>↑</b>

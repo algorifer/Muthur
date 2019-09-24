@@ -6,7 +6,7 @@
   const { DateTime } = require("luxon");
 
   // Stores
-  import { dbProjects, dbLogs } from "../../stores/db";
+  import { dbTerms, dbLogs } from "../../stores/db";
   import { viewMode, viewPage } from "../../stores/muthur";
 
   // Components
@@ -17,18 +17,18 @@
   import Info from "./Info.svelte";
 
   // Model
-  let projects = [];
+  let terms = false;
   let currentIndex = -1;
   let logs = [];
 
-  $: currentProject = projects[currentIndex];
+  $: currentTerm = terms[currentIndex];
 
   // Lifecycle
   onMount(() => {
-    $dbProjects
+    $dbTerms
       .find()
       .then(res => {
-        projects = res;
+        terms = res;
       })
       .catch(err => console.log(err));
     $dbLogs
@@ -46,7 +46,7 @@
     switch (e.key) {
       case `ArrowDown`:
         e.preventDefault();
-        if (currentIndex < projects.length - 1) {
+        if (currentIndex < terms.length - 1) {
           currentIndex = currentIndex + 1;
         }
         break;
@@ -58,20 +58,20 @@
         break;
       case `Backspace`:
         e.preventDefault();
-        $dbProjects.remove({ _id: currentProject._id }).then(() =>
-          $dbProjects
+        $dbTerms.remove({ _id: currentTerm._id }).then(() =>
+          $dbTerms
             .find()
             .then(res => {
-              projects = res;
+              terms = res;
             })
             .catch(err => console.log(err))
         );
         break;
       case `Enter`:
-        if (currentProject.name) {
+        if (currentTerm.name) {
           e.preventDefault();
-          viewMode.set(`projectView`);
-          viewPage.set(currentProject._id);
+          viewMode.set(`termView`);
+          viewPage.set(currentTerm._id);
         }
         break;
     }
@@ -88,18 +88,15 @@
 <svelte:window on:keydown={onWindowKeydown} />
 
 <main>
-  {#if projects.length}
-    <List {currentIndex} data={projects} />
-  {:else}
+  {#if terms.length}
+    <List {currentIndex} data={terms} />
+  {:else if terms}
     <Holder />
   {/if}
-  {#if currentProject}
-    <Info {currentProject} {logs} />
+  {#if currentTerm}
+    <Info {currentTerm} {logs} />
   {:else}
     <Help />
   {/if}
 </main>
-<LastDays
-  {logs}
-  prop="project"
-  active={currentProject ? currentProject.name : false} />
+<LastDays {logs} prop="term" active={currentTerm ? currentTerm.name : false} />

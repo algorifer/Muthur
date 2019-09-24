@@ -67,5 +67,5 @@
   request="Which division?"
   placeholder="required" />
 {#if !obj.division}
-  <CreateHelper {helpers} />
+  <CreateHelper {helpers} isTab={true} />
 {/if}

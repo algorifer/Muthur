@@ -4,7 +4,7 @@
 
   // Stores
   import {
-    dbProjects,
+    dbTerms,
     dbTasks,
     dbDivisions,
     dbTypes,
@@ -20,7 +20,7 @@
   // Model
   let value = ``;
   export let log = {};
-  export let project = {};
+  export let term = {};
   export let type = {};
   export let division = {};
   export let task = {};
@@ -33,10 +33,10 @@
     switch (value.toLowerCase()) {
       case `yes`:
       case `y`:
-        if (project.name) {
-          $dbProjects
-            .insert(project)
-            .then(res => (project = res))
+        if (term.name) {
+          $dbTerms
+            .insert(term)
+            .then(res => (term = res))
             .catch(err => (msgError = err));
         }
         if (type.name) {

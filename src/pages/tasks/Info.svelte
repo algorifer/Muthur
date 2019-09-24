@@ -39,8 +39,8 @@
 
 <InfoWrapper title={currentTask._id}>
   <li>
-    <span class="proj">project:</span>
-    {currentTask.project}
+    <span class="proj">term:</span>
+    {currentTask.term}
   </li>
   {#if selectLogs.length}
     <StatCount {selectLogs} {logs} />
