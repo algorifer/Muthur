@@ -8,7 +8,7 @@
 
   $: time = selectLogs
     ? selectLogs.reduce((hours, item) => {
-        return hours + parseFloat(item.time);
+        return parseInt((hours + item.time) * 10) / 10;
       }, 0)
     : null;
 
@@ -24,7 +24,9 @@
           name: item,
           time: selectLogs.reduce((hours, log) => {
             if (log[selector] === item) {
-              return hours + parseFloat(log.time);
+              console.log(log.time, item, hours);
+              // 1.9 + 1.2 -> 3.099999999999996 ???
+              return parseInt((hours + log.time) * 10) / 10;
             }
             return hours;
           }, 0)
