@@ -4,6 +4,7 @@
 
   // Utils
   import marked from "marked";
+  import birks from "../../utils/birks";
 
   // Components
   import PageHelp from "../../components/PageHelp.svelte";
@@ -88,8 +89,8 @@
         viewMode.set(`terms`);
         break;
       case `Enter`:
-        e.preventDefault();
         if (!editField) {
+          e.preventDefault();
           value = data[currentField];
           editField = currentField;
         }
@@ -228,7 +229,7 @@
           <Input bind:value on:submit={changeNote} />
         {:else}
           <div class="note" class:active={currentField === `note`}>
-            {@html marked(data.note)}
+            {@html birks(data.note)}
           </div>
         {/if}
       </section>
