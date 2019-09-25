@@ -2,6 +2,9 @@
   // Svelte
   import { onMount, onDestroy } from "svelte";
 
+  // Utils
+  import marked from "marked";
+
   // Components
   import PageHelp from "../../components/PageHelp.svelte";
   import Input from "../../components/create/Input.svelte";
@@ -17,6 +20,10 @@
   let editField = false;
   let value;
   let msgError = false;
+  let scrollY;
+  let outerHeight;
+  let innerHeight;
+  let clientHeight;
 
   // Lifecycle
   onMount(() => updateData());
@@ -98,7 +105,20 @@
               currentField = `note`;
               break;
             case `note`:
-              currentField = `name`;
+              if (scrollY + innerHeight >= clientHeight) {
+                currentField = `name`;
+                window.scrollTo({
+                  top: 0,
+                  left: 0,
+                  behavior: "smooth"
+                });
+              } else {
+                window.scrollTo({
+                  top: scrollY + 50,
+                  left: 0,
+                  behavior: "smooth"
+                });
+              }
               break;
           }
         }
@@ -114,7 +134,15 @@
               currentField = `name`;
               break;
             case `note`:
-              currentField = `desc`;
+              if (scrollY !== 0) {
+                window.scrollTo({
+                  top: scrollY - 50,
+                  left: 0,
+                  behavior: "smooth"
+                });
+              } else {
+                currentField = `desc`;
+              }
               break;
           }
         }
@@ -124,7 +152,7 @@
 </script>
 
 <style>
-  div {
+  .list {
     display: flex;
     align-items: flex-start;
   }
@@ -152,10 +180,12 @@
     color: var(--f_med);
   }
 
-  p {
+  p,
+  .note {
     margin: 0;
     padding: 5px 10px;
     transition: 0.2s;
+    overflow: hidden;
   }
 
   .active {
@@ -164,10 +194,14 @@
   }
 </style>
 
-<svelte:window on:keydown={onWindowKeydown} />
+<svelte:window
+  on:keydown={onWindowKeydown}
+  bind:scrollY
+  bind:outerHeight
+  bind:innerHeight />
 
 {#if data}
-  <div>
+  <div class="list" bind:clientHeight>
     <article>
       {#if editField === `name`}
         <Input bind:value on:submit={changeName} />
@@ -193,7 +227,9 @@
         {#if editField === `note`}
           <Input bind:value on:submit={changeNote} />
         {:else}
-          <p class:active={currentField === `note`}>{data.note}</p>
+          <div class="note" class:active={currentField === `note`}>
+            {@html marked(data.note)}
+          </div>
         {/if}
       </section>
     </article>

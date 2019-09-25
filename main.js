@@ -1,4 +1,4 @@
-const {app, BrowserWindow} = require('electron');
+const {app, BrowserWindow, shell} = require('electron');
 const path = require('path');
 
 require('electron').protocol.registerSchemesAsPrivileged([
@@ -51,6 +51,11 @@ app.on(`ready`, () => {
     } else {
       app.win.show();
     }
+  });
+
+  app.win.webContents.on('will-navigate', (event, url) => {
+    event.preventDefault();
+    shell.openExternal(url);
   });
 });
 

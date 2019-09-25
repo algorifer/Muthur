@@ -27,15 +27,15 @@ const menuTemplate = (create, input) => [
             {role: 'togglefullscreen'},
             {role: 'hide'},
             {type: 'separator'},
-            {role: 'quit'}
-            // {role: 'reload'},
-            // {role: 'toggledevtools'}
+            {role: 'quit'},
+            {role: 'reload'},
+            {role: 'toggledevtools'}
           ]
         }
       ]
     : [
         {
-          label: 'file',
+          label: 'File',
           submenu: [
             {
               label: 'About',

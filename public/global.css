@@ -87,3 +87,7 @@ html,
   box-sizing: border-box;
   outline: none;
 }
+
+a {
+  pointer-events: all;
+}

@@ -1,5 +1,6 @@
 <script>
   // Utils
+  import marked from "marked";
   const { DateTime } = require("luxon");
 
   // Components
@@ -11,6 +12,7 @@
   export let value;
   export let request;
   export let placeholder;
+  export let isMarked = false;
 </script>
 
 <style>
@@ -27,7 +29,8 @@
     color: var(--f_med);
   }
 
-  p {
+  p,
+  div {
     margin: 0;
     padding: 10px 20px;
     border-left: 1px solid var(--f_med);
@@ -44,6 +47,10 @@
   <span>{name}</span>
   {#if !prop}
     <Input bind:value {placeholder} on:submit on:help />
+  {:else if isMarked}
+    <div>
+      {@html marked(prop)}
+    </div>
   {:else}
     <p>
       {name === `time` ? `${prop} ${prop === 1 ? `hour` : `hours`}` : name === `date` ? `${DateTime.fromISO(prop).toLocaleString()}` : `${prop}`}

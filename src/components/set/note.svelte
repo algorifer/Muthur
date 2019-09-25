@@ -20,4 +20,5 @@
   bind:value
   on:submit={setNote}
   request="Want to add notes?"
+  isMarked={true}
   placeholder="empty" />
