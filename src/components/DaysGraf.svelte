@@ -16,8 +16,11 @@
 
   $: active = days.map(
     (item, i) =>
-      selectLogs.filter(item => item.date === start.plus({ days: i }).toISO())
-        .length
+      selectLogs.filter(
+        item =>
+          DateTime.fromISO(item.date).toISODate() ===
+          start.plus({ days: i }).toISODate()
+      ).length
   );
 </script>
 
@@ -36,7 +39,7 @@
   span {
     height: 100%;
     flex-grow: 2;
-    border-right: 1px solid var(--f_med);
+    margin: 0 1px;
   }
 
   span:last-child {

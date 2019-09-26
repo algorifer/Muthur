@@ -1,4 +1,8 @@
 <script>
+  // Utils
+  import getHours from "../utils/getHours";
+  import fixFloat from "../utils/fixJsFloat";
+
   // Components
   import GrafLine from "./GrafLine.svelte";
 
@@ -6,11 +10,7 @@
   export let selectLogs;
   export let selector;
 
-  $: time = selectLogs
-    ? selectLogs.reduce((hours, item) => {
-        return parseInt((hours + item.time) * 10) / 10;
-      }, 0)
-    : null;
+  $: time = selectLogs ? getHours(selectLogs) : null;
 
   $: items = selectLogs
     ? selectLogs
@@ -22,14 +22,14 @@
         }, [])
         .map(item => ({
           name: item,
-          time: selectLogs.reduce((hours, log) => {
-            if (log[selector] === item) {
-              console.log(log.time, item, hours);
-              // 1.9 + 1.2 -> 3.099999999999996 ???
-              return parseInt((hours + log.time) * 10) / 10;
-            }
-            return hours;
-          }, 0)
+          time: fixFloat(
+            selectLogs.reduce((hours, log) => {
+              if (log[selector] === item) {
+                return hours + log.time;
+              }
+              return hours;
+            }, 0)
+          )
         }))
     : [];
 </script>

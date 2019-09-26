@@ -4,7 +4,7 @@ import {readable} from 'svelte/store';
 
 const dbFactory = fileName =>
   Datastore.create({
-    filename: `${!DEV ? app.getPath('userData') : '.'}/data/${fileName}`,
+    filename: `${DEV ? app.getPath('userData') : '.'}/data/${fileName}`,
     timestampData: false,
     autoload: true
   });
