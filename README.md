@@ -4,8 +4,6 @@ Personal time tracker, a to-do list, and a glossary.
 
 Powered by [Svelte](https://svelte.dev/), [Electron](https://electronjs.org/), [nedb-promises](https://github.com/bajankristof/nedb-promises) and [Luxon](https://moment.github.io/luxon/index.html).
 
-This is your personal time tracker, a to-do list, and a glossary.
-
 It can save your...
 
 - **Tasks**. It helps you not to forget to do important things and learn how much time you’ve already spent on them.
