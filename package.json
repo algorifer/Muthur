@@ -23,7 +23,7 @@
   "scripts": {
     "build": "rollup -c",
     "autobuild": "rollup -c -w",
-    "dev": "concurrently \"run-p start:dev autobuild\" \"electron .\"",
+    "dev": "concurrently 'run-p start:dev autobuild' 'sleep 5 && electron .'",
     "start": "sirv public",
     "start:dev": "sirv public --dev",
     "package-mac": "npm run build && electron-builder build --mac --publish never",
