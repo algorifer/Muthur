@@ -3,8 +3,7 @@
   import { onMount, onDestroy } from "svelte";
 
   // Utils
-  import marked from "marked";
-  import birks from "../../utils/birks";
+  import birker from "../../utils/birker";
 
   // Components
   import PageHelp from "../../components/PageHelp.svelte";
@@ -229,7 +228,7 @@
           <Input bind:value on:submit={changeNote} />
         {:else}
           <div class="note" class:active={currentField === `note`}>
-            {@html birks(data.note)}
+            {@html birker(data.note)}
           </div>
         {/if}
       </section>
