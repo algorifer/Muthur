@@ -1,6 +1,7 @@
 <script>
   // Utils
   const { DateTime } = require("luxon");
+  import fixFloat from "../utils/fixJsFloat";
 
   // Models
   let daysCount = 90;
@@ -24,9 +25,11 @@
 
   $: data = prop ? getDataProp(daysLogs, prop) : getData(daysLogs);
 
-  $: allTime = data.reduce(
-    (all, day) => all + day.reduce((all, log) => all + log.time, 0),
-    0
+  $: allTime = fixFloat(
+    data.reduce(
+      (all, day) => all + day.reduce((all, log) => all + log.time, 0),
+      0
+    )
   );
 
   const getDataProp = (days, prop) => {
