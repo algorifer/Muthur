@@ -17,7 +17,7 @@
   import CreateTask from "../pages/creators/Task.svelte";
   import CreateLog from "../pages/creators/Log.svelte";
   import CreateUser from "../pages/creators/User.svelte";
-  import TermView from "../pages/termView/TermView.svelte";
+  import TermSingle from "../pages/termSingle/TermSingle.svelte";
 
   // HotKeys
   function onWindowKeydown(e) {
@@ -95,6 +95,6 @@
   <CreateTask />
 {:else if $viewMode === `createLog`}
   <CreateLog />
-{:else if $viewMode === `termView`}
-  <TermView />
+{:else if $viewMode === `termSingle`}
+  <TermSingle />
 {/if}

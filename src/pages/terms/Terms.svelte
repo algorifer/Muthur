@@ -70,7 +70,7 @@
       case `Enter`:
         if (currentTerm.name) {
           e.preventDefault();
-          viewMode.set(`termView`);
+          viewMode.set(`termSingle`);
           viewPage.set(currentTerm._id);
         }
         break;

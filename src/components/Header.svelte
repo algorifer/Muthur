@@ -66,24 +66,22 @@
   <nav>
     <ul>
       <li>
-        <button class={$viewMode === `tasks` ? `active` : ``}>Tasks</button>
+        <button class:active={$viewMode === `tasks`}>Tasks</button>
       </li>
       <li>
-        <button class={$viewMode === `terms` ? `active` : ``}>Glossary</button>
+        <button class:active={$viewMode === `terms`}>Glossary</button>
       </li>
       <li>
-        <button class={$viewMode === `divisions` ? `active` : ``}>
-          Divisions
-        </button>
+        <button class:active={$viewMode === `divisions`}>Divisions</button>
       </li>
       <li>
-        <button class={$viewMode === `types` ? `active` : ``}>Types</button>
+        <button class:active={$viewMode === `types`}>Types</button>
       </li>
       <li>
-        <button class={$viewMode === `logs` ? `active` : ``}>Logs</button>
+        <button class:active={$viewMode === `logs`}>Logs</button>
       </li>
       <!-- <li>
-        <button class={$viewMode === `journal` ? `active` : ``}>Journal</button>
+        <button class:active={$viewMode === `journal`}>Journal</button>
       </li> -->
     </ul>
     <Timer />

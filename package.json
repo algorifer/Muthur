@@ -1,24 +1,24 @@
 {
   "name": "muthur",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "person0b",
   "main": "main.js",
   "devDependencies": {
     "concurrently": "^4.1.0",
-    "electron": "^5.0.2",
+    "electron": "^5.0.13",
     "electron-builder": "^21.2.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.0",
     "npm-run-all": "^4.1.5",
-    "rollup": "^1.10.1",
+    "rollup": "^1.27.14",
     "rollup-plugin-commonjs": "^9.3.4",
-    "rollup-plugin-livereload": "^1.0.0",
+    "rollup-plugin-livereload": "^1.0.4",
     "rollup-plugin-node-resolve": "^4.2.3",
     "rollup-plugin-replace": "^2.2.0",
-    "rollup-plugin-svelte": "^5.0.3",
+    "rollup-plugin-svelte": "^5.1.1",
     "rollup-plugin-terser": "^4.0.4",
-    "sirv-cli": "^0.4.0",
-    "svelte": "^3.4.0",
-    "ws": ">=3.3.1"
+    "sirv-cli": "^0.4.5",
+    "svelte": "^3.16.7",
+    "ws": "^7.2.1"
   },
   "scripts": {
     "build": "rollup -c",
@@ -30,7 +30,7 @@
     "package-win": "npm run build && electron-builder build --win --publish never"
   },
   "dependencies": {
-    "luxon": "^1.17.2",
+    "luxon": "^1.21.3",
     "marked": "^0.7.0",
     "nedb-promises": "^4.0.0"
   },

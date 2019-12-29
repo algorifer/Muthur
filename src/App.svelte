@@ -47,7 +47,7 @@
     background: var(--bg);
     color: var(--f);
     -webkit-app-region: drag;
-    overflow: hidden;
+    overflow-x: hidden;
   }
 </style>
 
