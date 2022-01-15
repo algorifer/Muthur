@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "luxon": "^1.21.3",
-    "marked": "^0.7.0",
+    "marked": "^4.0.10",
     "nedb-promises": "^4.0.0"
   },
   "build": {
