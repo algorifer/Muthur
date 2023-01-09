@@ -30,7 +30,7 @@
     "package-win": "npm run build && electron-builder build --win --publish never"
   },
   "dependencies": {
-    "luxon": "^1.21.3",
+    "luxon": "^1.28.1",
     "marked": "^0.7.0",
     "nedb-promises": "^4.0.0"
   },
